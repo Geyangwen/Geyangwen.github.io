@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>小文同学</title>
+  
+  <subtitle>小文同学</subtitle>
+  <link href="http://geyangwen.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://geyangwen.github.io/"/>
+  <updated>2022-10-27T03:12:14.141Z</updated>
+  <id>http://geyangwen.github.io/</id>
+  
+  <author>
+    <name>葛杨文</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>article title</title>
+    <link href="http://geyangwen.github.io/2022/10/27/wo-de-di-yi-pian-bo-ke/"/>
+    <id>http://geyangwen.github.io/2022/10/27/wo-de-di-yi-pian-bo-ke/</id>
+    <published>2022-10-27T03:07:54.000Z</published>
+    <updated>2022-10-27T03:12:14.141Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;提示：使用深度优先搜索解题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Description&quot;&gt;&lt;a href=&quot;#Description&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://geyangwen.github.io/2022/10/25/hello-world/"/>
+    <id>http://geyangwen.github.io/2022/10/25/hello-world/</id>
+    <published>2022-10-25T07:35:17.350Z</published>
+    <updated>1985-10-26T08:15:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
