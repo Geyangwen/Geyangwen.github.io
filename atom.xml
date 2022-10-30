@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>小文同学</title>
+  
+  <subtitle>小文同学</subtitle>
+  <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/atom.xml" rel="self"/>
+  
+  <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/"/>
+  <updated>2022-10-29T13:38:07.649Z</updated>
+  <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/</id>
+  
+  <author>
+    <name>葛杨文</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/102916107.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/102916107.html</id>
+    <published>2022-10-29T12:44:33.778Z</published>
+    <updated>2022-10-29T13:38:07.649Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>hexo的个性化配置</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/10273975.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/10273975.html</id>
+    <published>2022-10-27T03:07:54.000Z</published>
+    <updated>2022-10-30T09:00:32.557Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;文章目录&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;一、matery主题的下载与安装
+二、基本配置
+    1.根目录下的 `_config.yml`
+        1.1. title
+        1.2. deploy与theme
+   </summary>
+        
+      
+    
+    
+    
+    <category term="软件安装与配置" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
+    
+    
+    <category term="hexo" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>article title</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/102746815.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/102746815.html</id>
+    <published>2022-10-27T03:07:54.000Z</published>
+    <updated>2022-10-30T02:54:31.738Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;提示：使用深度优先搜索解题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Description&quot;&gt;&lt;a href=&quot;#Description&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="算法" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+</feed>
