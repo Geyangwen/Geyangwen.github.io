@@ -515,7 +515,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    243
+                    240
                 </div>
                 
 
@@ -543,40 +543,17 @@
         
 
         
+        <!-- 代码块折行 -->
+        <style type="text/css">
+            code[class*="language-"], pre[class*="language-"] { white-space: pre-wrap !important; }
+        </style>
+        
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <ul>
 <li><p>文章目录</p>
-<pre><code>一、matery主题的下载与安装
-二、基本配置
-    1.根目录下的 `_config.yml`
-        1.1. title
-        1.2. deploy与theme
-    2.themes目录下的`_config.yml`
-        2.1. menu，icon，二级菜单
-        2.2. dream【可选】
-        2.3. music
-        2.4. indexbtn
-        2.5. sociallink
-        2.6. 打赏功能
-        2.7. 字数统计等
-        2.8. featureimages
-        2.9. 几何线条背景canvas_nest
-        2.10. 分享链接share
-        2.11. 副标题subtitle
-    3. 修改导航栏颜色
-    4. “关于”页面（about）
-        4.1. 新建about页面
-        4.2. 个人信息
-        4.3. 配置"我的项目"信息
-        4.5. 配置"我的相册"信息
-    5. 新建标签/分类/留言板页面
-    6. 开发评论功能gittalk
-        6.1. 注册OAuth Application
-        6.2. 配置 _config.yml 文件
-    7. 写博客
-</code></pre>
+<p>一、matery主题的下载与安装<br>二、基本配置<br>1.根目录下的 <code>_config.yml</code><br>    1.1. title<br>    1.2. deploy与theme<br>2.themes目录下的<code>_config.yml</code><br>    2.1. menu，icon，二级菜单<br>    2.2. dream【可选】<br>    2.3. music<br>    2.4. indexbtn<br>    2.5. sociallink<br>    2.6. 打赏功能<br>    2.7. 字数统计等<br>    2.8. featureimages<br>    2.9. 几何线条背景canvas_nest<br>    2.10. 分享链接share<br>    2.11. 副标题subtitle<br><br>3. 修改导航栏颜色<br>    4. “关于”页面（about）<br>       4.1. 新建about页面<br>       4.2. 个人信息<br>       4.3. 配置”我的项目”信息<br>       4.5. 配置”我的相册”信息<br>    5. 新建标签/分类/留言板页面<br>    6. 开发评论功能gittalk<br>       6.1. 注册OAuth Application<br>       6.2. 配置 _config.yml 文件<br>    7. 写博客</p>
 <hr>
 <p>————————————————<br>版权声明：本文为CSDN博主「伊丶二」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41376237/article/details/113475727">https://blog.csdn.net/qq_41376237/article/details/113475727</a></p>
 </li>
@@ -1210,7 +1187,7 @@
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4,h5'
         });
 
         // modify the toc link href to support Chinese.
@@ -1222,7 +1199,7 @@
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4,h5').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -1354,7 +1331,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">801</span>&nbsp;字
+                class="white-color">5.4k</span>&nbsp;字
             
             
             
