@@ -584,10 +584,15 @@
 
 <h4 id="3、查询所有字段"><a href="#3、查询所有字段" class="headerlink" title="3、查询所有字段"></a>3、查询所有字段</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> 表名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h4 id="4、查询常量"><a href="#4、查询常量" class="headerlink" title="4、查询常量"></a>4、查询常量</h4><p>select 常量值;</p>
+<h4 id="4、查询常量"><a href="#4、查询常量" class="headerlink" title="4、查询常量"></a>4、查询常量</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 常量值<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p><strong>注意：</strong>字符型和日期型的常量值必须用单引号引起来，数值型不需要</p>
-<h4 id="5、查询函数"><a href="#5、查询函数" class="headerlink" title="5、查询函数"></a>5、查询函数</h4><p>select 函数名(实参列表);</p>
-<h4 id="6、查询表达式"><a href="#6、查询表达式" class="headerlink" title="6、查询表达式"></a>6、查询表达式</h4><p>select 100/1234;</p>
+<h4 id="5、查询函数"><a href="#5、查询函数" class="headerlink" title="5、查询函数"></a>5、查询函数</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 函数名<span class="token punctuation">(</span>实参列表<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h4 id="6、查询表达式"><a href="#6、查询表达式" class="headerlink" title="6、查询表达式"></a>6、查询表达式</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token number">100</span><span class="token operator">/</span><span class="token number">1234</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <h4 id="7、起别名"><a href="#7、起别名" class="headerlink" title="7、起别名"></a>7、起别名</h4><p>①as</p>
 <p>②空格</p>
 <h4 id="8、去重"><a href="#8、去重" class="headerlink" title="8、去重"></a>8、去重</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token keyword">distinct</span> 字段名 <span class="token keyword">from</span> 表名<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -597,7 +602,10 @@
 <p>select 字符+数值;先试图将字符转换成数值，如果转换成功，则继续运算；否则转换成0，再做运算</p>
 <p>select null+值;结果都为null</p>
 <h4 id="10、【补充】concat函数"><a href="#10、【补充】concat函数" class="headerlink" title="10、【补充】concat函数"></a>10、【补充】concat函数</h4><p>功能：拼接字符</p>
-<p>select concat(字符1，字符2，字符3,…);</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> concat<span class="token punctuation">(</span>字符<span class="token number">1</span>，字符<span class="token number">2</span>，字符<span class="token number">3</span><span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
 <h4 id="11、【补充】ifnull函数"><a href="#11、【补充】ifnull函数" class="headerlink" title="11、【补充】ifnull函数"></a>11、【补充】ifnull函数</h4><p>功能：判断某字段或表达式是否为null，如果为null 返回指定的值，否则返回原本的值</p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> ifnull<span class="token punctuation">(</span>commission_pct<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">from</span> employees<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -996,12 +1004,10 @@ is null或is not null 可以判断null值
 <p>  ①叫什么（函数名）</p>
 <p>  ②干什么（函数功能）</p>
 <p><strong>分类</strong>：</p>
-<p>  1、单行函数（有返回值）</p>
-<pre><code>      如 concat、length、ifnull等
-</code></pre>
-<p>  2、分组函数</p>
-<pre><code>  	功能：做统计使用，又称为统计函数、聚合函数、组函数
-</code></pre>
+<p>  1、<strong>单行函数</strong>（有返回值）</p>
+<p>如 concat、length、ifnull等</p>
+<p>  2、<strong>分组函数</strong></p>
+<p>功能：做统计使用，又称为统计函数、聚合函数、组函数</p>
 <p>常见函数：</p>
 <h3 id="二、单行函数"><a href="#二、单行函数" class="headerlink" title="二、单行函数"></a><strong>二、单行函数</strong></h3><h4 id="1-字符函数："><a href="#1-字符函数：" class="headerlink" title="1. 字符函数："></a><strong>1. 字符函数：</strong></h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">length:	获取字节个数<span class="token punctuation">(</span>utf<span class="token operator">-</span><span class="token number">8</span>一个汉字代表<span class="token number">3</span>个字节<span class="token punctuation">,</span>gbk为<span class="token number">2</span>个字节<span class="token punctuation">)</span>
   concat
@@ -1135,7 +1141,8 @@ date_format<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 <span class="token keyword">FROM</span> employees
 <span class="token keyword">WHERE</span> commission_pct <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./images/loading.gif" data-original="https://gitee.com/ge-yangwen/images/raw/master/images/2022/20221102211803.png" alt="日期格式图"></p>
+<img src="./images/loading.gif" data-original="https://gitee.com/ge-yangwen/images/raw/master/images/2022/20221102211803.png" style="zoom:150%;">
+
 <h4 id="4-其他函数："><a href="#4-其他函数：" class="headerlink" title="4. 其他函数："></a>4. 其他函数：</h4><pre class="line-numbers language-none"><code class="language-none">version
 database
 user
@@ -1231,12 +1238,11 @@ end
 <p>sum 求和、avg 平均值、max 最大值 、min 最小值 、count 计算个数</p>
 <p><strong>特点</strong>：</p>
 <p>1、sum、avg一般用于处理数值型</p>
-<pre><code>  max、min、count可以处理任何类型
-</code></pre>
+<p>max、min、count可以处理任何类型</p>
 <p>2、以上分组函数都<strong>忽略null</strong>值</p>
 <p>3、可以<strong>和distinct搭配</strong>实现去重的运算</p>
 <p>4、count函数的单独介绍</p>
-<p>​	一般使用count(*)用作统计行数</p>
+<p>一般使用count(*)用作统计行数</p>
 <p>5、<strong>和分组函数一同查询的字段要求是group by后的字段</strong></p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#1、简单 的使用</span>
 <span class="token keyword">SELECT</span> <span class="token function">SUM</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">FROM</span> employees<span class="token punctuation">;</span>
