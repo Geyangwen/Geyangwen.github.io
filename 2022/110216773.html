@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="小文同学" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="小文同学" type="application/atom+xml">
 </head>
 
 
@@ -515,14 +515,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.6k
+                    8.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    19 分
+                    37 分
                 </div>
                 
 
@@ -1143,6 +1143,8 @@ date_format<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 
 <img src="./images/loading.gif" data-original="https://gitee.com/ge-yangwen/images/raw/master/images/2022/20221102211803.png" style="zoom:150%;">
 
+
+
 <h4 id="4-其他函数："><a href="#4-其他函数：" class="headerlink" title="4. 其他函数："></a>4. 其他函数：</h4><pre class="line-numbers language-none"><code class="language-none">version
 database
 user
@@ -1321,53 +1323,725 @@ MYISAM存储引擎下  ，<span class="token function">COUNT</span><span class="
     <span class="token keyword">FROM</span> employees
     <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> job_id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h2 id="进阶5：分组查询"><a href="#进阶5：分组查询" class="headerlink" title="进阶5：分组查询"></a><strong>进阶5：分组查询</strong></h2><h3 id="一、语法："><a href="#一、语法：" class="headerlink" title="一、语法："></a>一、语法：</h3><p>select 查询列表············5</p>
+<p>from 表 ···················1</p>
+<p>【where 筛选条件】··········2</p>
+<p>group by 分组的字段·········3</p>
+<p>【having  分组后的筛选】;····4</p>
+<p>【order by 排序的字段】;·····6</p>
+<h3 id="二、特点："><a href="#二、特点：" class="headerlink" title="二、特点："></a>二、特点：</h3><p>1、和分组函数一同查询的字段必须是group by后出现的字段</p>
+<p>2、筛选分为两类：分组前筛选和分组后筛选</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">针对的表</th>
+<th align="center">位置</th>
+<th align="center">连接的关键字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">分组前筛选</td>
+<td align="center">原始表</td>
+<td align="center">group by前</td>
+<td align="center">where</td>
+</tr>
+<tr>
+<td align="center">分组后筛选</td>
+<td align="center">group by后的结果集</td>
+<td align="center">group by后</td>
+<td align="center">having</td>
+</tr>
+</tbody></table>
+<p>问题1：分组函数(sum、avg、max、min  、count )做筛选能不能放在where后面</p>
+<p>答：不能</p>
+<p>问题2：where——group by——having</p>
+<p>一般来讲，能用分组前筛选的，尽量使用分组前筛选，提高效率</p>
+<p>3、分组可以按单个字段也可以按多个字段</p>
+<p>4、可以搭配着排序使用</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#引入：查询部门号为90的员工个数</span>
+<span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> employees <span class="token keyword">WHERE</span> department_id<span class="token operator">=</span><span class="token number">90</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><strong>1.简单的分组</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例1：查询每个工种的员工平均工资</span>
+<span class="token keyword">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token punctuation">,</span>job_id
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> job_id<span class="token punctuation">;</span>
+
+<span class="token comment">#案例2：查询每个位置的部门个数</span>
+<span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">,</span>location_id
+<span class="token keyword">FROM</span> departments
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> location_id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>2、可以实现分组前的筛选</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例1：查询邮箱中包含a字符的 每个部门的最高工资</span>
+<span class="token keyword">SELECT</span> <span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token punctuation">,</span>department_id
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> email <span class="token operator">LIKE</span> <span class="token string">'%a%'</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id<span class="token punctuation">;</span>
+
+<span class="token comment">#案例2：查询有奖金的每个领导手下员工的平均工资</span>
+<span class="token keyword">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token punctuation">,</span>manager_id
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> commission_pct <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> manager_id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
+<p><strong>3、分组后筛选</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例：查询哪个部门的员工个数&gt;5</span>
+<span class="token comment">#①查询每个部门的员工个数</span>
+<span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">,</span>department_id
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id<span class="token punctuation">;</span>
+
+<span class="token comment">#② 筛选刚才①结果</span>
+<span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">,</span>department_id
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id
+<span class="token keyword">HAVING</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">5</span><span class="token punctuation">;</span>
+
+<span class="token comment">#案例2：每个工种有奖金的员工的最高工资&gt;12000的工种编号和最高工资</span>
+<span class="token keyword">SELECT</span> job_id<span class="token punctuation">,</span><span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> commission_pct <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> job_id
+<span class="token keyword">HAVING</span> <span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">12000</span><span class="token punctuation">;</span>
+
+<span class="token comment">#案例3：领导编号&gt;102的每个领导手下的最低工资大于5000的领导编号和最低工资</span>
+manager_id<span class="token operator">&gt;</span><span class="token number">102</span>
+<span class="token keyword">SELECT</span> manager_id<span class="token punctuation">,</span><span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> manager_id
+<span class="token keyword">HAVING</span> <span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">5000</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>4.添加排序</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例：每个工种有奖金的员工的最高工资&gt;6000的工种编号和最高工资,按最高工资升序</span>
+<span class="token keyword">SELECT</span> job_id<span class="token punctuation">,</span><span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> m
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> commission_pct <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> job_id
+<span class="token keyword">HAVING</span> m<span class="token operator">&gt;</span><span class="token number">6000</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> m <span class="token punctuation">;</span>
+
+<span class="token comment">#5.按多个字段分组</span>
+<span class="token comment">#案例：查询每个工种每个部门的最低工资,并按最低工资降序</span>
+<span class="token keyword">SELECT</span> <span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token punctuation">,</span>job_id<span class="token punctuation">,</span>department_id
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id<span class="token punctuation">,</span>job_id
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">DESC</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="进阶6-1：92语法-连接查询"><a href="#进阶6-1：92语法-连接查询" class="headerlink" title="进阶6.1：92语法 连接查询"></a><strong>进阶6.1：92语法 连接查询</strong></h2><h3 id="含义："><a href="#含义：" class="headerlink" title="含义："></a>含义：</h3><p>又称多表查询，当查询的字段来自于多个表时，就会用到连接查询</p>
+<p>笛卡尔乘积现象：表1 有m行，表2有n行，结果=m*n行</p>
+<p><strong>发生原因：</strong>没有有效的连接条件</p>
+<p><strong>如何避免：</strong>添加有效的连接条件</p>
+<p>分类：</p>
+<p>  <strong>按年代分类：</strong></p>
+<p>  sql92标准:仅仅支持内连接</p>
+<p>  sql99标准【推荐】：支持内连接+外连接（左外和右外）+交叉连接</p>
+<p>  <strong>按功能分类：</strong></p>
+<p>​    内连接：</p>
+<p>​      等值连接</p>
+<p>​      非等值连接</p>
+<p>​      自连接</p>
+<p>​    外连接：</p>
+<p>​      左外连接</p>
+<p>​      右外连接</p>
+<p>​      全外连接</p>
+<p>​    交叉连接</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> NAME<span class="token punctuation">,</span>boyName <span class="token keyword">FROM</span> boys<span class="token punctuation">,</span>beauty
+<span class="token keyword">WHERE</span> beauty<span class="token punctuation">.</span>boyfriend_id<span class="token operator">=</span> boys<span class="token punctuation">.</span>id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="1、等值连接"><a href="#1、等值连接" class="headerlink" title="1、等值连接"></a>1、等值连接</h3><p>① 多表等值连接的结果为多表的交集部分</p>
+<p>②n表连接，至少需要n-1个连接条件</p>
+<p>③ 多表的顺序没有要求</p>
+<p>④一般需要为表起别名</p>
+<p>⑤可以搭配前面介绍的所有子句使用，比如排序、分组、筛选</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例1：查询女神名和对应的男神名</span>
+<span class="token keyword">SELECT</span> NAME<span class="token punctuation">,</span>boyName 
+<span class="token keyword">FROM</span> boys<span class="token punctuation">,</span>beauty
+<span class="token keyword">WHERE</span> beauty<span class="token punctuation">.</span>boyfriend_id<span class="token operator">=</span> boys<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+
+<span class="token comment">#案例2：查询员工名和对应的部门名</span>
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>department_name
+<span class="token keyword">FROM</span> employees<span class="token punctuation">,</span>departments
+<span class="token keyword">WHERE</span> employees<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span><span class="token operator">=</span>departments<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2、为表起别名"><a href="#2、为表起别名" class="headerlink" title="2、为表起别名"></a>2、为表起别名</h4><p>①提高语句的简洁度</p>
+<p>②区分多个重名的字段</p>
+<p>注意：如果为表起了别名，则查询的字段就不能使用原来的表名去限定</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#查询员工名、工种号、工种名</span>
+<span class="token keyword">SELECT</span> e<span class="token punctuation">.</span>last_name<span class="token punctuation">,</span>e<span class="token punctuation">.</span>job_id<span class="token punctuation">,</span>j<span class="token punctuation">.</span>job_title
+<span class="token keyword">FROM</span> employees  e<span class="token punctuation">,</span>jobs j
+<span class="token keyword">WHERE</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>job_id<span class="token punctuation">`</span></span><span class="token operator">=</span>j<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>job_id<span class="token punctuation">`</span></span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="3、两个表的顺序是否可以调换"><a href="#3、两个表的顺序是否可以调换" class="headerlink" title="3、两个表的顺序是否可以调换"></a>3、两个表的顺序是否可以调换</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#查询员工名、工种号、工种名</span>
+<span class="token keyword">SELECT</span> e<span class="token punctuation">.</span>last_name<span class="token punctuation">,</span>e<span class="token punctuation">.</span>job_id<span class="token punctuation">,</span>j<span class="token punctuation">.</span>job_title
+<span class="token keyword">FROM</span> jobs j<span class="token punctuation">,</span>employees e
+<span class="token keyword">WHERE</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>job_id<span class="token punctuation">`</span></span><span class="token operator">=</span>j<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>job_id<span class="token punctuation">`</span></span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="4、可以加筛选"><a href="#4、可以加筛选" class="headerlink" title="4、可以加筛选"></a>4、可以加筛选</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例：查询有奖金的员工名、部门名</span>
+
+<span class="token comment">#案例2：查询城市名中第二个字符为o的部门名和城市名</span>
+<span class="token keyword">SELECT</span> department_name<span class="token punctuation">,</span>city
+<span class="token keyword">FROM</span> departments d<span class="token punctuation">,</span>locations l
+<span class="token keyword">WHERE</span> d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>location_id<span class="token punctuation">`</span></span> <span class="token operator">=</span> l<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>location_id<span class="token punctuation">`</span></span>
+<span class="token operator">AND</span> city <span class="token operator">LIKE</span> <span class="token string">'_o%'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="5、可以加分组"><a href="#5、可以加分组" class="headerlink" title="5、可以加分组"></a>5、可以加分组</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例1：查询每个城市的部门个数</span>
+<span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> 个数<span class="token punctuation">,</span>city
+<span class="token keyword">FROM</span> departments d<span class="token punctuation">,</span>locations l
+<span class="token keyword">WHERE</span> d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>location_id<span class="token punctuation">`</span></span><span class="token operator">=</span>l<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>location_id<span class="token punctuation">`</span></span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> city<span class="token punctuation">;</span>
+
+<span class="token comment">#案例2：查询有奖金的每个部门的部门名和部门的领导编号和该部门的最低工资</span>
+<span class="token keyword">SELECT</span> department_name<span class="token punctuation">,</span>d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>manager_id<span class="token punctuation">`</span></span><span class="token punctuation">,</span><span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> departments d<span class="token punctuation">,</span>employees e
+<span class="token keyword">WHERE</span> d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span><span class="token operator">=</span>e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span>
+<span class="token operator">AND</span> commission_pct <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_name<span class="token punctuation">,</span>d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>manager_id<span class="token punctuation">`</span></span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="6、可以加排序"><a href="#6、可以加排序" class="headerlink" title="6、可以加排序"></a>6、可以加排序</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例：查询每个工种的工种名和员工的个数，并且按员工个数降序</span>
+<span class="token keyword">SELECT</span> job_title<span class="token punctuation">,</span><span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> employees e<span class="token punctuation">,</span>jobs j
+<span class="token keyword">WHERE</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>job_id<span class="token punctuation">`</span></span><span class="token operator">=</span>j<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>job_id<span class="token punctuation">`</span></span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> job_title
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">DESC</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="7、可以实现三表连接"><a href="#7、可以实现三表连接" class="headerlink" title="7、可以实现三表连接"></a>7、可以实现三表连接</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例：查询员工名、部门名和所在的城市</span>
+
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>department_name<span class="token punctuation">,</span>city
+<span class="token keyword">FROM</span> employees e<span class="token punctuation">,</span>departments d<span class="token punctuation">,</span>locations l
+<span class="token keyword">WHERE</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span><span class="token operator">=</span>d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span>
+<span class="token operator">AND</span> d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>location_id<span class="token punctuation">`</span></span><span class="token operator">=</span>l<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>location_id<span class="token punctuation">`</span></span>
+<span class="token operator">AND</span> city <span class="token operator">LIKE</span> <span class="token string">'s%'</span>
+
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> department_name <span class="token keyword">DESC</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2、非等值连接"><a href="#2、非等值连接" class="headerlink" title="2、非等值连接"></a>2、非等值连接</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例1：查询员工的工资和工资级别</span>
+<span class="token keyword">SELECT</span> salary<span class="token punctuation">,</span>grade_level
+<span class="token keyword">FROM</span> employees e<span class="token punctuation">,</span>job_grades g
+<span class="token keyword">WHERE</span> salary <span class="token operator">BETWEEN</span> g<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>lowest_sal<span class="token punctuation">`</span></span> <span class="token operator">AND</span> g<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>highest_sal<span class="token punctuation">`</span></span>
+<span class="token operator">AND</span> g<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>grade_level<span class="token punctuation">`</span></span><span class="token operator">=</span><span class="token string">'A'</span><span class="token punctuation">;</span>
+
+<span class="token comment">/*
+select salary,employee_id from employees;
+select * from job_grades;
+CREATE TABLE job_grades
+(grade_level VARCHAR(3),
+ lowest_sal  int,
+ highest_sal int);
+
+INSERT INTO job_grades
+VALUES ('A', 1000, 2999);
+INSERT INTO job_grades
+VALUES ('B', 3000, 5999);
+INSERT INTO job_grades
+VALUES('C', 6000, 9999);
+INSERT INTO job_grades
+VALUES('D', 10000, 14999);
+INSERT INTO job_grades
+VALUES('E', 15000, 24999);
+INSERT INTO job_grades
+VALUES('F', 25000, 40000);
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3、自连接"><a href="#3、自连接" class="headerlink" title="3、自连接"></a>3、自连接</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例：查询 员工名和上级的名称</span>
+<span class="token keyword">SELECT</span> e<span class="token punctuation">.</span>employee_id<span class="token punctuation">,</span>e<span class="token punctuation">.</span>last_name<span class="token punctuation">,</span>m<span class="token punctuation">.</span>employee_id<span class="token punctuation">,</span>m<span class="token punctuation">.</span>last_name
+<span class="token keyword">FROM</span> employees e<span class="token punctuation">,</span>employees m
+<span class="token keyword">WHERE</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>manager_id<span class="token punctuation">`</span></span><span class="token operator">=</span>m<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>employee_id<span class="token punctuation">`</span></span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="进阶6-2：99语法-连接查询"><a href="#进阶6-2：99语法-连接查询" class="headerlink" title="进阶6.2：99语法 连接查询"></a>进阶6.2：99语法 连接查询</h2><h3 id="一、语法：-1"><a href="#一、语法：-1" class="headerlink" title="一、语法："></a>一、语法：</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 查询列表
+<span class="token keyword">from</span> 表<span class="token number">1</span> 别名 【连接类型】
+<span class="token keyword">join</span> 表<span class="token number">2</span> 别名 
+<span class="token keyword">on</span> 连接条件
+【<span class="token keyword">where</span> 筛选条件】
+【<span class="token keyword">group</span> <span class="token keyword">by</span> 分组】
+【<span class="token keyword">having</span> 筛选条件】
+【<span class="token keyword">order</span> <span class="token keyword">by</span> 排序列表】<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="二、分类："><a href="#二、分类：" class="headerlink" title="二、分类："></a>二、分类：</h3><p>内连接（★）：inner</p>
+<p>外连接</p>
+<p>  左外(★):left 【outer】</p>
+<p>  右外(★)：right 【outer】</p>
+<p>  全外：full【outer】</p>
+<p>交叉连接：cross </p>
+<h4 id="一、内连接"><a href="#一、内连接" class="headerlink" title="一、内连接"></a>一、内连接</h4><p><img src="./images/loading.gif" data-original="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml16252\wps2.jpg" alt="img"></p>
+<p><strong>语法：</strong></p>
+<p>select 查询列表</p>
+<p>from 表1 别名</p>
+<p>inner join 表2 别名</p>
+<p>on 连接条件;</p>
+<p><strong>分类</strong>：</p>
+<p>等值</p>
+<p>非等值</p>
+<p>自连接</p>
+<p><strong>特点：</strong></p>
+<p>①添加排序、分组、筛选</p>
+<p>②inner可以省略</p>
+<p>③ 筛选条件放在where后面，连接条件放在on后面，提高分离性，便于阅读</p>
+<p>④inner join连接和sql92语法中的等值连接效果是一样的，都是查询多表的交集</p>
+<h5 id="1、等值连接-1"><a href="#1、等值连接-1" class="headerlink" title="1、等值连接"></a>1、等值连接</h5><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例1.查询员工名、部门名</span>
+<span class="token keyword">USE</span> <span class="token identifier"><span class="token punctuation">`</span>myemployees<span class="token punctuation">`</span></span>
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>department_name
+<span class="token keyword">FROM</span> departments d
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span>  employees e
+<span class="token keyword">ON</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span> <span class="token operator">=</span> d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">#案例2.查询名字中包含e的员工名和工种名（添加筛选）</span>
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>job_title
+<span class="token keyword">FROM</span> employees e
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> jobs j
+<span class="token keyword">ON</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>job_id<span class="token punctuation">`</span></span><span class="token operator">=</span>  j<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>job_id<span class="token punctuation">`</span></span>
+<span class="token keyword">WHERE</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>last_name<span class="token punctuation">`</span></span> <span class="token operator">LIKE</span> <span class="token string">'%e%'</span><span class="token punctuation">;</span>
+
+<span class="token comment">#3. 查询部门个数&gt;3的城市名和部门个数，（添加分组+筛选）</span>
+<span class="token comment">#①查询每个城市的部门个数</span>
+<span class="token comment">#②在①结果上筛选满足条件的</span>
+<span class="token keyword">SELECT</span> city<span class="token punctuation">,</span><span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> 部门个数
+<span class="token keyword">FROM</span> departments d
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> locations l
+<span class="token keyword">ON</span> d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>location_id<span class="token punctuation">`</span></span><span class="token operator">=</span>l<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>location_id<span class="token punctuation">`</span></span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> city
+<span class="token keyword">HAVING</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">3</span><span class="token punctuation">;</span>
+
+<span class="token comment">#案例4.查询哪个部门的员工个数&gt;3的部门名和员工个数，并按个数降序（添加排序）</span>
+<span class="token comment">#①查询每个部门的员工个数</span>
+<span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">,</span>department_name
+<span class="token keyword">FROM</span> employees e
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> departments d <span class="token keyword">ON</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span><span class="token operator">=</span>d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_name
+
+<span class="token comment">#② 在①结果上筛选员工个数&gt;3的记录，并排序</span>
+<span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> 个数<span class="token punctuation">,</span>department_name
+<span class="token keyword">FROM</span> employees e
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> departments d
+<span class="token keyword">ON</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span><span class="token operator">=</span>d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_name
+<span class="token keyword">HAVING</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">3</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">DESC</span><span class="token punctuation">;</span>
+
+<span class="token comment">#5.查询员工名、部门名、工种名，并按部门名降序（添加三表连接）</span>
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>department_name<span class="token punctuation">,</span>job_title
+<span class="token keyword">FROM</span> employees e
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> departments d <span class="token keyword">ON</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span><span class="token operator">=</span>d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span>
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> jobs j <span class="token keyword">ON</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>job_id<span class="token punctuation">`</span></span> <span class="token operator">=</span> j<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>job_id<span class="token punctuation">`</span></span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> department_name <span class="token keyword">DESC</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="2、非等值连接-1"><a href="#2、非等值连接-1" class="headerlink" title="2、非等值连接"></a>2、非等值连接</h5><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#查询员工的工资级别</span>
+<span class="token keyword">SELECT</span> salary<span class="token punctuation">,</span>grade_level
+<span class="token keyword">FROM</span> employees e
+<span class="token keyword">JOIN</span> job_grades g
+<span class="token keyword">ON</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>salary<span class="token punctuation">`</span></span> <span class="token operator">BETWEEN</span> g<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>lowest_sal<span class="token punctuation">`</span></span> <span class="token operator">AND</span> g<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>highest_sal<span class="token punctuation">`</span></span><span class="token punctuation">;</span>
+ 
+<span class="token comment">#查询工资级别的个数&gt;20的个数，并且按工资级别降序</span>
+ <span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">,</span>grade_level
+<span class="token keyword">FROM</span> employees e
+ <span class="token keyword">JOIN</span> job_grades g
+ <span class="token keyword">ON</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>salary<span class="token punctuation">`</span></span> <span class="token operator">BETWEEN</span> g<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>lowest_sal<span class="token punctuation">`</span></span> <span class="token operator">AND</span> g<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>highest_sal<span class="token punctuation">`</span></span>
+ <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> grade_level
+ <span class="token keyword">HAVING</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">20</span>
+ <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> grade_level <span class="token keyword">DESC</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="3、自连接-1"><a href="#3、自连接-1" class="headerlink" title="3、自连接"></a>3、自连接</h5><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"> <span class="token comment">#查询员工的名字、上级的名字</span>
+ <span class="token keyword">SELECT</span> e<span class="token punctuation">.</span>last_name<span class="token punctuation">,</span>m<span class="token punctuation">.</span>last_name
+ <span class="token keyword">FROM</span> employees e
+ <span class="token keyword">JOIN</span> employees m
+ <span class="token keyword">ON</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>manager_id<span class="token punctuation">`</span></span><span class="token operator">=</span> m<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>employee_id<span class="token punctuation">`</span></span><span class="token punctuation">;</span>
+ 
+  <span class="token comment">#查询姓名中包含字符k的员工的名字、上级的名字</span>
+ <span class="token keyword">SELECT</span> e<span class="token punctuation">.</span>last_name<span class="token punctuation">,</span>m<span class="token punctuation">.</span>last_name
+ <span class="token keyword">FROM</span> employees e
+ <span class="token keyword">JOIN</span> employees m
+ <span class="token keyword">ON</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>manager_id<span class="token punctuation">`</span></span><span class="token operator">=</span> m<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>employee_id<span class="token punctuation">`</span></span>
+ <span class="token keyword">WHERE</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>last_name<span class="token punctuation">`</span></span> <span class="token operator">LIKE</span> <span class="token string">'%k%'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="二、外连接"><a href="#二、外连接" class="headerlink" title="二、外连接"></a>二、外连接</h4><p> <strong>应用场景：</strong>用于查询一个表中有，另一个表没有的记录</p>
+<p> <strong>特点：</strong></p>
+<p> 1、外连接的查询结果为主表中的所有记录</p>
+<p>  如果从表中有和它匹配的，则显示匹配的值</p>
+<p>  如果从表中没有和它匹配的，则显示null</p>
+<p>  外连接查询结果=内连接结果+主表中有而从表没有的记录</p>
+<p> 2、左外连接，left join左边的是主表：以左边的表为主去匹配，匹配不上的用null填充，反正出现主表的行数为准</p>
+<p>  右外连接，right join右边的是主表 以右边的表为主</p>
+<p> 3、左外和右外交换两个表的顺序，可以实现同样的效果 </p>
+<p> 4、全外连接=内连接的结果+表1中有但表2没有的+表2中有但表1没有的</p>
+<h5 id="1-左外连接"><a href="#1-左外连接" class="headerlink" title="1.左外连接"></a>1.左外连接</h5><p><img src="./images/loading.gif" data-original="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20221104211044199.png" alt="image-20221104211044199"></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">  <span class="token comment">#引入：查询男朋友 不在男神表的的女神名(筛选选择主键（非空）)</span>
+ <span class="token keyword">SELECT</span> b<span class="token punctuation">.</span><span class="token operator">*</span><span class="token punctuation">,</span>bo<span class="token punctuation">.</span><span class="token operator">*</span>
+ <span class="token keyword">FROM</span> boys bo
+ <span class="token keyword">LEFT</span> <span class="token keyword">OUTER</span> <span class="token keyword">JOIN</span> beauty b
+ <span class="token keyword">ON</span> b<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>boyfriend_id<span class="token punctuation">`</span></span> <span class="token operator">=</span> bo<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>id<span class="token punctuation">`</span></span>
+ <span class="token keyword">WHERE</span> b<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>id<span class="token punctuation">`</span></span> <span class="token operator">IS</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span>
+ 
+ <span class="token comment">#案例1：查询哪个部门没有员工</span>
+ <span class="token comment">#左外</span>
+ <span class="token keyword">SELECT</span> d<span class="token punctuation">.</span><span class="token operator">*</span><span class="token punctuation">,</span>e<span class="token punctuation">.</span>employee_id
+ <span class="token keyword">FROM</span> departments d
+ <span class="token keyword">LEFT</span> <span class="token keyword">OUTER</span> <span class="token keyword">JOIN</span> employees e
+ <span class="token keyword">ON</span> d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span> <span class="token operator">=</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span>
+ <span class="token keyword">WHERE</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>employee_id<span class="token punctuation">`</span></span> <span class="token operator">IS</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="2-右外连接"><a href="#2-右外连接" class="headerlink" title="2.右外连接"></a>2.右外连接</h5><p><img src="./images/loading.gif" data-original="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20221104211310518.png" alt="image-20221104211310518"></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> d<span class="token punctuation">.</span><span class="token operator">*</span><span class="token punctuation">,</span>e<span class="token punctuation">.</span>employee_id
+ <span class="token keyword">FROM</span> employees e
+ <span class="token keyword">RIGHT</span> <span class="token keyword">OUTER</span> <span class="token keyword">JOIN</span> departments d
+ <span class="token keyword">ON</span> d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span> <span class="token operator">=</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span>
+ <span class="token keyword">WHERE</span> e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>employee_id<span class="token punctuation">`</span></span> <span class="token operator">IS</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
+<h5 id="3-全外"><a href="#3-全外" class="headerlink" title="3. 全外"></a>3. 全外</h5><p><img src="./images/loading.gif" data-original="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20221104211418226.png" alt="image-20221104211418226"></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">USE</span> girls<span class="token punctuation">;</span>
+ <span class="token keyword">SELECT</span> b<span class="token punctuation">.</span><span class="token operator">*</span><span class="token punctuation">,</span>bo<span class="token punctuation">.</span><span class="token operator">*</span>
+ <span class="token keyword">FROM</span> beauty b
+ <span class="token keyword">FULL</span> <span class="token keyword">OUTER</span> <span class="token keyword">JOIN</span> boys bo
+ <span class="token keyword">ON</span> b<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>boyfriend_id<span class="token punctuation">`</span></span> <span class="token operator">=</span> bo<span class="token punctuation">.</span>id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="4-交叉连接"><a href="#4-交叉连接" class="headerlink" title="4. 交叉连接"></a>4. 交叉连接</h5><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"> <span class="token keyword">SELECT</span> b<span class="token punctuation">.</span><span class="token operator">*</span><span class="token punctuation">,</span>bo<span class="token punctuation">.</span><span class="token operator">*</span>
+ <span class="token keyword">FROM</span> beauty b
+ <span class="token keyword">CROSS</span> <span class="token keyword">JOIN</span> boys bo<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 
 
+<h2 id="进阶7：子查询"><a href="#进阶7：子查询" class="headerlink" title="进阶7：子查询"></a>进阶7：子查询</h2><h3 id="含义：-1"><a href="#含义：-1" class="headerlink" title="含义："></a>含义：</h3><p>出现在其他语句中的select语句，称为子查询或内查询</p>
+<p>外部的查询语句，称为主查询或外查询</p>
+<h3 id="分类："><a href="#分类：" class="headerlink" title="分类："></a>分类：</h3><p>按子查询出现的位置：</p>
+<p>  <strong>select后面</strong>：</p>
+<p>​    仅仅支持标量子查询</p>
+<p>  <strong>from后面</strong>：</p>
+<p>​    支持表子查询</p>
+<p>  <strong>where或having后面</strong>：★</p>
+<p>​    标量子查询（单行） √  （一行一列）</p>
+<p>​    列子查询  （多行） √</p>
+<p>​    行子查询</p>
+<p>  exists后面（相关子查询）</p>
+<p>​    表子查询</p>
+<p>按结果集的行列数不同：</p>
+<p>  标量子查询（结果集只有一行一列）</p>
+<p>  列子查询（结果集只有一列多行）</p>
+<p>  行子查询（结果集有一行多列）</p>
+<p>  表子查询（结果集一般为多行多列）</p>
+<h4 id="一、where或having后面"><a href="#一、where或having后面" class="headerlink" title="一、where或having后面"></a>一、where或having后面</h4><p><strong>1、标量子查询（单行子查询）</strong></p>
+<p><strong>2、列子查询（一列多行）</strong></p>
+<p><strong>3、行子查询（一行多列）</strong></p>
+<p><strong>特点：</strong></p>
+<p>①子查询放在小括号内</p>
+<p>②子查询一般放在条件的右侧</p>
+<p>③标量子查询，一般搭配着单行操作符使用</p>
+<p>&gt;     &lt;     &gt;=     &lt;=     =     &lt;&gt;</p>
+<p>列子查询，一般搭配着多行操作符使用</p>
+<p>in、any/some、all</p>
+<p>④子查询的执行优先于主查询执行，主查询的条件用到了子查询的结果</p>
+<h5 id="1-标量子查询★"><a href="#1-标量子查询★" class="headerlink" title="1.标量子查询★"></a>1.标量子查询★</h5><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例1：谁的工资比 Abel 高?</span>
+<span class="token comment">#①查询Abel的工资</span>
+<span class="token keyword">SELECT</span> salary
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> last_name <span class="token operator">=</span> <span class="token string">'Abel'</span>
 
+<span class="token comment">#②查询员工的信息，满足 salary&gt;①结果</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> salary<span class="token operator">&gt;</span><span class="token punctuation">(</span>
 
+    <span class="token keyword">SELECT</span> salary
+    <span class="token keyword">FROM</span> employees
+    <span class="token keyword">WHERE</span> last_name <span class="token operator">=</span> <span class="token string">'Abel'</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
+<span class="token comment">#案例2：返回job_id与141号员工相同，salary比143号员工多的员工 姓名，job_id 和工资</span>
+<span class="token comment">#①查询141号员工的job_id</span>
+<span class="token keyword">SELECT</span> job_id
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> employee_id <span class="token operator">=</span> <span class="token number">141</span>
 
+<span class="token comment">#②查询143号员工的salary</span>
+<span class="token keyword">SELECT</span> salary
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> employee_id <span class="token operator">=</span> <span class="token number">143</span>
 
+<span class="token comment">#③查询员工的姓名，job_id 和工资，要求job_id=①并且salary&gt;②</span>
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>job_id<span class="token punctuation">,</span>salary
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> job_id <span class="token operator">=</span> <span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> job_id
+    <span class="token keyword">FROM</span> employees
+    <span class="token keyword">WHERE</span> employee_id <span class="token operator">=</span> <span class="token number">141</span>
+<span class="token punctuation">)</span> <span class="token operator">AND</span> salary<span class="token operator">&gt;</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> salary
+    <span class="token keyword">FROM</span> employees
+    <span class="token keyword">WHERE</span> employee_id <span class="token operator">=</span> <span class="token number">143</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
+<span class="token comment">#案例3：返回公司工资最少的员工的last_name,job_id和salary</span>
+<span class="token comment">#①查询公司的 最低工资</span>
+<span class="token keyword">SELECT</span> <span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> employees
 
+<span class="token comment">#②查询last_name,job_id和salary，要求salary=①</span>
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>job_id<span class="token punctuation">,</span>salary
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> salary<span class="token operator">=</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> <span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+    <span class="token keyword">FROM</span> employees
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
+<span class="token comment">#案例4：查询最低工资大于50号部门最低工资的部门id和其最低工资</span>
+<span class="token comment">#①查询50号部门的最低工资</span>
+<span class="token keyword">SELECT</span>  <span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> department_id <span class="token operator">=</span> <span class="token number">50</span>
 
+<span class="token comment">#②查询每个部门的最低工资</span>
+<span class="token keyword">SELECT</span> <span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token punctuation">,</span>department_id
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id
 
+<span class="token comment">#③ 在②基础上筛选，满足min(salary)&gt;①</span>
+<span class="token keyword">SELECT</span> <span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token punctuation">,</span>department_id
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id
+<span class="token keyword">HAVING</span> <span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span>  <span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+    <span class="token keyword">FROM</span> employees
+    <span class="token keyword">WHERE</span> department_id <span class="token operator">=</span> <span class="token number">50</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
+<span class="token comment">#非法使用标量子查询</span>
 
+<span class="token keyword">SELECT</span> <span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token punctuation">,</span>department_id
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id
+<span class="token keyword">HAVING</span> <span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span>  salary
+    <span class="token keyword">FROM</span> employees
+    <span class="token keyword">WHERE</span> department_id <span class="token operator">=</span> <span class="token number">250</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h5 id="2-列子查询（多行子查询）★"><a href="#2-列子查询（多行子查询）★" class="headerlink" title="2.列子查询（多行子查询）★"></a>2.列子查询（多行子查询）★</h5><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例1：返回location_id是1400或1700的部门中的所有员工姓名</span>
 
+<span class="token comment">#①查询location_id是1400或1700的部门编号</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">DISTINCT</span> department_id
+<span class="token keyword">FROM</span> departments
+<span class="token keyword">WHERE</span> location_id <span class="token operator">IN</span><span class="token punctuation">(</span><span class="token number">1400</span><span class="token punctuation">,</span><span class="token number">1700</span><span class="token punctuation">)</span>
 
+<span class="token comment">#②查询员工姓名，要求部门号是①列表中的某一个</span>
 
+<span class="token keyword">SELECT</span> last_name
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> department_id  <span class="token operator">&lt;&gt;</span><span class="token keyword">ALL</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> <span class="token keyword">DISTINCT</span> department_id
+    <span class="token keyword">FROM</span> departments
+    <span class="token keyword">WHERE</span> location_id <span class="token operator">IN</span><span class="token punctuation">(</span><span class="token number">1400</span><span class="token punctuation">,</span><span class="token number">1700</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
+<span class="token comment">#案例2：返回其它工种中比job_id为‘IT_PROG’工种任一工资低的员工的员工号、姓名、job_id 以及salary</span>
 
+<span class="token comment">#①查询job_id为‘IT_PROG’部门任一工资</span>
 
+<span class="token keyword">SELECT</span> <span class="token keyword">DISTINCT</span> salary
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> job_id <span class="token operator">=</span> <span class="token string">'IT_PROG'</span>
 
+<span class="token comment">#②查询员工号、姓名、job_id 以及salary，salary&lt;(①)的任意一个</span>
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>employee_id<span class="token punctuation">,</span>job_id<span class="token punctuation">,</span>salary
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> salary<span class="token operator">&lt;</span><span class="token keyword">ANY</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> <span class="token keyword">DISTINCT</span> salary
+    <span class="token keyword">FROM</span> employees
+    <span class="token keyword">WHERE</span> job_id <span class="token operator">=</span> <span class="token string">'IT_PROG'</span>
 
+<span class="token punctuation">)</span> <span class="token operator">AND</span> job_id<span class="token operator">&lt;&gt;</span><span class="token string">'IT_PROG'</span><span class="token punctuation">;</span>
 
+<span class="token comment">#或</span>
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>employee_id<span class="token punctuation">,</span>job_id<span class="token punctuation">,</span>salary
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> salary<span class="token operator">&lt;</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> <span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+    <span class="token keyword">FROM</span> employees
+    <span class="token keyword">WHERE</span> job_id <span class="token operator">=</span> <span class="token string">'IT_PROG'</span>
 
+<span class="token punctuation">)</span> <span class="token operator">AND</span> job_id<span class="token operator">&lt;&gt;</span><span class="token string">'IT_PROG'</span><span class="token punctuation">;</span>
 
+<span class="token comment">#案例3：返回其它部门中比job_id为‘IT_PROG’部门所有工资都低的员工   的员工号、姓名、job_id 以及salary</span>
 
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>employee_id<span class="token punctuation">,</span>job_id<span class="token punctuation">,</span>salary
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> salary<span class="token operator">&lt;</span><span class="token keyword">ALL</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> <span class="token keyword">DISTINCT</span> salary
+    <span class="token keyword">FROM</span> employees
+    <span class="token keyword">WHERE</span> job_id <span class="token operator">=</span> <span class="token string">'IT_PROG'</span>
 
+<span class="token punctuation">)</span> <span class="token operator">AND</span> job_id<span class="token operator">&lt;&gt;</span><span class="token string">'IT_PROG'</span><span class="token punctuation">;</span>
 
+<span class="token comment">#或</span>
 
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>employee_id<span class="token punctuation">,</span>job_id<span class="token punctuation">,</span>salary
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> salary<span class="token operator">&lt;</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> <span class="token function">MIN</span><span class="token punctuation">(</span> salary<span class="token punctuation">)</span>
+    <span class="token keyword">FROM</span> employees
+    <span class="token keyword">WHERE</span> job_id <span class="token operator">=</span> <span class="token string">'IT_PROG'</span>
 
+<span class="token punctuation">)</span> <span class="token operator">AND</span> job_id<span class="token operator">&lt;&gt;</span><span class="token string">'IT_PROG'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h5 id="3、行子查询（结果集一行多列或多行多列）"><a href="#3、行子查询（结果集一行多列或多行多列）" class="headerlink" title="3、行子查询（结果集一行多列或多行多列）"></a>3、行子查询（结果集一行多列或多行多列）</h5><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例：查询员工编号最小并且工资最高的员工信息</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> 
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> <span class="token punctuation">(</span>employee_id<span class="token punctuation">,</span>salary<span class="token punctuation">)</span><span class="token operator">=</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> <span class="token function">MIN</span><span class="token punctuation">(</span>employee_id<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+    <span class="token keyword">FROM</span> employees
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
+<span class="token comment">#①查询最小的员工编号</span>
+<span class="token keyword">SELECT</span> <span class="token function">MIN</span><span class="token punctuation">(</span>employee_id<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> employees
 
+<span class="token comment">#②查询最高工资</span>
+<span class="token keyword">SELECT</span> <span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> employees
 
+<span class="token comment">#③查询员工信息</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> employee_id<span class="token operator">=</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> <span class="token function">MIN</span><span class="token punctuation">(</span>employee_id<span class="token punctuation">)</span>
+    <span class="token keyword">FROM</span> employees
 
+<span class="token punctuation">)</span><span class="token operator">AND</span> salary<span class="token operator">=</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> <span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+    <span class="token keyword">FROM</span> employees
 
+<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h4 id="二、select后面-仅仅支持标量子查询"><a href="#二、select后面-仅仅支持标量子查询" class="headerlink" title="二、select后面(仅仅支持标量子查询)"></a>二、select后面(仅仅支持标量子查询)</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例：查询每个部门的员工个数</span>
 
+<span class="token keyword">SELECT</span> d<span class="token punctuation">.</span><span class="token operator">*</span><span class="token punctuation">,</span><span class="token punctuation">(</span>
 
+    <span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span>
+    <span class="token keyword">FROM</span> employees e
+    <span class="token keyword">WHERE</span> e<span class="token punctuation">.</span>department_id <span class="token operator">=</span> d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span>
+ <span class="token punctuation">)</span> 个数
+ <span class="token keyword">FROM</span> departments d<span class="token punctuation">;</span>
+ 
+ 
+ <span class="token comment">#案例2：查询员工号=102的部门名</span>
+ 
+<span class="token keyword">SELECT</span> <span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> department_name<span class="token punctuation">,</span>e<span class="token punctuation">.</span>department_id
+    <span class="token keyword">FROM</span> departments d
+    <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> employees e
+    <span class="token keyword">ON</span> d<span class="token punctuation">.</span>department_id<span class="token operator">=</span>e<span class="token punctuation">.</span>department_id
+    <span class="token keyword">WHERE</span> e<span class="token punctuation">.</span>employee_id<span class="token operator">=</span><span class="token number">102</span>
+    
+<span class="token punctuation">)</span> 部门名<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="三、from后面"><a href="#三、from后面" class="headerlink" title="三、from后面"></a>三、from后面</h4><p><strong>将子查询结果充当一张表，要求必须起别名</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例：查询每个部门的平均工资的工资等级</span>
+<span class="token comment">#①查询每个部门的平均工资</span>
+<span class="token keyword">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token punctuation">,</span>department_id
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id
+
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> job_grades<span class="token punctuation">;</span>
+
+<span class="token comment">#②连接①的结果集和job_grades表，筛选条件平均工资 between lowest_sal and highest_sal</span>
+
+<span class="token keyword">SELECT</span>  ag_dep<span class="token punctuation">.</span><span class="token operator">*</span><span class="token punctuation">,</span>g<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>grade_level<span class="token punctuation">`</span></span>
+<span class="token keyword">FROM</span> <span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> ag<span class="token punctuation">,</span>department_id
+    <span class="token keyword">FROM</span> employees
+    <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id
+<span class="token punctuation">)</span> ag_dep
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> job_grades g
+<span class="token keyword">ON</span> ag_dep<span class="token punctuation">.</span>ag <span class="token operator">BETWEEN</span> lowest_sal <span class="token operator">AND</span> highest_sal<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="四、exists后面（相关子查询）"><a href="#四、exists后面（相关子查询）" class="headerlink" title="四、exists后面（相关子查询）"></a>四、exists后面（相关子查询）</h4><p><strong>语法：</strong></p>
+<p>exists(完整的查询语句)</p>
+<p>结果：1或0</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token keyword">EXISTS</span><span class="token punctuation">(</span><span class="token keyword">SELECT</span> employee_id <span class="token keyword">FROM</span> employees <span class="token keyword">WHERE</span> salary<span class="token operator">=</span><span class="token number">300000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">#案例1：查询有员工的部门名</span>
+
+<span class="token comment">#in</span>
+<span class="token keyword">SELECT</span> department_name
+<span class="token keyword">FROM</span> departments d
+<span class="token keyword">WHERE</span> d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span> <span class="token operator">IN</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> department_id
+    <span class="token keyword">FROM</span> employees
+<span class="token punctuation">)</span>
+
+<span class="token comment">#exists</span>
+
+<span class="token keyword">SELECT</span> department_name
+<span class="token keyword">FROM</span> departments d
+<span class="token keyword">WHERE</span> <span class="token keyword">EXISTS</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> <span class="token operator">*</span>
+    <span class="token keyword">FROM</span> employees e
+    <span class="token keyword">WHERE</span> d<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span><span class="token operator">=</span>e<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span></span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">#案例2：查询没有女朋友的男神信息</span>
+
+<span class="token comment">#in</span>
+
+<span class="token keyword">SELECT</span> bo<span class="token punctuation">.</span><span class="token operator">*</span>
+<span class="token keyword">FROM</span> boys bo
+<span class="token keyword">WHERE</span> bo<span class="token punctuation">.</span>id <span class="token operator">NOT</span> <span class="token operator">IN</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> boyfriend_id
+    <span class="token keyword">FROM</span> beauty
+<span class="token punctuation">)</span>
+
+<span class="token comment">#exists</span>
+<span class="token keyword">SELECT</span> bo<span class="token punctuation">.</span><span class="token operator">*</span>
+<span class="token keyword">FROM</span> boys bo
+<span class="token keyword">WHERE</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> boyfriend_id
+    <span class="token keyword">FROM</span> beauty b
+    <span class="token keyword">WHERE</span> bo<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>id<span class="token punctuation">`</span></span><span class="token operator">=</span>b<span class="token punctuation">.</span><span class="token identifier"><span class="token punctuation">`</span>boyfriend_id<span class="token punctuation">`</span></span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="进阶8：分页查询-★"><a href="#进阶8：分页查询-★" class="headerlink" title="进阶8：分页查询 ★"></a><strong>进阶8：分页查询 ★</strong></h2><h3 id="应用场景："><a href="#应用场景：" class="headerlink" title="应用场景："></a>应用场景：</h3><p>当要显示的数据，一页显示不全，需要分页提交sql请求</p>
+<h3 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">  <span class="token keyword">select</span> 查询列表
+    <span class="token keyword">from</span> 表
+    【<span class="token keyword">join</span> <span class="token keyword">type</span> <span class="token keyword">join</span> 表<span class="token number">2</span>
+    <span class="token keyword">on</span> 连接条件
+    <span class="token keyword">where</span> 筛选条件
+    <span class="token keyword">group</span> <span class="token keyword">by</span> 分组字段
+    <span class="token keyword">having</span> 分组后的筛选
+    <span class="token keyword">order</span> <span class="token keyword">by</span> 排序的字段】
+    <span class="token keyword">limit</span> 【<span class="token keyword">offset</span><span class="token punctuation">,</span>】size<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>  offset要显示条目的起始索引（起始索引从0开始）</p>
+<p>  size 要显示的条目个数</p>
+<h3 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h3><p>  ①limit语句放在查询语句的最后</p>
+<p>  ②公式</p>
+<p>  要显示的页数 page，每页的条目数size</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 查询列表
+<span class="token keyword">from</span> 表
+<span class="token keyword">limit</span> <span class="token punctuation">(</span>page<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span>size<span class="token punctuation">,</span>size<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>  size=10</p>
+<p>  page  </p>
+<p>  1  0</p>
+<p>  2  10</p>
+<p>  3  20</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#案例1：查询前五条员工信息</span>
+
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span>  employees <span class="token keyword">LIMIT</span> <span class="token number">0</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span>  employees <span class="token keyword">LIMIT</span> <span class="token number">5</span><span class="token punctuation">;</span>
+
+<span class="token comment">#案例2：查询第11条——第25条</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span>  employees <span class="token keyword">LIMIT</span> <span class="token number">10</span><span class="token punctuation">,</span><span class="token number">15</span><span class="token punctuation">;</span>
+
+<span class="token comment">#案例3：有奖金的员工信息，并且工资较高的前10名显示出来</span>
+<span class="token keyword">SELECT</span> 
+    <span class="token operator">*</span> 
+<span class="token keyword">FROM</span>
+    employees 
+<span class="token keyword">WHERE</span> commission_pct <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> 
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> salary <span class="token keyword">DESC</span> 
+<span class="token keyword">LIMIT</span> <span class="token number">10</span> <span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -2172,7 +2846,7 @@ MYISAM存储引擎下  ，<span class="token function">COUNT</span><span class="
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">5.4k</span>&nbsp;字
+                class="white-color">9.5k</span>&nbsp;字
             
             
             
@@ -2478,7 +3152,7 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script>
+
         <style>
             [bg-lazy] {
                 background-image: none !important;
@@ -2491,6 +3165,6 @@ $(function () {
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 </html>
