@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="小文同学" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="小文同学" type="application/atom+xml">
 </head>
 
 
@@ -515,14 +515,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    27k
+                    30.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    125 分
+                    139 分
                 </div>
                 
 
@@ -4826,14 +4826,382 @@ T <span class="token function">myAdd02</span><span class="token punctuation">(</
 <li>利用仿函数可以指定map容器的排序规则</li>
 <li>对于自定义数据类型，map必须要指定排序规则,同set容器</li>
 </ul>
-<h3 id="3-10-案例-员工分组"><a href="#3-10-案例-员工分组" class="headerlink" title="3.10 案例-员工分组"></a>3.10 案例-员工分组</h3><h4 id="3-10-1-案例描述"><a href="#3-10-1-案例描述" class="headerlink" title="3.10.1 案例描述"></a>3.10.1 案例描述</h4><ul>
+<blockquote>
+<p>部分引自代码随想录：<a target="_blank" rel="noopener" href="https://www.programmercarl.com/%E5%93%88%E5%B8%8C%E8%A1%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html#%E5%93%88%E5%B8%8C%E8%A1%A8">https://www.programmercarl.com/%E5%93%88%E5%B8%8C%E8%A1%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html#%E5%93%88%E5%B8%8C%E8%A1%A8</a></p>
+</blockquote>
+<h3 id="3-10-哈希表"><a href="#3-10-哈希表" class="headerlink" title="3.10 哈希表"></a>3.10 哈希表</h3><h4 id="3-10-1-什么是哈希表"><a href="#3-10-1-什么是哈希表" class="headerlink" title="3.10.1 什么是哈希表"></a>3.10.1 什么是哈希表</h4><p><strong>哈希表是根据关键码的值而直接进行访问的数据结构。</strong></p>
+<p>这么这官方的解释可能有点懵，其实直白来讲其实数组就是一张哈希表。</p>
+<p>哈希表中关键码就是数组的索引下标，然后通过下标直接访问数组中的元素，如下图所示：</p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2022/cplusplus/image-20221203204804483.png" alt="image-20221203204804483"></p>
+<p>那么哈希表能解决什么问题呢，<strong>一般哈希表都是用来快速判断一个元素是否出现集合里。</strong></p>
+<p>例如要查询一个名字是否在这所学校里。</p>
+<p>要枚举的话时间复杂度是O(n)，但如果使用哈希表的话， 只需要O(1)就可以做到。</p>
+<p>我们只需要初始化把这所学校里学生的名字都存在哈希表里，在查询的时候通过索引直接就可以知道这位同学在不在这所学校里了。</p>
+<p>将学生姓名映射到哈希表上就涉及到了<strong>hash function ，也就是哈希函数</strong>。</p>
+<h4 id="3-10-2-哈希函数"><a href="#3-10-2-哈希函数" class="headerlink" title="3.10.2 哈希函数"></a>3.10.2 哈希函数</h4><p>哈希函数，把学生的姓名直接映射为哈希表上的索引，然后就可以通过查询索引下标快速知道这位同学是否在这所学校里了。</p>
+<p>哈希函数如下图所示，通过hashCode把名字转化为数值，一般hashcode是通过特定编码方式，可以将其他数据格式转化为不同的数值，这样就把学生名字映射为哈希表上的索引数字了。</p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2022/cplusplus/image-20221203205040642.png" alt="image-20221203205040642"></p>
+<p>如果hashCode得到的数值大于 哈希表的大小了，也就是大于tableSize了，怎么办呢？</p>
+<p>此时为了保证映射出来的索引数值都落在哈希表上，我们会在再次对数值做一个取模的操作，就要我们就保证了学生姓名一定可以映射到哈希表上了。</p>
+<p>此时问题又来了，哈希表我们刚刚说过，就是一个数组。</p>
+<p>如果学生的数量大于哈希表的大小怎么办，此时就算哈希函数计算的再均匀，也避免不了会有几位学生的名字同时映射到哈希表 同一个索引下标的位置。</p>
+<p>接下来<strong>哈希碰撞</strong>登场</p>
+<h4 id="3-10-3-哈希碰撞"><a href="#3-10-3-哈希碰撞" class="headerlink" title="3.10.3 哈希碰撞"></a>3.10.3 哈希碰撞</h4><p>如图所示，小李和小王都映射到了索引下标 1 的位置，<strong>这一现象叫做哈希碰撞</strong>。</p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2022/cplusplus/image-20221203205236334.png" alt="image-20221203205236334"></p>
+<p>一般哈希碰撞有两种解决方法， 拉链法和线性探测法。</p>
+<h5 id="1-拉链法"><a href="#1-拉链法" class="headerlink" title="1. 拉链法"></a>1. 拉链法</h5><p>刚刚小李和小王在索引1的位置发生了冲突，发生冲突的元素都被存储在链表中。 这样我们就可以通过索引找到小李和小王了</p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2022/cplusplus/image-20221203205357264.png" alt="image-20221203205357264"></p>
+<p>（数据规模是dataSize， 哈希表的大小为tableSize）</p>
+<p>其实拉链法就是要选择适当的哈希表的大小，这样既不会因为数组空值而浪费大量内存，也不会因为链表太长而在查找上浪费太多时间。该<strong>冲突链表过长，这个时候可以将这个链表转换为红黑树或者AVL树</strong>；由原来<strong>链表时间复杂度O(n)</strong> 转换为<strong>红黑树时间复杂度</strong>  为log2n.  那么判断该链表过长的依据是多少？可以采⽤超过 <strong>256（经验值）</strong>个节点的时候将链表结构转换为红黑树结构；</p>
+<h5 id="2-线性探测法"><a href="#2-线性探测法" class="headerlink" title="2.线性探测法"></a>2.线性探测法</h5><p>使用线性探测法，一定要保证tableSize大于dataSize。 我们需要依靠哈希表中的空位来解决碰撞问题。</p>
+<p>例如冲突的位置，放了小李，那么就向下找一个空位放置小王的信息。所以要求tableSize一定要大于dataSize ，要不然哈希表上就没有空置的位置来存放 冲突的数据了。如图所示：</p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2022/cplusplus/image-20221203210302121.png" alt="image-20221203210302121"></p>
+<h4 id="3-10-3-三种数据结构"><a href="#3-10-3-三种数据结构" class="headerlink" title="3.10.3 三种数据结构"></a>3.10.3 三种数据结构</h4><p>当我们想使用哈希法来解决问题的时候，我们一般会选择如下三种数据结构。</p>
+<ul>
+<li>数组</li>
+<li>set （集合）</li>
+<li>map(映射)</li>
+</ul>
+<p>这里数组就没啥可说的了，我们来看一下set。</p>
+<p>在C++中，set 和 map 分别提供以下三种数据结构，其底层实现以及优劣如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>集合</th>
+<th>底层实现</th>
+<th>是否有序</th>
+<th>数值是否可以重复</th>
+<th>能否更改数值</th>
+<th>查询效率</th>
+<th>增删效率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>std::set</td>
+<td>红黑树</td>
+<td>有序</td>
+<td>否</td>
+<td>否</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td>std::multiset</td>
+<td>红黑树</td>
+<td>有序</td>
+<td>是</td>
+<td>否</td>
+<td>O(logn)</td>
+<td>O(logn)</td>
+</tr>
+<tr>
+<td>std::unordered_set</td>
+<td>哈希表</td>
+<td>无序</td>
+<td>否</td>
+<td>否</td>
+<td>O(1)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>std::unordered_multiset</td>
+<td>哈希表</td>
+<td>无序</td>
+<td>是</td>
+<td>否</td>
+<td>O(1)</td>
+<td>O(1)</td>
+</tr>
+</tbody></table>
+<p>unordered_multiset 容器可以<strong>同时存储多个值相同的元素，且这些元素会存储到哈希表中同一个桶（本质就是链表）上</strong>。</p>
+<p>std::unordered_set底层实现为哈希表，std::set 和std::multiset 的底层实现是红黑树，红黑树是一种平衡二叉搜索树，所以key值是有序的，但key不可以修改，改动key值会导致整棵树的错乱，所以只能删除和增加。</p>
+<table>
+<thead>
+<tr>
+<th>映射</th>
+<th>底层实现</th>
+<th>是否有序</th>
+<th>数值是否可以重复</th>
+<th>能否更改数值</th>
+<th>查询效率</th>
+<th>增删效率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>std::map</td>
+<td>红黑树</td>
+<td>key有序</td>
+<td>key不可重复</td>
+<td>key不可修改</td>
+<td>O(logn)</td>
+<td>O(logn)</td>
+</tr>
+<tr>
+<td>std::multimap</td>
+<td>红黑树</td>
+<td>key有序</td>
+<td>key可重复</td>
+<td>key不可修改</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td>std::unordered_map</td>
+<td>哈希表</td>
+<td>key无序</td>
+<td>key不可重复</td>
+<td>key不可修改</td>
+<td>O(1)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>std::unordered_multimap</td>
+<td>哈希表</td>
+<td>key无序</td>
+<td>key可重复</td>
+<td>key不可修改</td>
+<td>O(1)</td>
+<td>O(1)</td>
+</tr>
+</tbody></table>
+<p>std::unordered_map 底层实现为<strong>哈希表</strong>，std::map 和std::multimap 的底层实现是红黑树。同理，std::map 和std::multimap 的key也是有序的（这个问题也经常作为面试题，考察对语言容器底层的理解）。</p>
+<p>当我们要使用集合来解决哈希问题的时候，优先使用unordered_set，因为它的查询和增删效率是最优的，如果需要集合是有序的，那么就用set，如果要求不仅有序还要有重复数据的话，那么就用multiset。</p>
+<p>那么再来看一下map ，在map 是一个key value 的数据结构，map中，对key是有限制，对value没有限制的，因为key的存储方式使用红黑树实现的。</p>
+<p>总结一下，<strong>当我们遇到了要快速判断一个元素是否出现集合里的时候，就要考虑哈希法</strong>。</p>
+<p>但是哈希法也是<strong>牺牲了空间换取了时间</strong>，因为我们要使用额外的数组，set或者是map来存放数据，才能实现快速的查找。</p>
+<p><strong>如果在做面试题目的时候遇到需要判断一个元素是否出现过的场景也应该第一时间想到哈希法！</strong></p>
+<h3 id="3-11-priority-queue优先队列（大根堆，小根堆）"><a href="#3-11-priority-queue优先队列（大根堆，小根堆）" class="headerlink" title="3.11 priority_queue优先队列（大根堆，小根堆）"></a>3.11 priority_queue优先队列（大根堆，小根堆）</h3><p>————————————————<br>优先队列为CSDN博主「STATICHIT静砸」的原创文章<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_62742402/article/details/122908053">https://blog.csdn.net/m0_62742402/article/details/122908053</a></p>
+<h4 id="3-11-1-概述"><a href="#3-11-1-概述" class="headerlink" title="3.11.1 概述"></a>3.11.1 概述</h4><p><strong>优先队列的本质是堆</strong>，但它具有<strong>队列的所有操作特性</strong>，与普通队列不同的地方就是<strong>出队的时候按照优先级顺序出队</strong>，这个优先级即<strong>最大堆或最小堆</strong>的规则（即大的为top优先出队或小的为top优先出队），<strong>在队列的基础上加了个堆排序。</strong><br>以<strong>O(log n)</strong> 的效率查找一个队列中的最大值或者最小值，其中是最大值还是最小值是根据创建的优先队列的性质来决定的。</p>
+<p>作为队列的一个延伸，<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97&amp;spm=1001.2101.3001.7020">优先队列</a>包含在<strong>头文件 <code>&lt;queue&gt;</code></strong> 中</p>
+<p>C ++中的优先队列是<strong>STL中的派生容器</strong>，它仅考虑最高<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E4%BC%98%E5%85%88%E7%BA%A7&amp;spm=1001.2101.3001.7020">优先级</a>元素。队列遵循FIFO策略，而优先队列根据优先级弹出元素，即，<strong>优先级最高的元素首先弹出。</strong></p>
+<p>它在某些方面类似于普通队列，但在以下方面有所<strong>不同</strong>：</p>
+<ul>
+<li>在优先队列中，队列中的每个元素都与某个优先级相关联，但是优先级在队列<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84&amp;spm=1001.2101.3001.7020">数据结构</a>中不存在。</li>
+<li>优先队列中具有最高优先级的元素将被首先删除，而队列遵循<strong>FIFO（先进先出）</strong>策略，这意味着<strong>先</strong>插入的元素将被首先删除。</li>
+<li>如果存在多个具有相同优先级的元素，则将考虑该元素在队列中的顺序。</li>
+</ul>
+<p>注意：优先队列是普通队列的扩展版本，但优先级最高的元素将首先从优先队列中删除。</p>
+<h4 id="3-11-2-优先队列的语法"><a href="#3-11-2-优先队列的语法" class="headerlink" title="3.11.2 优先队列的语法"></a>3.11.2 优先队列的语法</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">priority_queue<span class="token operator">&lt;</span>Type<span class="token punctuation">,</span> Container<span class="token punctuation">,</span> Functional<span class="token operator">&gt;</span>   <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p> 其中Type 为数据类型， Container 为保存数据的容器，Functional 为元素比较方式。</p>
+<p> 1.在STL中，默认情况下（不加后面两个参数）是以vector为容器，以 operator&lt; 为比较方式，所以在只使用第一个参数时，优先队列默认是一个最大堆，每次输出的堆顶元素是此时堆中的最大元素。</p>
+<p> 2.用到最小堆，则一般要把模板的三个参数都带进去。</p>
+<p>STL里面定义了一个仿函数 greater&lt;&gt;，对于基本类型可以用这个仿函数声明最小堆(升序)</p>
+<h4 id="3-11-3-大顶堆与小顶堆"><a href="#3-11-3-大顶堆与小顶堆" class="headerlink" title="3.11.3 大顶堆与小顶堆"></a>3.11.3 大顶堆与小顶堆</h4><p><strong>大顶堆（降序）</strong></p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//构造一个空的优先队列（此优先队列默认为大顶堆）</span>
+priority_queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> big_heap<span class="token punctuation">;</span>
+
+<span class="token comment">//另一种构建大顶堆的方法</span>
+priority_queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span><span class="token punctuation">,</span>less<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token operator">&gt;</span> big_heap2<span class="token punctuation">;</span>   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>小顶堆（升序）</strong></p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//构造一个空的优先队列,此优先队列是一个小顶堆</span>
+priority_queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span><span class="token punctuation">,</span>greater<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token operator">&gt;</span> small_heap<span class="token punctuation">;</span>   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//注意事项</span>
+<span class="token comment">//需要注意的是，如果使用less和greater，需要头文件：</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;functional&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>我们通过使用push()函数插入元素，并且插入操作与普通队列相同。但是，当我们使用pop()函数从队列中删除元素时，优先级最高的元素将首先被删除。</p>
+<p>优先队列的成员函数</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>push()</strong></td>
+<td>它将新元素插入优先队列。</td>
+</tr>
+<tr>
+<td><strong>pop()</strong></td>
+<td>它将优先级最高的元素从队列中删除。</td>
+</tr>
+<tr>
+<td><strong>top()</strong></td>
+<td>此函数用于寻址优先队列的最顶层元素。</td>
+</tr>
+<tr>
+<td><strong>size()</strong></td>
+<td>返回优先队列的大小。</td>
+</tr>
+<tr>
+<td><strong>empty()</strong></td>
+<td>它验证队列是否为空。基于验证，它返回队列的状态。</td>
+</tr>
+<tr>
+<td><strong>swap()</strong></td>
+<td>它将优先队列的元素与具有相同类型和大小的另一个队列交换。</td>
+</tr>
+<tr>
+<td><strong>emplace()</strong></td>
+<td>它在优先队列的顶部插入一个新元素。</td>
+</tr>
+</tbody></table>
+<p>具体用法：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">假设type类型为<span class="token keyword">int</span>，则：
+
+<span class="token keyword">bool</span> <span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> 返回值为<span class="token boolean">true</span>，说明队列为空；
+<span class="token keyword">int</span> <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> 返回优先队列中元素的数量；
+<span class="token keyword">void</span> <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 删除队列顶部的元素，也即根节点
+<span class="token keyword">int</span> <span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 返回队列中的顶部元素，但不删除该元素；
+<span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">int</span> arg<span class="token punctuation">)</span> 将元素arg插入到队列之中；<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>让我们创建一个简单的优先队列程序。</p>
+<p>示例</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;queue&gt;</span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+ priority_queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> p<span class="token punctuation">;</span>  <span class="token comment">// 变量声明.  注意其中的priority_queue&lt;int&gt; p; // 变量声明，&lt;&gt;中只有第一个参数，所以是最大堆优先级</span>
+ p<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 插入 10 到队列, top=10</span>
+ p<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 插入 30 到队列, top=30</span>
+ p<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 插入 20 到队列, top=20</span>
+ cout<span class="token operator">&lt;&lt;</span><span class="token string">"可用元素的数量 到 'p' :"</span><span class="token operator">&lt;&lt;</span>p<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+ <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>p<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+ <span class="token punctuation">{</span>
+     cout <span class="token operator">&lt;&lt;</span> p<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span> 
+     p<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>在上面的代码中，我们创建了一个优先队列，在其中插入三个元素，即10、30、20。在插入这些元素之后，我们使用while循环显示优先队列的所有元素。</p>
+<p>输出结果</p>
+<pre class="line-numbers language-none"><code class="language-none">可用元素的数量 到 'p' :3
+30
+20
+10<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>让我们看看优先队列的另一个示例。</p>
+<p>示例</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;queue&gt;</span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+   priority_queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> p<span class="token punctuation">;</span>  <span class="token comment">//优先队列声明</span>
+   priority_queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> q<span class="token punctuation">;</span>  <span class="token comment">//优先队列声明</span>
+   p<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 插入 '1' 到 p.</span>
+   p<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 插入 '2' 到 p.</span>
+   p<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 插入 '3' 到 p.</span>
+   p<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 插入 '4' 到 p.</span>
+   q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 插入 '5' 到 q.</span>
+   q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 插入 '6' 到 q.</span>
+   q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 插入 '7' 到 q.</span>
+   q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 插入 '8' 到 q.</span>
+   p<span class="token punctuation">.</span><span class="token function">swap</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   cout <span class="token operator">&lt;&lt;</span> <span class="token string">"p队列元素是 : "</span> <span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+   <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>p<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+   <span class="token punctuation">{</span>
+      cout <span class="token operator">&lt;&lt;</span> p<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+       p<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+   cout <span class="token operator">&lt;&lt;</span> <span class="token string">"q优先队列元素是 :"</span> <span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+   <span class="token punctuation">{</span>
+     cout <span class="token operator">&lt;&lt;</span> q<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+       q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在上面的代码中，我们声明了两个优先队列，即p和q。我们在“ p”优先队列中插入了四个元素，在“ q”优先队列中插入了四个元素。插入元素之后，我们使用swap()函数将’p’队列的元素与’q’队列交换。</p>
+<p>输出结果                                                                                </p>
+<pre class="line-numbers language-none"><code class="language-none">p优先队列元素是 :   
+8                                                                                                                             
+7                                                                                                                             
+6                                                                                                                             
+5     
+q优先队列元素是 :      
+4                                                                                                                             
+3                                                                                                                            
+2                                                                                                                            
+1                                                                                    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>如果要按照最小堆优先级</li>
+<li>priority_queue&lt;Type, Container, Functional&gt;</li>
+</ul>
+<p>写入程序中就是priority_queue&lt;int, vector<int>, greater<int> &gt; q;</int></int></p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h&gt;</span> </span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    priority_queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> greater<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token operator">&gt;</span> q<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token keyword">int</span> i<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> <span class="token operator">++</span>i <span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+		<span class="token keyword">int</span> temp<span class="token punctuation">;</span>
+		cin<span class="token operator">&gt;&gt;</span>temp<span class="token punctuation">;</span> 
+		q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span> <span class="token operator">!</span>q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> q<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+        q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>     
+    <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+347. 前 K 个高频元素
+给你一个整数数组 nums 和一个整数 k ，请你返回其中出现频率前 k 高的元素。你可以按 任意顺序 返回答案。
+
+示例 1:
+输入: nums = [1,1,1,2,2,3], k = 2
+输出: [1,2]
+*/</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+	<span class="token comment">// 小顶堆</span>
+	<span class="token keyword">class</span> <span class="token class-name">mycomparison</span> <span class="token punctuation">{</span>
+	<span class="token keyword">public</span><span class="token operator">:</span>
+		<span class="token keyword">bool</span> <span class="token keyword">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">const</span> pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&gt;</span><span class="token operator">&amp;</span> lhs<span class="token punctuation">,</span> <span class="token keyword">const</span> pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&gt;</span><span class="token operator">&amp;</span> rhs<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">//左大于右就会建立小顶堆</span>
+			<span class="token keyword">return</span> lhs<span class="token punctuation">.</span>second <span class="token operator">&gt;</span> rhs<span class="token punctuation">.</span>second<span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+	
+
+	vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">topKFrequent</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span><span class="token operator">&amp;</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		unordered_map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&gt;</span>hashmap<span class="token punctuation">;</span><span class="token comment">//key是nums[i]的具体值，value是出现频数</span>
+		<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">int</span><span class="token operator">&amp;</span> num <span class="token operator">:</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			hashmap<span class="token punctuation">[</span>num<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		priority_queue<span class="token operator">&lt;</span>pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> vector<span class="token operator">&lt;</span>pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&gt;&gt;</span><span class="token punctuation">,</span> mycomparison<span class="token operator">&gt;</span>pri_que<span class="token punctuation">;</span>
+		<span class="token keyword">for</span> <span class="token punctuation">(</span>unordered_map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>iterator it <span class="token operator">=</span> hashmap<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> hashmap<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			pri_que<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token operator">*</span>it<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword">if</span> <span class="token punctuation">(</span>pri_que<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">// 如果堆的大小大于了K，则队列弹出，保证堆的大小一直为k</span>
+				pri_que<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+
+		<span class="token comment">// 找出前K个高频元素，因为小顶堆先弹出的是最小的，所以倒序来输出到数组</span>
+		vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span><span class="token function">result</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> k <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			result<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> pri_que<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">;</span>
+			pri_que<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">return</span> result<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<h3 id="3-12-案例-员工分组"><a href="#3-12-案例-员工分组" class="headerlink" title="3.12 案例-员工分组"></a>3.12 案例-员工分组</h3><h4 id="3-12-1-案例描述"><a href="#3-12-1-案例描述" class="headerlink" title="3.12.1 案例描述"></a>3.12.1 案例描述</h4><ul>
 <li>公司今天招聘了10个员工（ABCDEFGHIJ），10名员工进入公司之后，需要指派员工在那个部门工作</li>
 <li>员工信息有: 姓名  工资组成；部门分为：策划、美术、研发</li>
 <li>随机给10名员工分配部门和工资</li>
 <li>通过multimap进行信息的插入  key(部门编号) value(员工)</li>
 <li>分部门显示员工信息</li>
 </ul>
-<h4 id="3-10-2-实现步骤"><a href="#3-10-2-实现步骤" class="headerlink" title="3.10.2 实现步骤"></a>3.10.2 实现步骤</h4><ol>
+<h4 id="3-12-2-实现步骤"><a href="#3-12-2-实现步骤" class="headerlink" title="3.12.2 实现步骤"></a>3.12.2 实现步骤</h4><ol>
 <li>创建10名员工，放到vector中</li>
 <li>遍历vector容器，取出每个员工，进行随机分组</li>
 <li>分组后，将员工部门编号作为key，具体员工作为value，放入到multimap容器中</li>
@@ -7443,7 +7811,7 @@ T <span class="token function">myAdd02</span><span class="token punctuation">(</
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">74.7k</span>&nbsp;字
+                class="white-color">78.4k</span>&nbsp;字
             
             
             
@@ -7749,7 +8117,7 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script>
+
         <style>
             [bg-lazy] {
                 background-image: none !important;
@@ -7762,6 +8130,6 @@ $(function () {
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 </html>
