@@ -122,26 +122,31 @@
   </entry>
   
   <entry>
-    <title>链表</title>
+    <title>PDF综合</title>
     <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/111254862.html"/>
     <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/111254862.html</id>
     <published>2022-11-12T03:07:54.000Z</published>
-    <updated>2022-11-13T02:56:33.519Z</updated>
+    <updated>2023-01-09T03:31:19.537Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;  &lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code</summary>
+    <summary type="html">&lt;p&gt;​     &lt;/p&gt;
+&lt;br&gt;
+
+
+
+	&lt;div class=&quot;row&quot;&gt;
+    &lt;embed src=&quot;http://localhost:4000/file/test.pdf&quot; width=&quot;100%&quot; height=&quot;550&quot;</summary>
         
       
     
     
     
     
-    <category term="算法" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/%E7%AE%97%E6%B3%95/"/>
+    <category term="PDF" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/PDF/"/>
     
   </entry>
   
@@ -192,6 +197,32 @@
   </entry>
   
   <entry>
+    <title>article title</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/102746815.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/102746815.html</id>
+    <published>2022-10-27T03:07:54.000Z</published>
+    <updated>2022-12-03T12:42:07.065Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;提示：使用深度优先搜索解题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Description&quot;&gt;&lt;a href=&quot;#Description&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="算法" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>hexo的个性化配置</title>
     <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/10273975.html"/>
     <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/10273975.html</id>
@@ -215,32 +246,6 @@
     
     
     <category term="hexo" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>article title</title>
-    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/102746815.html"/>
-    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/102746815.html</id>
-    <published>2022-10-27T03:07:54.000Z</published>
-    <updated>2022-12-03T12:42:07.065Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;提示：使用深度优先搜索解题&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;Description&quot;&gt;&lt;a href=&quot;#Description&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="算法" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   

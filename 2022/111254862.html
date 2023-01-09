@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="链表, 小文同学">
+    <meta name="keywords" content="PDF综合, 小文同学">
     <meta name="description" content="你的征途是星辰大海，怎么能被眼前的挫折打败。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>链表 | 小文同学</title>
+    <title>PDF综合 | 小文同学</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -360,12 +360,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://blog-accelerated.oss-cn-hangzhou.aliyuncs.com/source/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://blog-accelerated.oss-cn-hangzhou.aliyuncs.com/source/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">链表</h1>
+                    <h1 class="description center-align post-title">PDF综合</h1>
                 </div>
             </div>
         </div>
@@ -481,8 +481,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">算法</span>
+                            <a href="/tags/PDF/">
+                                <span class="chip bg-color">PDF</span>
                             </a>
                         
                     </div>
@@ -506,14 +506,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    809
+                    0
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 
@@ -537,136 +537,19 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <ul>
-<li><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2>  <pre class="line-numbers language-none"><code class="language-none">主要是我自己刷题的一些记录过程。如果有错可以指出哦，大家一起进步。
-转载代码随想录
-原文链接：
-https://www.programmercarl.com/0203.%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0.html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+                <p>​     </p>
+<br>
 
 
-  <img src="./images/loading.gif" data-original="https://img-blog.csdnimg.cn/821817e7b9614a0c877b689a128412d7.png" alt="在这里插入图片描述">  <pre class="line-numbers language-none"><code class="language-none">输入：head = [1,2,6,3,4,5,6], val = 6
-输出：[1,2,3,4,5]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-  示例 2：  <pre class="line-numbers language-none"><code class="language-none">输入：head = [], val = 1
-输出：[]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-  示例 3：  <pre class="line-numbers language-none"><code class="language-none">输入：head = [7,7,7,7], val = 7
-输出：[]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
-</ul>
-<p>​     </p>
-<pre><code>提示：
 
-列表中的节点数目在范围 [0, 104] 内
-1 &lt;= Node.val &lt;= 50
-0 &lt;= val &lt;= 50
+	<div class="row">
+    <embed src="http://localhost:4000/file/test.pdf" width="100%" height="550" type="application/pdf">
+	</div>
 
-## 思路
-如果使用C，C++编程语言的话，不要忘了还要从内存中**删除这两个移除的节点**， **清理节点内存**。
-还要说明一下，就算使用C++来做leetcode，如果移除一个节点之后，没有手动在内存中删除这个节点，leetcode依然也是可以通过的，只不过，内存使用的空间大一些而已，但建议依然要养成手动清理内存的习惯。
 
-这种情况下的移除操作，就是让节点next指针直接指向下下一个节点就可以了，
 
-那么因为单链表的特殊性，只能指向下一个节点，刚刚删除的是链表中间节点，那么如果删除的是头结点又该怎么办呢？
 
-这里就涉及如下链表操作的两种方式：
-<pre class="line-numbers language-none"><code class="language-none">直接使用原来的链表来进行删除操作。
-设置一个虚拟头结点在进行删除操作。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-来看第一种操作：直接使用原来的链表来进行移除。
-
-## 头、中间节点分别删除
-
-直接使用原来的链表来进行移除节点操作：
-
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    ListNode<span class="token operator">*</span> <span class="token function">removeElements</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> head<span class="token punctuation">,</span> <span class="token keyword">int</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment">// 删除头结点</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>head <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> head<span class="token operator">-&gt;</span>val <span class="token operator">==</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 注意这里不是if</span>
-            ListNode<span class="token operator">*</span> tmp <span class="token operator">=</span> head<span class="token punctuation">;</span>
-            head <span class="token operator">=</span> head<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-            <span class="token keyword">delete</span> tmp<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token comment">// 删除非头结点</span>
-        ListNode<span class="token operator">*</span> cur <span class="token operator">=</span> head<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>cur <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> cur<span class="token operator">-&gt;</span>next<span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">//在这里我们删的是cur-&gt;next节点，所以要保证他不空</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>cur<span class="token operator">-&gt;</span>next<span class="token operator">-&gt;</span>val <span class="token operator">==</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                ListNode<span class="token operator">*</span> tmp <span class="token operator">=</span> cur<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-                cur<span class="token operator">-&gt;</span>next <span class="token operator">=</span> cur<span class="token operator">-&gt;</span>next<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-                <span class="token keyword">delete</span> tmp<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-                cur <span class="token operator">=</span> cur<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> head<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-## 虚拟头结点
-
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    ListNode<span class="token operator">*</span> <span class="token function">removeElements</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> head<span class="token punctuation">,</span> <span class="token keyword">int</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        ListNode<span class="token operator">*</span> dummyHead <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 设置一个虚拟头结点</span>
-        dummyHead<span class="token operator">-&gt;</span>next <span class="token operator">=</span> head<span class="token punctuation">;</span> <span class="token comment">// 将虚拟头结点指向head，这样方面后面做删除操作</span>
-        ListNode<span class="token operator">*</span> cur <span class="token operator">=</span> dummyHead<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>cur<span class="token operator">-&gt;</span>next <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>cur<span class="token operator">-&gt;</span>next<span class="token operator">-&gt;</span>val <span class="token operator">==</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                ListNode<span class="token operator">*</span> tmp <span class="token operator">=</span> cur<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-                cur<span class="token operator">-&gt;</span>next <span class="token operator">=</span> cur<span class="token operator">-&gt;</span>next<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-                <span class="token keyword">delete</span> tmp<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-                cur <span class="token operator">=</span> cur<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        head <span class="token operator">=</span> dummyHead<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">delete</span> dummyHead<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> head<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-## 自己写的代码
-
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    ListNode<span class="token operator">*</span> <span class="token function">removeElements</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> head<span class="token punctuation">,</span> <span class="token keyword">int</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>head <span class="token operator">&amp;&amp;</span> head<span class="token operator">-&gt;</span>val <span class="token operator">==</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token comment">//pre指向第一个不为val的节点</span>
-            head <span class="token operator">=</span> head<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>head<span class="token punctuation">)</span>
-            <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-        ListNode<span class="token operator">*</span> cur <span class="token operator">=</span> head<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>cur<span class="token operator">&amp;&amp;</span> cur<span class="token operator">-&gt;</span>next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>cur<span class="token operator">-&gt;</span>next<span class="token operator">-&gt;</span>val <span class="token operator">==</span> val<span class="token punctuation">)</span>
-                cur<span class="token operator">-&gt;</span>next <span class="token operator">=</span> cur<span class="token operator">-&gt;</span>next<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-            <span class="token keyword">else</span>
-                cur <span class="token operator">=</span> cur<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> head<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</code></pre>
-<p>​    </p>
-<pre><code><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    ListNode<span class="token operator">*</span> <span class="token function">removeElements</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> head<span class="token punctuation">,</span> <span class="token keyword">int</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        vector<span class="token operator">&lt;</span>ListNode <span class="token operator">*</span><span class="token operator">&gt;</span>listVec<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>head<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>head<span class="token operator">-&gt;</span>val <span class="token operator">!=</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                listVec<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>head<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            head <span class="token operator">=</span> head<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> listVec<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            listVec<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-&gt;</span>next <span class="token operator">=</span> listVec<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        listVec<span class="token punctuation">[</span>listVec<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-&gt;</span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-        ListNode<span class="token operator">*</span> result <span class="token operator">=</span> listVec<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-这个版本还有一些问题，目前还没解决。但是编译器可以通过
-![在这里插入图片描述](https://img-blog.csdnimg.cn/f12be233089348bfbc04cf70e04c2abd.png)
-</code></pre>
+<br>
 
                 
             </div>
@@ -731,8 +614,8 @@ https://www.programmercarl.com/0203.%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%8
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">算法</span>
+                                <a href="/tags/PDF/">
+                                    <span class="chip bg-color">PDF</span>
                                 </a>
                             
                         </div>
@@ -1402,7 +1285,7 @@ https://www.programmercarl.com/0203.%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%8
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">111.5k</span>&nbsp;字
+                class="white-color">110.7k</span>&nbsp;字
             
             
             
@@ -1708,7 +1591,7 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script>
         <style>
             [bg-lazy] {
                 background-image: none !important;
@@ -1721,6 +1604,6 @@ $(function () {
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script></body>
 
 </html>
