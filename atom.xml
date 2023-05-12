@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>小文同学</title>
+  
+  <subtitle>小文同学</subtitle>
+  <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/atom.xml" rel="self"/>
+  
+  <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/"/>
+  <updated>2023-05-12T11:51:50.858Z</updated>
+  <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/</id>
+  
+  <author>
+    <name>葛杨文</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Qt学习笔记</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/051560278.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/051560278.html</id>
+    <published>2023-05-15T00:20:54.000Z</published>
+    <updated>2023-05-12T11:51:50.858Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;引自黑马课程&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-Qt概述&quot;&gt;&lt;a href=&quot;#1-Qt概述&quot; class=&quot;headerlink&quot; title=&quot;1 Qt概述&quot;&gt;&lt;/a&gt;1 Qt概述&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Qt" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/Qt/"/>
+    
+    
+    <category term="Qt" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/Qt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ABAQUS学习笔记</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/031551378.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/031551378.html</id>
+    <published>2023-03-15T00:20:54.000Z</published>
+    <updated>2023-05-12T11:51:50.857Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1-做预拉伸的屈曲材料分析步骤&quot;&gt;&lt;a href=&quot;#1-做预拉伸的屈曲材料分析步骤&quot; class=&quot;headerlink&quot; title=&quot;1 做预拉伸的屈曲材料分析步骤&quot;&gt;&lt;/a&gt;1 做预拉伸的屈曲材料分析步骤&lt;/h2&gt;&lt;h3</summary>
+        
+      
+    
+    
+    
+    <category term="ABAQUS" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/ABAQUS/"/>
+    
+    
+    <category term="ABAQUS" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/ABAQUS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面试记录</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/031053067.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/031053067.html</id>
+    <published>2023-03-10T03:07:54.000Z</published>
+    <updated>2023-04-12T02:21:11.403Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;面试过程&quot;&gt;&lt;a href=&quot;#面试过程&quot; class=&quot;headerlink&quot; title=&quot;面试过程&quot;&gt;&lt;/a&gt;面试过程&lt;/h1&gt;&lt;h2 id=&quot;1-美团一面挂&quot;&gt;&lt;a href=&quot;#1-美团一面挂&quot; class=&quot;headerlink&quot; title=&quot;1.</summary>
+        
+      
+    
+    
+    
+    <category term="面试" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+    <category term="面试记录" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WebServer学习笔记</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/021053067.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/021053067.html</id>
+    <published>2023-02-10T03:07:54.000Z</published>
+    <updated>2023-04-12T13:28:13.510Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Linux下C++轻量级Web服务器配套详解。&lt;br&gt;原文链接：&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/Linux/"/>
+    
+    
+    <category term="Linux服务器" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux高并发服务器开发</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/02107112.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/02107112.html</id>
+    <published>2023-02-10T03:07:54.000Z</published>
+    <updated>2023-03-20T07:04:05.727Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;牛客网C++项目学习笔记&lt;br&gt;原文链接：&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/Linux/"/>
+    
+    
+    <category term="Linux服务器" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>尚硅谷高级技术之 shell</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/012858967.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/012858967.html</id>
+    <published>2023-01-28T03:07:54.000Z</published>
+    <updated>2023-01-28T08:10:06.616Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;转载3天搞定Linux，1天搞定Shell，清华学神带你通关&lt;br&gt;原文链接：&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>尚硅谷高级技术之 Linux</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/012716952.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/012716952.html</id>
+    <published>2023-01-27T03:07:54.000Z</published>
+    <updated>2023-03-19T04:17:09.814Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;转载3天搞定Linux，1天搞定Shell，清华学神带你通关&lt;br&gt;原文链接：&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C++提高编程</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/111611853.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/111611853.html</id>
+    <published>2022-11-16T03:20:54.000Z</published>
+    <updated>2023-04-13T12:28:58.493Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;转载黑马程序员&lt;br&gt;原文链接：&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="C++" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/C/"/>
+    
+    
+    <category term="C++" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C++核心编程</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/111633960.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/111633960.html</id>
+    <published>2022-11-16T02:20:54.000Z</published>
+    <updated>2023-03-22T13:13:45.900Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;转载黑马程序员&lt;br&gt;原文链接：&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="C++" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/C/"/>
+    
+    
+    <category term="C++" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C++基础入门</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/111563435.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/111563435.html</id>
+    <published>2022-11-15T00:20:54.000Z</published>
+    <updated>2023-02-15T11:46:58.120Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;转载黑马程序员&lt;br&gt;原文链接：&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="C++" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/C/"/>
+    
+    
+    <category term="C++" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql学习笔记中级</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/110338091.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/110338091.html</id>
+    <published>2022-11-03T02:20:54.000Z</published>
+    <updated>2023-03-23T11:57:50.200Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;文章框架引用黑马程序员教材，目的只为自己方便学习和复习，侵权请联系：15909440083.&lt;/p&gt;
+&lt;p&gt;视频链接：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="mysql学习笔记" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="mysql" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql学习笔记初级</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/110216773.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/110216773.html</id>
+    <published>2022-11-02T11:20:54.000Z</published>
+    <updated>2023-04-19T03:19:05.610Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;第一章-数据库的基本概念&quot;&gt;&lt;a href=&quot;#第一章-数据库的基本概念&quot; class=&quot;headerlink&quot; title=&quot;第一章  数据库的基本概念&quot;&gt;&lt;/a&gt;第一章  数据库的基本概念&lt;/h1&gt;&lt;h2 id=&quot;1-数据库的好处&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="mysql学习笔记" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="mysql" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo的个性化配置</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/10273975.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/10273975.html</id>
+    <published>2022-10-27T03:07:54.000Z</published>
+    <updated>2022-11-02T11:22:39.786Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;文章目录&lt;/p&gt;
+&lt;p&gt;一、matery主题的下载与安装&lt;br&gt;二、基本配置&lt;br&gt;1.根目录下的 &lt;code&gt;_config.yml&lt;/code&gt;&lt;br&gt;    1.1. title&lt;br&gt;    1.2.</summary>
+        
+      
+    
+    
+    
+    <category term="软件安装与配置" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
+    
+    
+    <category term="hexo" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/hexo/"/>
+    
+  </entry>
+  
+</feed>
