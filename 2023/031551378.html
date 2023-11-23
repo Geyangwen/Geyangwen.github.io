@@ -551,22 +551,21 @@
 <p>1.2 首先一定要定义一个工作目录</p>
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230401170856651.png" alt="image-20230401170856651"></p>
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230401171224761.png" alt="image-20230401171224761"></p>
-<p>1.3 倒入部件（这里的命名一定要是英文的）</p>
+<p>1.3 导入部件（这里的命名一定要是英文的）</p>
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230401171316963.png" alt="image-20230401171316963"><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230401171427529.png" alt="image-20230401171427529"></p>
 <p>1.4 创建基准平面（工具-&gt;基准-&gt;平面-&gt;从平面偏移）然后再做分区（工具-&gt;分区-&gt;几何元素-&gt;使用基准平面）</p>
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230401172336753.png" alt="image-20230401172336753"></p>
 <h3 id="2-属性"><a href="#2-属性" class="headerlink" title="2 属性"></a>2 属性</h3><p><strong>2.1 材料属性</strong></p>
 <p><strong>基体材料</strong>   弹性材料是整体可变性表示刚度和强度，膨胀性能类型选正交是表示x,y,z三个方向的膨胀系数</p>
-<p>杨氏模量E=2(1+u)U. u是泊松比，U是剪切模量（可以根据实验的数据和公式y=u(1+e-1/(1+e)^2)拟合）</p>
-<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230401172858330.png" alt="image-20230401172858330" style="zoom:80%;"><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230401172929263.png" alt="image-20230401172929263" style="zoom:80%;"></p>
+<p>杨氏模量E=2(1+u)G. u是泊松比，G是剪切模量（可以根据实验的数据和公式y=G(1+e-1/(1+e)^2)拟合），e表示公称应变，y是应力的数据，C10 = G/2;     杨氏模量 = 3倍的剪切模量；</p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/ABAQUS/202311231054523.png" alt="image-20231123104919021" style="zoom:80%;"><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/ABAQUS/202311231055751.png" alt="image-20231123105508681" style="zoom:80%;"></p>
 <p>希望弯曲的材料（超弹性应该也是可以让他发生变形吧，参数C10设置为0.5有比较好的变形效果）</p>
-<img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230401173739218.png" alt="image-20230401173739218" style="zoom:80%;">
-
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/ABAQUS/202311231056044.png" alt="image-20231123105617010"></p>
 <p><strong>2.2 定义截面</strong></p>
-<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230401175528562.png" alt="image-20230401175528562"></p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/ABAQUS/202311231056525.png" alt="image-20231123105644501"></p>
 <p><strong>2.3 指派截面</strong></p>
-<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230401180309616.png" alt="image-20230401180309616" style="zoom:90%;"><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230401180320398.png" alt="image-20230401180320398"></p>
-<p>2.4 定义基底材料方向（一定要定义材料方向）</p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/ABAQUS/202311231057468.png" alt="image-20231123105722434" style="zoom:80%;"><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/ABAQUS/202311231057857.png" alt="image-20231123105744822" style="zoom:80%;"></p>
+<p>2.4 定义基底材料方向（单轴预拉伸一定要定义材料方向）</p>
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230401170511090.png" alt="image-20230401170511090"></p>
 <h3 id="3-装配"><a href="#3-装配" class="headerlink" title="3 装配"></a>3 装配</h3><p>把需要的部件加载进来</p>
 <h3 id="4-分析步"><a href="#4-分析步" class="headerlink" title="4 分析步"></a>4 分析步</h3><p><strong>4.1 定义分析部</strong></p>
@@ -574,10 +573,6 @@
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230402093221179.png" alt="image-20230402093221179"></p>
 <p>不知道为什么要做两个分析步（其实分析步一个就可以）</p>
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230402093255016.png" alt="image-20230402093255016" style="zoom:80%;"><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230402093317291.png" alt="image-20230402093317291" style="zoom:80%;"></p>
-<p><strong>4.2 定义场输出</strong>（其他基本不用变，就在体积那边整一下就可以，传递的分析步和前面的一样，给了分析步这个会默认创建）</p>
-<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230402093727994.png" alt="image-20230402093727994"></p>
-<p><strong>4.3 定义历场输出</strong>使用磨人的就可以了</p>
-<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230402094048487.png" alt="image-20230402094048487"></p>
 <h3 id="5-相互作用"><a href="#5-相互作用" class="headerlink" title="5 相互作用"></a>5 相互作用</h3><p>5.1 定义上下表面相互接触</p>
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230402095058608.png" alt="image-20230402095058608"></p>
 <p>5.2 <strong>性质就选默认</strong>  接触作用属性默认就有这个了</p>
@@ -591,7 +586,7 @@
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230402100632078.png" alt="image-20230402100632078"></p>
 <p>底面的z方向的移动固定</p>
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230402100808509.png" alt="image-20230402100808509"></p>
-<p>预定义场</p>
+<p>预定义温度场</p>
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230402101111096.png" alt="image-20230402101111096"></p>
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230402100900585.png" alt="image-20230402100900585"></p>
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230402100924275.png" alt="image-20230402100924275"></p>
@@ -675,8 +670,7 @@ Mz3<span class="token operator">=</span>	<span class="token number">26165.31379<
 Mz459<span class="token operator">=</span>	<span class="token number">26075.34446</span>
 Mz460<span class="token operator">=</span>	<span class="token number">25462.0777</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
+<p>此时应该复制一个模型数据</p>
 <p>对照修改inp文件(下图中磁化矢量部分就是需要替换上面的Mx，My，Mz位置)</p>
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/cpp/image-20230508193546855.png" alt="image-20230508193546855"></p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token operator">*</span><span class="token operator">*</span>
@@ -829,7 +823,7 @@ staticEdge<span class="token punctuation">,</span> ENCASTRE
 
 
 
-
+<h2 id="4-双轴预拉伸案列"><a href="#4-双轴预拉伸案列" class="headerlink" title="4 双轴预拉伸案列"></a>4 双轴预拉伸案列</h2>
                 
             </div>
             <hr/>
@@ -1564,7 +1558,7 @@ staticEdge<span class="token punctuation">,</span> ENCASTRE
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">317k</span>&nbsp;字
+                class="white-color">316.9k</span>&nbsp;字
             
             
             
