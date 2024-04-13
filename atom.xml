@@ -6,7 +6,7 @@
   <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/"/>
-  <updated>2023-09-18T08:03:49.137Z</updated>
+  <updated>2024-04-13T12:51:50.544Z</updated>
   <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Arduino学习笔记</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2024/041355771.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2024/041355771.html</id>
+    <published>2024-04-13T02:20:54.000Z</published>
+    <updated>2024-04-13T12:51:50.544Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;转载哔哩哔哩UP主：太极创客&lt;br&gt;原文链接：&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Arduino" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/Arduino/"/>
+    
+    
+    <category term="Arduino" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/Arduino/"/>
+    
+  </entry>
+  
+  <entry>
     <title>算法题</title>
     <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/081559157.html"/>
     <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/081559157.html</id>
     <published>2023-08-15T00:20:54.000Z</published>
-    <updated>2023-09-18T08:03:49.137Z</updated>
+    <updated>2023-11-23T03:01:55.634Z</updated>
     
     
       
@@ -254,7 +280,7 @@
     <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/111633960.html"/>
     <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2022/111633960.html</id>
     <published>2022-11-16T02:20:54.000Z</published>
-    <updated>2023-03-22T13:13:45.900Z</updated>
+    <updated>2024-01-04T09:02:56.430Z</updated>
     
     
       
