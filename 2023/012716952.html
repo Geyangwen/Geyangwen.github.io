@@ -515,14 +515,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    16.7k
+                    17.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    68 分
+                    72 分
                 </div>
                 
 
@@ -871,7 +871,7 @@
 </ol>
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/linux/mediaimage14.jpeg" alt="图 5-2 修改虚拟网卡 ip">{width=”5.77739501312336in” height=”5.179791119860018in”}</p>
 <ol start="3">
-<li>查看网关，如图 5-3 所示</li>
+<li>查看网关，如图 5-3 所示（设置的网关要和 VMnet8中的IPV4的前四个保持一致，最后设置为2）</li>
 </ol>
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/linux/mediaimage15.jpeg" alt="图 5-3 查看网关">{width=”5.775646325459317in” height=”2.7968744531933507in”}</p>
 <ol start="4">
@@ -957,7 +957,7 @@ systemctl disable NetworkManager <span class="token comment">#禁用</span><span
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoop100 桌面<span class="token punctuation">]</span><span class="token comment"># hostname</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ol start="2">
-<li>如果感觉此主机名不合适，我们可以进行修改。通过编辑/etc/hostname 文件</li>
+<li>如果感觉此主机名不合适，我们可以进行修改。通过编辑/etc/hostname 文件(ubuntu的系统也一样)</li>
 </ol>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoop100 桌面<span class="token punctuation">]</span><span class="token comment"># vi /etc/hostname</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -1005,6 +1005,143 @@ systemctl disable NetworkManager <span class="token comment">#禁用</span><span
 
 <p>(4)将桌面 hosts 文件覆盖 C:\Windows\System32\drivers\etc 路径 hosts 文件</p>
 <h3 id="5-4-远程登录"><a href="#5-4-远程登录" class="headerlink" title="5.4 远程登录"></a>5.4 远程登录</h3><p>通常在工作过程中，公司中使用的真实服务器或者是云服务器，都不允许除运维人员之外的员工直接接触，因此就需要通过远程登录的方式来操作。所以，远程登录工具就是必不可缺的，目前，比较主流的有 Xshell, SSH Secure Shell, SecureCRT,FinalShell 等，同学们可以根据自己的习惯自行选择.</p>
+<h3 id="5-5-Ubuntu系统的配网"><a href="#5-5-Ubuntu系统的配网" class="headerlink" title="5.5 Ubuntu系统的配网"></a>5.5 Ubuntu系统的配网</h3><h4 id="5-5-1ubuntu网络图标消失解决方案"><a href="#5-5-1ubuntu网络图标消失解决方案" class="headerlink" title="5.5.1ubuntu网络图标消失解决方案"></a>5.5.1ubuntu网络图标消失解决方案</h4><p>方案一：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">service</span> network-manager stop
+<span class="token function">sudo</span> <span class="token function">rm</span> /var/lib/NetworkManager/NetworkManager.state
+<span class="token function">sudo</span> <span class="token function">service</span> network-manager start
+<span class="token function">sudo</span> gedit /etc/NetworkManager/NetworkManager.conf
+打开NetworkManager.conf文件，将其中的false改成true，然后保存
+<span class="token function">sudo</span> <span class="token function">service</span> network-manager restart<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>方案二：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">ifconfig</span> ens33 down					<span class="token comment">#关闭网卡</span>
+<span class="token function">sudo</span> <span class="token function">ifconfig</span> ens33 up 			<span class="token comment">#启动网卡后，原来ifconfig设置的ip会丢失</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="5-5-2查看网络设置"><a href="#5-5-2查看网络设置" class="headerlink" title="5.5.2查看网络设置"></a>5.5.2查看网络设置</h4><p><strong>1.ifconfig 显示与设置网络命令</strong></p>
+<p><code>ifconfig</code>命今来自于英文词组“network interfaces configuring”的缩写，其功能是用于显示或设置网络设备参数信息。在Windows系统中与之类似的命令叫做ipconfig，同样的功能可以使用ifconfig去完成。</p>
+<p>通常不建议使用ifconfig命令配置网络设备的参数信息<strong>，因为一旦服务器重启，配置过的参数会自动失效</strong>，还是编写到配置文件中更稳妥<br>语法格式: ifconfig[参数][网卡设备]</p>
+<p>常用参数:</p>
+<table>
+<thead>
+<tr>
+<th align="center">add&lt;地址&gt;</th>
+<th align="center">设置网络设备IPv6的IP地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">del&lt;地址&gt;</td>
+<td align="center">删除网络设备IPv6的IP地址</td>
+</tr>
+<tr>
+<td align="center">down</td>
+<td align="center">关闭指定的网络设备</td>
+</tr>
+<tr>
+<td align="center">up</td>
+<td align="center">启动指定的网络设备</td>
+</tr>
+</tbody></table>
+<p>首先说明下etho与ens33的关系:<br>目前的主流网卡为使用以太网络协定所开发出来的以太网卡 (Ethernet)，因此我们 Linux 就称呼这种网络接口为 ethN (N 为数字)。举例来说，主机上面有一张以太网卡，因此主机的网络接口就是 eth0(第一张为0 号开始)。新的 entO 7开始对于网卡的编号有另一套规则，网卡的界面代号与网卡的来源有关,网卡名称会是这样分类的:</p>
+<ul>
+<li>eno1: 代表由主板 BIOS 内置的网卡</li>
+<li>ens1:代表由主板 BIOS 内置的 PCI-E 界面的网卡</li>
+<li>enp2s0: 代表 PCI-E 界面的独立网卡，可能有多个插孔，因此会有 s0,s1… 的编号~</li>
+<li>etho: 如果上述的名称都不适用，就回到原本的默认网卡编号</li>
+</ul>
+<p>所以会有ens33这种网卡表现形式</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 实例</span>
+Tinux@ubuntu:~/work$ <span class="token function">ifconfig</span>
+
+<span class="token comment"># ubuntu 默认没有集成ifconfig ，需要额外的安装命令</span>
+Command ifconfig' not found, but can be installed with:
+<span class="token function">sudo</span> <span class="token function">apt</span> insta11 net-tools
+
+Tinux@ubuntu:~/work$ <span class="token function">sudo</span> <span class="token function">apt</span> instal1 net-too1s		<span class="token comment"># 安装ifconfig 命令</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>常用命令</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ifconfig</span>       <span class="token comment"># 查看系统的网卡信息</span>
+<span class="token comment">#查看具体某一个网卡的信息</span>
+<span class="token function">ifconfig</span> ens33
+<span class="token function">sudo</span> <span class="token function">ifconfig</span> ens33 <span class="token number">192,168</span>.10,20 netmask <span class="token number">255,255</span>,255,0    <span class="token comment"># 置p地址和子网掩码 ，只设置ip地址 ，重启后消失</span>
+<span class="token function">sudo</span> <span class="token function">ifconfig</span> ens33 <span class="token number">192.168</span>.10.199 		   	<span class="token comment">#只设置ip地址 ，重启后消失</span>
+<span class="token function">sudo</span> <span class="token function">ifconfig</span> ens33 down					<span class="token comment">#关闭网卡</span>
+<span class="token function">sudo</span> <span class="token function">ifconfig</span> ens33 up 			<span class="token comment">#启动网卡后，原来ifconfig设置的ip会丢失</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="5-5-2-route-显示与设置路由命令"><a href="#5-5-2-route-显示与设置路由命令" class="headerlink" title="5.5.2.route 显示与设置路由命令"></a>5.5.2.route 显示与设置路由命令</h4><p>route命的功能是用于显示与设置路由信息，是Linux系统中常用的静态路由配置工具。要想让两台处在不同子网之间的服务器能够通信，需要有一个跨网段的路由器来连接它们，并用route命令为其设置路由信息，提供软硬件的支撑。<br>语法格式: route[参数]<br>常用参数:</p>
+<table>
+<thead>
+<tr>
+<th>-A</th>
+<th>设置地址类型 (默认IPv4)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-C</td>
+<td>打印核心的路由缓存</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>详细信息模式</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>直接显示数字形式的ip地址</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>netstat格式显示路由表</td>
+</tr>
+<tr>
+<td>-net</td>
+<td>到一个网络的路由表</td>
+</tr>
+<tr>
+<td>-host</td>
+<td>到一个主机的路由表</td>
+</tr>
+<tr>
+<td>Add</td>
+<td>增加指定的路由记录</td>
+</tr>
+<tr>
+<td>Del</td>
+<td>删除指定的路由记录</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>目的网络或目的主机</td>
+</tr>
+<tr>
+<td>gw</td>
+<td>设置默认网关</td>
+</tr>
+<tr>
+<td>mss</td>
+<td>设置TCP的最大区块长度 (单位MB)</td>
+</tr>
+<tr>
+<td>window</td>
+<td>指定通过路由表的TCP连接的窗口大小</td>
+</tr>
+<tr>
+<td>dev</td>
+<td>路由记录所表示的网络接口</td>
+</tr>
+</tbody></table>
+<p>常用命令</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看默认的路由信息</span>
+route
+route <span class="token function">add</span> <span class="token parameter variable">-net</span> <span class="token number">192,168</span>,10.0 netmask <span class="token number">255,255</span>.255,0 dev ens33 <span class="token comment"># 添加一个路由连接</span>
+route del <span class="token parameter variable">-net</span> <span class="token number">192.168</span>.10.0 netmask <span class="token number">255,255</span>,255,0 dev ens33 <span class="token comment">#删除一个路由连接</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+
+
 <h2 id="第-6-章-系统管理"><a href="#第-6-章-系统管理" class="headerlink" title="第 6 章 系统管理"></a>第 6 章 系统管理</h2><h3 id="6-1-Linux-中的进程和服务"><a href="#6-1-Linux-中的进程和服务" class="headerlink" title="6.1 Linux 中的进程和服务"></a>6.1 Linux 中的进程和服务</h3><p><strong>计算机中，一个正在执行的程序或命令，被叫做”进程”（process）。</strong></p>
 <p><strong>启动之后一只存在、常驻内存的进程，一般被称作”服务”（service）。</strong></p>
 <h3 id="6-2-service-服务管理（CentOS-6-版本-了解）"><a href="#6-2-service-服务管理（CentOS-6-版本-了解）" class="headerlink" title="6.2 service 服务管理（CentOS 6 版本-了解）"></a>6.2 service 服务管理（CentOS 6 版本-了解）</h3><ol>
@@ -3026,6 +3163,17 @@ Device Boot 	Start 	End 	Blocks 		Id 		System
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/linux/mediamediaimage-20230127113218903.png" alt="image-20230127113218903"></p>
 <p>（2）查看某端口号是否被占用</p>
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2023/linux/mediamediaimage-20230127113323591.png" alt="image-20230127113323591"></p>
+<p>常用命令</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">netstat</span> <span class="token parameter variable">-a</span>			<span class="token comment">#显示系统网络中的所有连接信息</span>
+<span class="token function">netstat</span>	<span class="token parameter variable">-nu</span>			<span class="token comment">#显示系统网络状态中的UDP连接信息</span>
+<span class="token function">netstat</span> <span class="token parameter variable">-apu</span> 		<span class="token comment">#显示系统网络状态中的UDP连接端口号使用信息</span>
+<span class="token function">netstat</span> <span class="token parameter variable">-i</span>			<span class="token comment">#显示网卡当前状态信息</span>
+<span class="token function">netstat</span> <span class="token parameter variable">-r</span>			<span class="token comment">#显示网络路由表状态信息</span>
+
+<span class="token function">netstat</span> <span class="token parameter variable">-ap</span>	<span class="token operator">|</span> <span class="token function">grep</span> sogou	<span class="token comment">#找到某个服务所对应的连接信息</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="7-11-crontab-系统定时任务"><a href="#7-11-crontab-系统定时任务" class="headerlink" title="7.11 crontab 系统定时任务"></a>7.11 crontab 系统定时任务</h3><h4 id="7-11-1-crontab-服务管理"><a href="#7-11-1-crontab-服务管理" class="headerlink" title="7.11.1 crontab 服务管理"></a>7.11.1 crontab 服务管理</h4><p>重新启动 crond 服务</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoop101 ~<span class="token punctuation">]</span><span class="token comment"># systemctl restart crond</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -4135,7 +4283,7 @@ http://mirrors.163.com/.help/CentOS7-Base-163.repo //网易163<span aria-hidden=
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">335.5k</span>&nbsp;字
+                class="white-color">339.5k</span>&nbsp;字
             
             
             
@@ -4441,7 +4589,7 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script>
         <style>
             [bg-lazy] {
                 background-image: none !important;
@@ -4454,6 +4602,6 @@ $(function () {
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script></body>
 
 </html>
