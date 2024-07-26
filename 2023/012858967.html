@@ -515,14 +515,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.6k
+                    6.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    24 分
+                    27 分
                 </div>
                 
 
@@ -1212,19 +1212,79 @@ Please input the number2: <span class="token number">5</span>
 <h4 id="9-2-2-特殊字符："><a href="#9-2-2-特殊字符：" class="headerlink" title="9.2.2 特殊字符：$"></a>9.2.2 特殊字符：$</h4><p>$ 匹配一行的结束，例如</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>atguigu@hadoop101 shells<span class="token punctuation">]</span>$ <span class="token function">cat</span> /etc/passwd <span class="token operator">|</span> <span class="token function">grep</span> t$		<span class="token comment"># 会匹配出所有以 t 结尾的行</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><strong>思考：^$ 匹配什么？</strong></p>
+<p><strong>思考：^$ 匹配什么？</strong>这个是匹配空行</p>
 <h4 id="9-2-3-特殊字符："><a href="#9-2-3-特殊字符：" class="headerlink" title="9.2.3 特殊字符：."></a>9.2.3 特殊字符：.</h4><p>. 匹配一个任意的字符，例如</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>atguigu@hadoop101 shells<span class="token punctuation">]</span>$ <span class="token function">cat</span> /etc/passwd <span class="token operator">|</span> <span class="token function">grep</span> r<span class="token punctuation">..</span>t		<span class="token comment"># 会匹配包含rabt,rbbt,rxdt,root 等的所有行</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h4 id="9-2-4-特殊字符："><a href="#9-2-4-特殊字符：" class="headerlink" title="9.2.4 特殊字符：*"></a>9.2.4 特殊字符：*</h4><p>*不单独使用，他和上一个字符连用，表示匹配上一个字符 0 次或多次，例如</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>atguigu@hadoop101 shells<span class="token punctuation">]</span>$ <span class="token function">cat</span> /etc/passwd <span class="token operator">|</span> <span class="token function">grep</span> ro*t		<span class="token comment"># 会匹配 rt, rot, root, rooot, roooot 等所有行</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><em><em>思考：.</em> 匹配什么？</em>*</p>
+<p><em><em>思考：.</em> 匹配什么？</em>*可以匹配任意字符</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>atguigu@hadoop101 shells<span class="token punctuation">]</span>$ <span class="token function">cat</span> /etc/passwd <span class="token operator">|</span> <span class="token function">grep</span> ^a.*bash$		<span class="token comment"># 以a开头，以bash结尾，中间是任意字符的字符串</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
 <h4 id="9-2-5-字符区间（中括号）："><a href="#9-2-5-字符区间（中括号）：" class="headerlink" title="9.2.5 字符区间（中括号）：[ ]"></a>9.2.5 字符区间（中括号）：[ ]</h4><p>[ ] 表示匹配某个范围内的一个字符，例如<br>[6,8]——匹配6 或者8<br>[0-9]——匹配一个0-9 的数字<br>[0-9]*——匹配任意长度的数字字符串<br>[a-z]——匹配一个a-z 之间的字符<br>[a-z]* ——匹配任意长度的字母字符串<br>[a-c, e-f]-匹配a-c 或者e-f 之间的任意字符</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>atguigu@hadoop101 shells<span class="token punctuation">]</span>$ <span class="token function">cat</span> /etc/passwd <span class="token operator">|</span> <span class="token function">grep</span> r<span class="token punctuation">[</span>a,b,c<span class="token punctuation">]</span>*t		<span class="token comment"># 会匹配rt,rat, rbt, rabt, rbact,rabccbaaacbt 等等所有行</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h4 id="9-2-6-特殊字符："><a href="#9-2-6-特殊字符：" class="headerlink" title="9.2.6 特殊字符：\"></a>9.2.6 特殊字符：\</h4><p>\ 表示转义，并不会单独使用。由于所有特殊字符都有其特定匹配模式，当我们想匹配某一特殊字符本身时（例如，我想找出所有包含 '$' 的行），就会碰到困难。此时我们就要将转义字符和特殊字符连用，来表示特殊字符本身，例如</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>atguigu@hadoop101 shells<span class="token punctuation">]</span>$ <span class="token function">cat</span> /etc/passwd <span class="token operator">|</span> <span class="token function">grep</span> ‘a<span class="token punctuation">\</span><span class="token variable">$b</span>’		<span class="token comment"># 就会匹配所有包含a$b 的行。注意需要使用单引号将表达式引起来。</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h3 id="9-3-通配符与正则表达式的区别"><a href="#9-3-通配符与正则表达式的区别" class="headerlink" title="9.3 通配符与正则表达式的区别"></a>9.3 通配符与正则表达式的区别</h3><p>通配符用来匹配文件名，正则表达式用来匹配文本。 	</p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202407190956062.png" alt="image-20240719095629943"></p>
+<h4 id="9-3-1-通配符"><a href="#9-3-1-通配符" class="headerlink" title="9.3.1 通配符"></a>9.3.1 通配符</h4><p>Shell命令中通常用通配符做文件名字或则目录名的模糊查找。 </p>
+<p><strong>一、  * 表示匹配任意长度的字符</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> *.txt 		<span class="token comment"># 显示当前路径下所有以.txt结尾的文件</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>二、  ? 表示匹配单个任意字符</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> ?.c 			<span class="token comment"># 显示当前路径下所有文件名只有1个字符的.c文件</span>
+<span class="token function">ls</span> ???.c 		<span class="token comment"># 显示当前路径下所有文件名只有 3 个字符的.c文件</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>三、   [a-z] 和 [0-9]</strong></p>
+<p>[a-z]表示匹配a-z中任意一个字符</p>
+<p>这样的通配涉及到操作系统本地语序 本地语序默认是 aAbBcCdD…zZ<br><strong>在本地语序未被清除之前[a-z]通配的字符中包含大写字母字符</strong><br>在终端输入命令 <code>export LC_ALL=C</code> 来清除本地语序<br>在终端输入命令 <code>unset LC_ALL</code> 来恢复本地语序<br>清空本地语序后[a-z]表示通配a-z中的任意一个字符，其中不包括大写字母字符</p>
+<p>[0-9]表示匹配0-9中任意一个数字字符</p>
+<p>四、   .*</p>
+<p>匹配以点号开头的任意字符</p>
+<p><strong>五、   ~</strong></p>
+<p>匹配当前用户的家目录</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ~ 			<span class="token comment"># 表示回到家目录 </span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="9-3-2-正则表达式"><a href="#9-3-2-正则表达式" class="headerlink" title="9.3.2 正则表达式"></a>9.3.2 正则表达式</h4><p>正则表达式用于匹配某个字符串（文本内容） </p>
+<p>下面列举常用的正则表达式相关的符号：<br>**一、特殊字符 ***</p>
+<p>匹配 * 前面的任意字符</p>
+<p><strong>二、特殊字符 ?</strong></p>
+<p>表示非贪婪匹配或非获取匹配</p>
+<p>正则表达式默认是对文本中所有内容进行匹配，获得所有匹配成功的内容，也叫做贪婪匹配。<br>在所需要匹配的内容中加了  ？ 后会从文本中匹配所需要内容，一旦发现内容相匹配就不再往下匹配了，也就叫做非贪婪匹配。<br>（前提：匹配内容必须完全在文本中出现）</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">源字符串为： text_1<span class="token punctuation">(</span>aa<span class="token punctuation">)</span>str_1<span class="token punctuation">(</span>bb<span class="token punctuation">)</span>test_2<span class="token punctuation">(</span>aa<span class="token punctuation">)</span>str_2<span class="token punctuation">(</span>bb<span class="token punctuation">)</span>test_3<span class="token punctuation">(</span>aa<span class="token punctuation">)</span>str_3<span class="token punctuation">(</span>bb<span class="token punctuation">)</span>test_4
+
+正则表达式1 为： <span class="token punctuation">(</span>aa<span class="token punctuation">)</span>.*<span class="token punctuation">(</span>bb<span class="token punctuation">)</span>               
+         ---<span class="token operator">&gt;</span>结果为:  <span class="token punctuation">(</span>aa<span class="token punctuation">)</span>str_1<span class="token punctuation">(</span>bb<span class="token punctuation">)</span>test_2<span class="token punctuation">(</span>aa<span class="token punctuation">)</span>str_2<span class="token punctuation">(</span>bb<span class="token punctuation">)</span>test_3<span class="token punctuation">(</span>aa<span class="token punctuation">)</span>str_3<span class="token punctuation">(</span>bb<span class="token punctuation">)</span>        
+
+正则表达式2 为：<span class="token punctuation">(</span>aa<span class="token punctuation">)</span>.*?<span class="token punctuation">(</span>bb<span class="token punctuation">)</span>               
+        ---<span class="token operator">&gt;</span>结果为：<span class="token punctuation">(</span>aa<span class="token punctuation">)</span>str_1<span class="token punctuation">(</span>bb<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>三、特殊字符 [a-z]</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">     包含大小写的匹配
+
+也就是匹配aAbBcC<span class="token punctuation">..</span>.zZ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>四、特殊字符 .</strong>*</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">匹配任意长度的字符<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>五、特殊字符 .</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">匹配任意单一字符<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>六、特殊字符 \</p>
+<p>表示转义<br>在shell命令 expr 中使用运算符的时候，部分运算符需要用转义字符转义</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">sum</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">expr</span> <span class="token number">100</span> <span class="token punctuation">\</span>* <span class="token number">200</span><span class="token variable">`</span></span> 	<span class="token comment"># 表示将100乘以200的值赋值给变量sum</span>
+                        <span class="token comment"># 此时 * 需要用转义字符 \ 来转义</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><strong>七、特殊字符 ^</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">行首
+	<span class="token function">cat</span> hello.c <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"^string"</span> 			<span class="token comment"># 表示查找以string开头的行</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>八、特殊字符 $</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">行尾
+	<span class="token function">cat</span> hello.c <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"string$"</span> 			<span class="token comment"># 表示查找以string结尾的行</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 
 <h2 id="第-10-章-文本处理工具"><a href="#第-10-章-文本处理工具" class="headerlink" title="第 10 章 文本处理工具"></a>第 10 章 文本处理工具</h2><h3 id="10-1-cut-剪切数据"><a href="#10-1-cut-剪切数据" class="headerlink" title="10.1 cut 剪切数据"></a>10.1 cut 剪切数据</h3><blockquote>
 <p>cut 的工作就是”剪”，具体的说就是在文件中负责剪切数据用的。cut 命令从文件的每一行剪切字节、字符和字段并将这些字节、字符和字段输出。</p>
@@ -2231,7 +2291,7 @@ filename:passwd,linenum:3,col:7
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">339.5k</span>&nbsp;字
+                class="white-color">369.8k</span>&nbsp;字
             
             
             
@@ -2537,7 +2597,7 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script>
+
         <style>
             [bg-lazy] {
                 background-image: none !important;
@@ -2550,6 +2610,6 @@ $(function () {
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 </html>
