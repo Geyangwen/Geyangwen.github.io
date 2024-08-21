@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="小文同学" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="小文同学" type="application/atom+xml">
 </head>
 
 
@@ -515,14 +515,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    108.7k
+                    112.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    435 分
+                    449 分
                 </div>
                 
 
@@ -9221,6 +9221,166 @@ test_workqueue_work.b = 2;<span aria-hidden="true" class="line-numbers-rows"><sp
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408201556792.png" alt="image-20240820155612628"></p>
 <p>至此，中断线程化实验就完成了。</p>
 <h1 id="第六篇平台总线"><a href="#第六篇平台总线" class="headerlink" title="第六篇平台总线"></a>第六篇平台总线</h1><h2 id="第50-章平台总线模型介绍"><a href="#第50-章平台总线模型介绍" class="headerlink" title="第50 章平台总线模型介绍"></a>第50 章平台总线模型介绍</h2><p>在前面所有章节中，无论要完成何种需求，我们都编写了一个独立的驱动程序，但这样编写出来的驱动程序在重用性和可移植性上是很低的，无论之后要编写一个同类型的驱动还是将该驱动更换一个平台，都要花费时间重新修改驱动代码，而驱动的分离和分层这一软件思路的提出（即本章节要讲解的平台总线模型），就是为了解决这个问题，下面让我们一起进入平台总线模型的学习吧。</p>
+<h3 id="50-1-什么是平台总线？"><a href="#50-1-什么是平台总线？" class="headerlink" title="50.1 什么是平台总线？"></a>50.1 什么是平台总线？</h3><p>平台总线（Platform bus）是Linux 内核中提供的一种虚拟总线，用于管理和组织与特定硬件平台相关的设备和驱动。它充当了平台设备（platform device）和平台驱动（platform driver）之间的桥梁，负责将它们进行匹配和绑定。</p>
+<p><strong>当系统注册一个平台设备时，平台总线会寻找与之匹配的平台驱动</strong>。它会遍历已注册的平台驱动列表，尝试与每个平台驱动进行匹配，直到找到与平台设备匹配的驱动为止。一旦找到匹配的驱动，平台总线会将平台设备与平台驱动进行绑定，使得设备可以被正确地初始化和操作。</p>
+<p>同样地，<strong>当系统注册一个平台驱动时，平台总线会寻找与之匹配的平台设备</strong>。它会遍历已注册的平台设备列表，尝试与每个平台设备进行匹配，直到找到与平台驱动匹配的设备为止。一旦找到匹配的设备，平台总线会将平台设备与平台驱动进行绑定，使得驱动可以管理和控制与该设备相关的操作。</p>
+<p>设备、平台总线、驱动的关系如下图（图50-1）所示：</p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211157805.png" alt="image-20240821115707652"></p>
+<p>通过引入平台总线，Linux 内核提供了一种通用的机制来管理和组织与特定硬件平台相关的设备和驱动。它使得设备和驱动之间的匹配过程更加自动化和灵活，同时也提高了嵌入式系统的可移植性和可扩展性。</p>
+<h3 id="50-2-平台总线的优势"><a href="#50-2-平台总线的优势" class="headerlink" title="50.2 平台总线的优势"></a>50.2 平台总线的优势</h3><p>在前面的章节中，我们编写的驱动程序将驱动和设备相关的内容放在一起，但是当涉及到多个相同类型的设备时，这种方法会引发一系列问题。举个例子，假设我们有一个硬件平台，该硬件平台上存在了500 个模块，这些模块都使用了LED 灯。如果我们使用杂项设备来编写驱动，虽然相比字符设备，杂项设备的代码量较少，但我们仍旧需要编写500 份类似的代码，从而生成相应的设备节点，以供上层应用在不同模块上控制LED 灯。</p>
+<p>编写500 份重复的代码会带来两个问题。首先，会造成大量重复劳动。其次，代码的重用性较差。如果我们需要将这些驱动从一个平台移植到另一个平台，就需要逐个修改驱动代码，尽管只需修改与硬件相关的部分，但仍旧是一个很大的工作量。</p>
+<p>而在引入了平台总线模型后，这些问题就得到了很好地解决。通过使用平台总线模型，将设备驱动和平台设备进行了分离。这样一来，我们只需编写一份通用的驱动代码即可，然后针对不同的平台设备进行配置，这就大大减少了重复编写代码的工作量，并提高了驱动代码的重用性。当我们需要将驱动移植到不同的平台时，只需对硬件相关的部分进行适配即可，其他部分可以保持不变。</p>
+<p>整理出来的平台总线优势如下所示：</p>
+<ul>
+<li>（1）<strong>设备与驱动的分离</strong>：传统的设备驱动模型将设备和驱动代码合并在同一个文件中，导致代码冗余和可维护性差。而平台总线模型将设备代码和驱动代码分离，设备代码放在device.c 文件中，驱动代码放在driver.c 文件中。这种分离使得设备和驱动的职责更加清晰，提高了代码的可读性和可维护性。</li>
+<li>（2）<strong>提高代码的重用性</strong>：平台总线模型使得相同类型的设备可以共享相同的驱动代码。例如，在一个硬件平台上存在多个相同类型的设备，传统的驱动模型需要为每个设备编写独立的驱动代码。而使用平台总线模型，只需编写一个通用的驱动代码，然后为每个设备创建相应的device.c 文件，将设备特定的代码放在其中。这样可以减少代码的重复性，提高了代码的重用性和可维护性。</li>
+<li>（3）<strong>减少重复性代码</strong>：在传统的设备驱动模型中，如果有多个相同类型的设备存在，就需要为每个设备编写独立的驱动代码。而使用平台总线模型，只需编写一个通用的驱动代码，然后为每个设备创建相应的device.c 文件，将设备特定的代码放在其中。这样可以避免大量的重复性代码，简化了驱动开发过程。</li>
+<li>（4）<strong>提高可移植性</strong>：平台总线模型可以提高驱动的可移植性。开发者可以编写适应平台总线的平台驱动程序，从而支持特定的外设，而无需依赖于特定的标准总线。这使得驱动可以更容易地在不同的硬件平台之间进行移植和重用。</li>
+</ul>
+<h2 id="第51-章注册platform-设备实验"><a href="#第51-章注册platform-设备实验" class="headerlink" title="第51 章注册platform 设备实验"></a>第51 章注册platform 设备实验</h2><h3 id="51-1-注册platform-设备"><a href="#51-1-注册platform-设备" class="headerlink" title="51.1 注册platform 设备"></a>51.1 注册platform 设备</h3><h4 id="51-1-1-platform-device-register-函数"><a href="#51-1-1-platform-device-register-函数" class="headerlink" title="51.1.1 platform_device_register 函数"></a>51.1.1 <code>platform_device_register</code> 函数</h4><p><code>platform_device_register</code> 函数用于将<code>platform_device</code> 结构体描述的平台设备注册到内核中。下面是对<code>platform_device_register</code> 函数的详细介绍：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">函数原型：
+    <span class="token keyword">int</span> <span class="token function">platform_device_register</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span>pdev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+头文件：
+    <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/platform_device.h&gt;</span></span>
+函数作用：
+    platform_device_register 函数用于将platform_device 结构体描述的平台设备注册到内核中，使其能够参与设备的资源分配和驱动的匹配。
+参数含义：
+    pdev：指向platform_device 结构体的指针，描述要注册的平台设备的信息。
+返回值：
+    成功：返回<span class="token number">0</span>，表示设备注册成功。
+    失败：返回负数，表示设备注册失败，返回的负数值表示错误代码。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>pdev 参数是一个指向platform_device 结构体的指针，其中包含了描述平台设备的各种属性和信息。platform_device 结构体包含了设备名称、设备资源、设备ID 等信息，用于描述和标识平台设备，会在接下来的小节对该结构体进行详细的介绍。<br>该函数在内核源码目录下的“<code>/include/linux/platform_device.h</code>”文件中，具体内容如下所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">extern</span> <span class="token keyword">int</span> <span class="token function">platform_device_register</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>函数声明中的extern 关键字表示该函数在其他地方定义，而不是在当前文件中实现。这样的声明通常出现在头文件中，用于告诉编译器该函数的定义存在于其他源文件中，以便在编译时能够正确引用该函数。</p>
+<p>而<code>platform_device_register</code> 实际定义在“/drivers/base/platform.c”文件中，相关定义如下所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">platform_device_register</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span>pdev<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">device_initialize</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>pdev<span class="token operator">-&gt;</span>dev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">arch_setup_pdev_archdata</span><span class="token punctuation">(</span>pdev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">platform_device_add</span><span class="token punctuation">(</span>pdev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>函数内部有三个主要的操作。</p>
+<ul>
+<li>第3 行：调用了device_initialize 函数，用于对pdev-&gt;dev 进行初始化。<code>pdev-&gt;dev</code> 是<code>struct platform_device</code> 结构体中的一个成员，它表示平台设备对应的<code>struct device</code> 结构体。通过调用<code>device_initialize</code> 函数，对<code>pdev-&gt;dev</code> 进行一些基本的初始化工作，例如设置设备的引用计数、设备的类型等。</li>
+<li>第4 行：调用了arch_setup_pdev_archdata 函数，用于根据平台设备的架构数据来设置pdev的架构相关数据。这个函数的具体实现可能与具体的架构相关，它主要用于在不同的架构下对平台设备进行特定的设置。</li>
+<li>第5 行： 调用了platform_device_add 函数， 将平台设备pdev 添加到内核中。platform_device_add 函数会完成平台设备的添加操作，包括将设备添加到设备层级结构中、添加设备的资源等。它会返回一个int 类型的结果，表示设备添加的结果。</li>
+</ul>
+<p>platform_device_register 函数的主要作用是将platform_device 结构体描述的平台设备注册到内核中，包括设备的初始化、添加到platform 总线和设备层级结构、添加设备资源等操作。通过该函数，平台设备被注册后，就能够参与设备的资源分配和驱动的匹配过程。函数的返回值可以用于判断设备注册是否成功。</p>
+<h4 id="51-1-2-platform-device-unregister-函数"><a href="#51-1-2-platform-device-unregister-函数" class="headerlink" title="51.1.2 platform_device_unregister 函数"></a>51.1.2 <code>platform_device_unregister</code> 函数</h4><p>platform_device_unregister 函数用于取消注册已经注册的平台设备，即从内核中移除设备。在设备不再需要时，调用该函数可以进行设备的清理和释放操作。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">函数原型：
+    <span class="token keyword">void</span> <span class="token function">platform_device_unregister</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span>pdev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+头文件：
+    <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/platform_device.h&gt;</span></span>
+函数作用：
+    platform_device_unregister 函数用于取消注册已经注册的平台设备，从内核中移除设备。
+参数含义：
+    pdev：指向要取消注册的平台设备的platform_device 结构体指针。
+返回值：
+    无返回值。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>该函数在内核源码目录下的“/include/linux/platform_device.h”文件中，具体内容如下所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">extern</span> <span class="token keyword">int</span> <span class="token function">platform_device_unregister</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>函数声明中的extern 关键字表示该函数在其他地方定义，而不是在当前文件中实现。这样的声明通常出现在头文件中，用于告诉编译器该函数的定义存在于其他源文件中，以便在编译时能够正确引用该函数。</p>
+<p>而<code>platform_device_unregister</code> 实际定义在“<code>/drivers/base/platform.c</code>”文件中，相关定义如下所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">platform_device_unregister</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span>pdev<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">platform_device_del</span><span class="token punctuation">(</span>pdev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">platform_device_put</span><span class="token punctuation">(</span>pdev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>函数内部有两个主要的操作：</p>
+<ul>
+<li>第3 行：调用了platform_device_del 函数，用于将设备从platform 总线的设备列表中移除。它会将设备从设备层级结构中移除，停止设备的资源分配和驱动的匹配。</li>
+<li>第4 行：这一步调用了platform_device_put 函数，用于减少对设备的引用计数。这个函数会检查设备的引用计数，如果引用计数减为零，则会释放设备结构体和相关资源。通过减少引用计数，可以确保设备在不再被使用时能够被释放。</li>
+</ul>
+<p><code>platform_device_unregister</code> 函数的作用是取消注册已经注册的平台设备，从内核中移除设备。它先调用<code>platform_device_del</code> 函数将设备从设备层级结构中移除， 然后调用<code>platform_device_put</code> 函数减少设备的引用计数，确保设备在不再被使用时能够被释放。</p>
+<h3 id="51-1-3-platform-device-结构体"><a href="#51-1-3-platform-device-结构体" class="headerlink" title="51.1.3 platform_device 结构体"></a>51.1.3 platform_device 结构体</h3><p>platform_device 结构体是用于描述平台设备的数据结构。它包含了平台设备的各种属性和信息，用于在内核中表示和管理平台设备。该结构体定义在内核的“/include/linux/platform_device.h”文件中，具体内容如下所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>name<span class="token punctuation">;</span> <span class="token comment">// 设备的名称，用于唯一标识设备</span>
+    <span class="token keyword">int</span> id<span class="token punctuation">;</span> <span class="token comment">// 设备的ID，可以用于区分同一种设备的不同实例</span>
+    bool id_auto<span class="token punctuation">;</span> <span class="token comment">// 表示设备的ID 是否自动生成</span>
+    <span class="token keyword">struct</span> <span class="token class-name">device</span> dev<span class="token punctuation">;</span> <span class="token comment">// 表示平台设备对应的struct device 结构体，用于设备的基本管理和操作</span>
+    u32 num_resources<span class="token punctuation">;</span> <span class="token comment">// 设备资源的数量</span>
+    <span class="token keyword">struct</span> <span class="token class-name">resource</span> <span class="token operator">*</span>resource<span class="token punctuation">;</span> <span class="token comment">// 指向设备资源的指针</span>
+    <span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">platform_device_id</span> <span class="token operator">*</span>id_entry<span class="token punctuation">;</span> <span class="token comment">// 指向设备的ID 表项的指针，用于匹配设备和驱动</span>
+    <span class="token keyword">char</span> <span class="token operator">*</span>driver_override<span class="token punctuation">;</span> <span class="token comment">// 强制设备与指定驱动匹配的驱动名称</span>
+    <span class="token comment">/* MFD cell pointer */</span>
+    <span class="token keyword">struct</span> <span class="token class-name">mfd_cell</span> <span class="token operator">*</span>mfd_cell<span class="token punctuation">;</span> <span class="token comment">// 指向多功能设备（MFD）单元的指针，用于多功能设备的描述</span>
+    <span class="token comment">/* arch specific additions */</span>
+    <span class="token keyword">struct</span> <span class="token class-name">pdev_archdata</span> archdata<span class="token punctuation">;</span> <span class="token comment">// 用于存储特定于架构的设备数据</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>下面对于几个重要的参数和结构体进行讲解</p>
+<ul>
+<li><code>const char *name</code>：设备的名称，用于唯一标识设备。必须提供一个唯一的名称，以便内核能够正确识别和管理该设备。</li>
+<li><code>int id</code>：设备的ID，可以用于区分同一种设备的不同实例。这个参数是可选的，如果不需要使用ID 进行区分，可以将其设置为-1，</li>
+<li><code>struct device dev</code>：表示平台设备对应的struct device 结构体，用于设备的基本管理和操作。必须为该参数提供一个有效的struct device 对象，该结构体的release 方法必须要实现，否则在编译的时候会报错。</li>
+<li><code>u32 num_resources</code>：设备资源的数量。如果设备具有资源（如内存区域、中断等），则需要提供资源的数量。</li>
+<li><code>struct resource *resource</code>：指向设备资源的指针。如果设备具有资源，需要提供一个指向资源数组的指针，会在下个小节对该结构体进行详细的讲解。</li>
+</ul>
+<h4 id="51-1-4-resource-结构体"><a href="#51-1-4-resource-结构体" class="headerlink" title="51.1.4 resource 结构体"></a>51.1.4 resource 结构体</h4><p>struct resource 结构体用于描述系统中的设备资源，包括内存区域、I/O 端口、中断等，该结构体定义在内核的“<code>/include/linux/ioport.h</code>”文件中，具体内容如下所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">struct</span> <span class="token class-name">resource</span> <span class="token punctuation">{</span>
+    <span class="token class-name">resource_size_t</span> start<span class="token punctuation">;</span> <span class="token comment">/* 资源的起始地址*/</span>
+    <span class="token class-name">resource_size_t</span> end<span class="token punctuation">;</span> <span class="token comment">/* 资源的结束地址*/</span>
+    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>name<span class="token punctuation">;</span> <span class="token comment">/* 资源的名称*/</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">long</span> flags<span class="token punctuation">;</span> <span class="token comment">/* 资源的标志位*/</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">long</span> desc<span class="token punctuation">;</span> <span class="token comment">/* 资源的描述信息*/</span>
+    <span class="token keyword">struct</span> <span class="token class-name">resource</span> <span class="token operator">*</span>parent<span class="token punctuation">;</span> <span class="token comment">/* 指向父资源的指针*/</span>
+    <span class="token keyword">struct</span> <span class="token class-name">resource</span> <span class="token operator">*</span>sibling<span class="token punctuation">;</span> <span class="token comment">/* 指向同级兄弟资源的指针*/</span>
+    <span class="token keyword">struct</span> <span class="token class-name">resource</span> <span class="token operator">*</span>child<span class="token punctuation">;</span> <span class="token comment">/* 指向子资源的指针*/</span>
+    
+    <span class="token comment">/* 以下宏定义用于保留未使用的字段*/</span>
+    <span class="token function">ANDROID_KABI_RESERVE</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ANDROID_KABI_RESERVE</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ANDROID_KABI_RESERVE</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ANDROID_KABI_RESERVE</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其中最重要的是前四个参数，每个参数的具体介绍如下所示：</p>
+<ul>
+<li>（1）resource_size_t start：资源的起始地址。它表示资源的起始位置或者起始寄存器的地址。</li>
+<li>（2）resource_size_t end：资源的结束地址。它表示资源的结束位置或者结束寄存器的地址。</li>
+<li>（3）const char *name：资源的名称。它是一个字符串，用于标识和描述资源。</li>
+<li>（4）unsigned long flags：资源的标志位。它包含了一些特定的标志，用于表示资源的属性或者特征。例如，可以用标志位来指示资源的可用性、共享性、缓存属性等。flags 参数的具体取值和含义可以根据系统和驱动的需求进行定义和解释，但通常情况下，它用于表示资源的属性、特征或配置选项。下面是一些常见的标志位及其可能的含义：</li>
+</ul>
+<ol>
+<li><strong>资源类型相关标志位</strong>：</li>
+</ol>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">IORESOURCE_IO：表示资源是I<span class="token operator">/</span>O 端口资源。
+IORESOURCE_MEM：表示资源是内存资源。
+IORESOURCE_REG：表示资源是寄存器偏移量。
+IORESOURCE_IRQ：表示资源是中断资源。
+IORESOURCE_DMA：表示资源是DMA（直接内存访问）资源。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li><strong>资源属性和特征相关标志位：</strong></li>
+</ol>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">IORESOURCE_PREFETCH：表示资源是无副作用的预取资源。
+IORESOURCE_READONLY：表示资源是只读的。
+IORESOURCE_CACHEABLE：表示资源支持缓存。
+IORESOURCE_RANGELENGTH：表示资源的范围长度。
+IORESOURCE_SHADOWABLE：表示资源可以被影子资源替代。
+IORESOURCE_SIZEALIGN：表示资源的大小表示对齐。
+IORESOURCE_STARTALIGN：表示起始字段是对齐的。
+IORESOURCE_MEM_64：表示资源是<span class="token number">64</span> 位内存资源。
+IORESOURCE_WINDOW：表示资源由桥接器转发。
+IORESOURCE_MUXED：表示资源是软件复用的。
+IORESOURCE_SYSRAM：表示资源是系统RAM（修饰符）。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="3">
+<li><strong>其他状态和控制标志位：</strong></li>
+</ol>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">IORESOURCE_EXCLUSIVE：表示用户空间无法映射此资源。
+IORESOURCE_DISABLED：表示资源当前被禁用。
+IORESOURCE_UNSET：表示尚未分配地址给资源。
+IORESOURCE_AUTO：表示地址由系统自动分配。
+IORESOURCE_BUSY：表示驱动程序将此资源标记为繁忙。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="51-2-实验程序的编写"><a href="#51-2-实验程序的编写" class="headerlink" title="51.2 实验程序的编写"></a>51.2 实验程序的编写</h3><p>本实验对应的网盘路径为：iTOP-RK3568 开发板【底板V1.7 版本】\03_【iTOP-RK3568开发板】指南教程\02_Linux 驱动配套资料\04_Linux 驱动例程\40_platform_device\。</p>
+<p>本实验将注册一个名为”my_platform_device” 的平台设备，当注册平台设备时，该驱动程序提供了两个资源：一个内存资源和一个中断资源。这些资源被定义在名为my_resources 的结构体数组中,具体内容如下：</p>
+<p>内存资源：<br>    起始地址：MEM_START_ADDR（0xFDD60000）<br>    结束地址：MEM_END_ADDR（0xFDD60004）<br>    标记：IORESOURCE_MEM<br>中断资源：<br>    中断资源号：IRQ_NUMBER（101）<br>    标记：IORESOURCE_IRQ<br>编写完成的platform_device.c 代码如下所示：</p>
 
                 
             </div>
@@ -9958,7 +10118,7 @@ test_workqueue_work.b = 2;<span aria-hidden="true" class="line-numbers-rows"><sp
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">492.4k</span>&nbsp;字
+                class="white-color">496.5k</span>&nbsp;字
             
             
             
@@ -10264,16 +10424,7 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<!-- hexo injector body_end start --><script data-pjax src="https://registry.npmmirror.com/oh-my-live2d/latest/files"></script><script>const oml2d = OML2D.loadOml2d({libraryUrls:{"complete":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/complete.js","cubism2":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/cubism2.js","cubism5":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/cubism5.js"},mobileDisplay:false,models:[{"path":"https://model.oml2d.com/HK416-1-normal/model.json","scale":0.07,"position":[-5,60],"stageStyle":{"height":450}}],parentElement:document.body,primaryColor:"var(--btn-bg)",sayHello:false,tips:{style: {"width":230,"height":120,"left":"calc(50% - 20px)","top":"-100px"},mobileStyle: {"width":180,"height":80,"left":"calc(50% - 30px)","top":"-100px"},idleTips:{interval:15000,message:function(){
-  return axios.get('https://v1.hitokoto.cn?c=i')
-    .then(function (response) {
-      return response.data.hitokoto ;
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-}
-}}});</script><!-- hexo injector body_end end -->
+
         <style>
             [bg-lazy] {
                 background-image: none !important;
@@ -10286,6 +10437,6 @@ $(function () {
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 </html>
