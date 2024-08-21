@@ -6,7 +6,7 @@
   <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/"/>
-  <updated>2024-08-16T06:35:34.950Z</updated>
+  <updated>2024-08-20T07:56:39.394Z</updated>
   <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2024/080957409.html"/>
     <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2024/080957409.html</id>
     <published>2024-08-09T02:20:54.000Z</published>
-    <updated>2024-08-16T06:35:34.950Z</updated>
+    <updated>2024-08-20T07:56:39.394Z</updated>
     
     
       
@@ -95,6 +95,33 @@
     
     
     <category term="Arduino" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/Arduino/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python爬虫学习笔记</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/081623349.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/081623349.html</id>
+    <published>2023-08-16T02:20:54.000Z</published>
+    <updated>2024-08-19T09:56:28.790Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;注意：本网站所有内容为自己学习期间记录的笔记，基本都是原作者那边摘抄过来的，不作商业用途也不插播广告。（如有侵权，请联系我删除，15909440083）&lt;/p&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Android" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/Android/"/>
+    
+    
+    <category term="python爬虫" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/python%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
