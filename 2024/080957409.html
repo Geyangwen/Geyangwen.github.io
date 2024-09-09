@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="小文同学" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="小文同学" type="application/atom+xml">
 </head>
 
 
@@ -515,14 +515,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    112.8k
+                    119.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    449 分
+                    478 分
                 </div>
                 
 
@@ -7409,7 +7409,9 @@ aarch64-linux-gnu-ar rcs libopen.a dev_open.o<span aria-hidden="true" class="lin
 <p>和原helloworld 驱动程序相比，在第6 行添加了<code>panic("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")</code>，驱动加载之后打印信息如下（图38-4）所示：</p>
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408191126855.png" alt="image-20240819112614704"></p>
 <p>可以看到helloworld_init 函数的调用关系以及寄存器值就都打印了出来，信息打印完成之后会发现系统已经崩溃了，终端已经无法再进行输入。<br>至此关于panic 函数的测试就完成了。</p>
-<h1 id="第五篇中断"><a href="#第五篇中断" class="headerlink" title="第五篇中断"></a>第五篇中断</h1><h2 id="第39-章中断实验"><a href="#第39-章中断实验" class="headerlink" title="第39 章中断实验"></a>第39 章中断实验</h2><p>在前面的课程中，我们深入学习了高级字符设备的进阶知识，包括IO 模型、定时器原理、llseek 设备定位和通过ioctl 传递参数等。通过这些课程，我们对高级字符设备有了深入的理解，并掌握了一些实用的技术和编程方法。从今天开始，我们就进入中断课程的学习了。中断是操作系统中至关重要的机制，它能够显著提高系统的响应性能和并发处理能力。</p>
+<h1 id="第五篇中断"><a href="#第五篇中断" class="headerlink" title="第五篇中断"></a>第五篇中断</h1><p>这个图可以用来捋一下逻辑。</p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408220922367.png" alt="image-20240822092240126"></p>
+<h2 id="第39-章中断实验"><a href="#第39-章中断实验" class="headerlink" title="第39 章中断实验"></a>第39 章中断实验</h2><p>在前面的课程中，我们深入学习了高级字符设备的进阶知识，包括IO 模型、定时器原理、llseek 设备定位和通过ioctl 传递参数等。通过这些课程，我们对高级字符设备有了深入的理解，并掌握了一些实用的技术和编程方法。从今天开始，我们就进入中断课程的学习了。中断是操作系统中至关重要的机制，它能够显著提高系统的响应性能和并发处理能力。</p>
 <h3 id="39-1-什么是中断？"><a href="#39-1-什么是中断？" class="headerlink" title="39.1 什么是中断？"></a>39.1 什么是中断？</h3><h4 id="39-1-1-中断的概念"><a href="#39-1-1-中断的概念" class="headerlink" title="39.1.1 中断的概念"></a>39.1.1 中断的概念</h4><p>中断是指在CPU 正常运行期间，由外部或内部事件引起的一种机制。当中断发生时，CPU会停止当前正在执行的程序，并转而执行触发该中断的中断处理程序。处理完中断处理程序后，CPU 会返回到中断发生的地方，继续执行被中断的程序。中断机制允许CPU 在实时响应外部或内部事件的同时，保持对其他任务的处理能力。</p>
 <p>可以想象这样一幅画面，你正在烹饪一顿美味的晚餐，准备了各种食材，点燃了炉灶，开始了幸福的烹饪过程，突然，你的手机响起，有人打来了一个紧急电话，打破了你正常的烹饪流程，这时候你需要立刻停止手中的工作，迅速接起电话，与对方进行交流，在接完电话之后，再回到厨房继续之前的烹饪流程。这就是一个在实际生活中的中断案例，中断的概念流程图如下（39-1）所示：</p>
 <img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408191127011.png" alt="image-20240819112729887" style="zoom:50%;">
@@ -7734,7 +7736,7 @@ pin <span class="token operator">=</span> bank<span class="token operator">*</sp
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>从上面的内容可以得到<code>request_irq()</code>函数实际上是调用了<code>request_threaded_irq()</code>函数来完成中断申请的过程。<code>request_threaded_irq()</code>函数提供了线程化的中断处理方式，可以在中断上下文中执行中断处理函数。</p>
-<h3 id="40-2-request-threaded-irq-函数"><a href="#40-2-request-threaded-irq-函数" class="headerlink" title="40.2 request_threaded_irq 函数"></a>40.2 request_threaded_irq 函数</h3><p><code>request_threaded_irq</code> 函数是Linux 内核提供的一个功能强大的函数，用于请求分配一个中断，并将中断处理程序与该中断关联起来。该函数的主要作用是在系统中注册中断处理函数，以响应对应中断的发生。以下是request_threaded_irq 函数的功能和作用的详细介绍：</p>
+<h3 id="40-2-request-threaded-irq-函数"><a href="#40-2-request-threaded-irq-函数" class="headerlink" title="40.2 request_threaded_irq 函数"></a>40.2 <code>request_threaded_irq</code> 函数</h3><p><code>request_threaded_irq</code> 函数是Linux 内核提供的一个功能强大的函数，用于请求分配一个中断，并将中断处理程序与该中断关联起来。该函数的主要作用是在系统中注册中断处理函数，以响应对应中断的发生。以下是request_threaded_irq 函数的功能和作用的详细介绍：</p>
 <ul>
 <li>（1）中断请求：request_threaded_irq 函数用于请求一个中断。它会向内核注册对应中断号的中断处理函数，并为该中断分配必要的资源。中断号是标识特定硬件中断的唯一标识符。</li>
 <li>（2）中断处理函数关联：通过handler 参数，将中断处理函数与中断号关联起来。中断处理函数是一个预定义的函数，用于处理中断事件。当中断发生时，内核将调用该函数来处理中断事件。</li>
@@ -7907,7 +7909,7 @@ retval <span class="token operator">=</span> <span class="token function">__setu
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>第65 行：如果设置中断成功且中断标志中包含共享标志（IRQF_SHARED），则执行以下操作：<br>第68 行：禁用中断。<br>第69 行：保存当前中断状态并禁用本地中断。<br>第70 行：调用主处理函数处理中断。<br>第73 行：恢复中断状态。<br>第74 行）：重新使能中断。</p>
-<h3 id="40-3-irq-desc-结构体"><a href="#40-3-irq-desc-结构体" class="headerlink" title="40.3 irq_desc 结构体"></a>40.3 irq_desc 结构体</h3><p>irq_desc 结构体是Linux 内核中用于描述中断的数据结构之一。每个硬件中断都有一个对应的irq_desc 实例，它用于记录与该中断相关的各种信息和状态。该结构体的主要功能是管理中断处理函数、中断行为以及与中断处理相关的其他数据。</p>
+<h3 id="40-3-irq-desc-结构体"><a href="#40-3-irq-desc-结构体" class="headerlink" title="40.3 irq_desc 结构体"></a>40.3 <code>irq_desc</code> 结构体</h3><p>irq_desc 结构体是Linux 内核中用于描述中断的数据结构之一。每个硬件中断都有一个对应的irq_desc 实例，它用于记录与该中断相关的各种信息和状态。该结构体的主要功能是管理中断处理函数、中断行为以及与中断处理相关的其他数据。</p>
 <p>以下是irq_desc 结构体的主要作用和功能：</p>
 <ul>
 <li>（1）<strong>中断处理函数管理</strong>：irq_desc 结构体中的handle_irq 字段保存中断处理函数的指针。当硬件触发中断时，内核会调用该函数来处理中断事件。</li>
@@ -7982,7 +7984,7 @@ retval <span class="token operator">=</span> <span class="token function">__setu
 <span class="token punctuation">}</span> ____cacheline_internodealigned_in_smp<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在irq_desc 结构体中最重要的就是action 字段，会在下个小节对action 字段进行详细的讲解。</p>
-<h3 id="40-4-irqaction-结构体"><a href="#40-4-irqaction-结构体" class="headerlink" title="40.4 irqaction 结构体"></a>40.4 irqaction 结构体</h3><p>irqaction 结构体是Linux 内核中用于描述中断行为的数据结构之一。它用于定义中断处理过程中的回调函数和相关属性。irqaction 结构体的主要功能是管理与特定中断相关的行为和处理函数。</p>
+<h3 id="40-4-irqaction-结构体"><a href="#40-4-irqaction-结构体" class="headerlink" title="40.4 irqaction 结构体"></a>40.4 <code>irqaction</code> 结构体</h3><p>irqaction 结构体是Linux 内核中用于描述中断行为的数据结构之一。它用于定义中断处理过程中的回调函数和相关属性。irqaction 结构体的主要功能是管理与特定中断相关的行为和处理函数。</p>
 <p>以下是irqaction 结构体的主要作用和功能：</p>
 <ul>
 <li>（1）<strong>中断处理函数管理</strong>：irqaction 结构体中的handler 字段保存中断处理函数的指针。该函数在中断发生时被调用，用于处理中断事件。</li>
@@ -9220,7 +9222,10 @@ test_workqueue_work.b = 2;<span aria-hidden="true" class="line-numbers-rows"><sp
 
 <p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408201556792.png" alt="image-20240820155612628"></p>
 <p>至此，中断线程化实验就完成了。</p>
-<h1 id="第六篇平台总线"><a href="#第六篇平台总线" class="headerlink" title="第六篇平台总线"></a>第六篇平台总线</h1><h2 id="第50-章平台总线模型介绍"><a href="#第50-章平台总线模型介绍" class="headerlink" title="第50 章平台总线模型介绍"></a>第50 章平台总线模型介绍</h2><p>在前面所有章节中，无论要完成何种需求，我们都编写了一个独立的驱动程序，但这样编写出来的驱动程序在重用性和可移植性上是很低的，无论之后要编写一个同类型的驱动还是将该驱动更换一个平台，都要花费时间重新修改驱动代码，而驱动的分离和分层这一软件思路的提出（即本章节要讲解的平台总线模型），就是为了解决这个问题，下面让我们一起进入平台总线模型的学习吧。</p>
+<h1 id="第六篇平台总线"><a href="#第六篇平台总线" class="headerlink" title="第六篇平台总线"></a>第六篇平台总线</h1><p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408220928114.png" alt="image-20240822092824970"></p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408220929196.png" alt="image-20240822092946040"></p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408220930729.png" alt="image-20240822093023431"></p>
+<h2 id="第50-章平台总线模型介绍"><a href="#第50-章平台总线模型介绍" class="headerlink" title="第50 章平台总线模型介绍"></a>第50 章平台总线模型介绍</h2><p>在前面所有章节中，无论要完成何种需求，我们都编写了一个独立的驱动程序，但这样编写出来的驱动程序在重用性和可移植性上是很低的，无论之后要编写一个同类型的驱动还是将该驱动更换一个平台，都要花费时间重新修改驱动代码，而驱动的分离和分层这一软件思路的提出（即本章节要讲解的平台总线模型），就是为了解决这个问题，下面让我们一起进入平台总线模型的学习吧。</p>
 <h3 id="50-1-什么是平台总线？"><a href="#50-1-什么是平台总线？" class="headerlink" title="50.1 什么是平台总线？"></a>50.1 什么是平台总线？</h3><p>平台总线（Platform bus）是Linux 内核中提供的一种虚拟总线，用于管理和组织与特定硬件平台相关的设备和驱动。它充当了平台设备（platform device）和平台驱动（platform driver）之间的桥梁，负责将它们进行匹配和绑定。</p>
 <p><strong>当系统注册一个平台设备时，平台总线会寻找与之匹配的平台驱动</strong>。它会遍历已注册的平台驱动列表，尝试与每个平台驱动进行匹配，直到找到与平台设备匹配的驱动为止。一旦找到匹配的驱动，平台总线会将平台设备与平台驱动进行绑定，使得设备可以被正确地初始化和操作。</p>
 <p>同样地，<strong>当系统注册一个平台驱动时，平台总线会寻找与之匹配的平台设备</strong>。它会遍历已注册的平台设备列表，尝试与每个平台设备进行匹配，直到找到与平台驱动匹配的设备为止。一旦找到匹配的设备，平台总线会将平台设备与平台驱动进行绑定，使得驱动可以管理和控制与该设备相关的操作。</p>
@@ -9300,16 +9305,16 @@ test_workqueue_work.b = 2;<span aria-hidden="true" class="line-numbers-rows"><sp
 <p><code>platform_device_unregister</code> 函数的作用是取消注册已经注册的平台设备，从内核中移除设备。它先调用<code>platform_device_del</code> 函数将设备从设备层级结构中移除， 然后调用<code>platform_device_put</code> 函数减少设备的引用计数，确保设备在不再被使用时能够被释放。</p>
 <h3 id="51-1-3-platform-device-结构体"><a href="#51-1-3-platform-device-结构体" class="headerlink" title="51.1.3 platform_device 结构体"></a>51.1.3 platform_device 结构体</h3><p>platform_device 结构体是用于描述平台设备的数据结构。它包含了平台设备的各种属性和信息，用于在内核中表示和管理平台设备。该结构体定义在内核的“/include/linux/platform_device.h”文件中，具体内容如下所示：</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>name<span class="token punctuation">;</span> <span class="token comment">// 设备的名称，用于唯一标识设备</span>
-    <span class="token keyword">int</span> id<span class="token punctuation">;</span> <span class="token comment">// 设备的ID，可以用于区分同一种设备的不同实例</span>
-    bool id_auto<span class="token punctuation">;</span> <span class="token comment">// 表示设备的ID 是否自动生成</span>
-    <span class="token keyword">struct</span> <span class="token class-name">device</span> dev<span class="token punctuation">;</span> <span class="token comment">// 表示平台设备对应的struct device 结构体，用于设备的基本管理和操作</span>
-    u32 num_resources<span class="token punctuation">;</span> <span class="token comment">// 设备资源的数量</span>
-    <span class="token keyword">struct</span> <span class="token class-name">resource</span> <span class="token operator">*</span>resource<span class="token punctuation">;</span> <span class="token comment">// 指向设备资源的指针</span>
+    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>name<span class="token punctuation">;</span> 			<span class="token comment">// 设备的名称，用于唯一标识设备</span>
+    <span class="token keyword">int</span> id<span class="token punctuation">;</span> 					<span class="token comment">// 设备的ID，可以用于区分同一种设备的不同实例</span>
+    bool id_auto<span class="token punctuation">;</span> 				<span class="token comment">// 表示设备的ID 是否自动生成</span>
+    <span class="token keyword">struct</span> <span class="token class-name">device</span> dev<span class="token punctuation">;</span> 			<span class="token comment">// 表示平台设备对应的struct device 结构体，用于设备的基本管理和操作</span>
+    u32 num_resources<span class="token punctuation">;</span> 			<span class="token comment">// 设备资源的数量</span>
+    <span class="token keyword">struct</span> <span class="token class-name">resource</span> <span class="token operator">*</span>resource<span class="token punctuation">;</span> 	<span class="token comment">// 指向设备资源的指针</span>
     <span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">platform_device_id</span> <span class="token operator">*</span>id_entry<span class="token punctuation">;</span> <span class="token comment">// 指向设备的ID 表项的指针，用于匹配设备和驱动</span>
-    <span class="token keyword">char</span> <span class="token operator">*</span>driver_override<span class="token punctuation">;</span> <span class="token comment">// 强制设备与指定驱动匹配的驱动名称</span>
+    <span class="token keyword">char</span> <span class="token operator">*</span>driver_override<span class="token punctuation">;</span> 		<span class="token comment">// 强制设备与指定驱动匹配的驱动名称</span>
     <span class="token comment">/* MFD cell pointer */</span>
-    <span class="token keyword">struct</span> <span class="token class-name">mfd_cell</span> <span class="token operator">*</span>mfd_cell<span class="token punctuation">;</span> <span class="token comment">// 指向多功能设备（MFD）单元的指针，用于多功能设备的描述</span>
+    <span class="token keyword">struct</span> <span class="token class-name">mfd_cell</span> <span class="token operator">*</span>mfd_cell<span class="token punctuation">;</span> 	<span class="token comment">// 指向多功能设备（MFD）单元的指针，用于多功能设备的描述</span>
     <span class="token comment">/* arch specific additions */</span>
     <span class="token keyword">struct</span> <span class="token class-name">pdev_archdata</span> archdata<span class="token punctuation">;</span> <span class="token comment">// 用于存储特定于架构的设备数据</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -9381,6 +9386,683 @@ IORESOURCE_BUSY：表示驱动程序将此资源标记为繁忙。<span aria-hid
 <h3 id="51-2-实验程序的编写"><a href="#51-2-实验程序的编写" class="headerlink" title="51.2 实验程序的编写"></a>51.2 实验程序的编写</h3><p>本实验对应的网盘路径为：iTOP-RK3568 开发板【底板V1.7 版本】\03_【iTOP-RK3568开发板】指南教程\02_Linux 驱动配套资料\04_Linux 驱动例程\40_platform_device\。</p>
 <p>本实验将注册一个名为”my_platform_device” 的平台设备，当注册平台设备时，该驱动程序提供了两个资源：一个内存资源和一个中断资源。这些资源被定义在名为my_resources 的结构体数组中,具体内容如下：</p>
 <p>内存资源：<br>    起始地址：MEM_START_ADDR（0xFDD60000）<br>    结束地址：MEM_END_ADDR（0xFDD60004）<br>    标记：IORESOURCE_MEM<br>中断资源：<br>    中断资源号：IRQ_NUMBER（101）<br>    标记：IORESOURCE_IRQ<br>编写完成的platform_device.c 代码如下所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/module.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/platform_device.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/ioport.h&gt;</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MEM_START_ADDR</span> <span class="token expression"><span class="token number">0xFDD60000</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MEM_END_ADDR</span>   <span class="token expression"><span class="token number">0xFDD60004</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">IRQ_NUMBER</span>     <span class="token expression"><span class="token number">101</span></span></span>
+
+<span class="token keyword">static</span> <span class="token keyword">struct</span> <span class="token class-name">resource</span> my_resources<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">{</span>
+        <span class="token punctuation">.</span>start <span class="token operator">=</span> MEM_START_ADDR<span class="token punctuation">,</span>    <span class="token comment">// 内存资源起始地址</span>
+        <span class="token punctuation">.</span>end <span class="token operator">=</span> MEM_END_ADDR<span class="token punctuation">,</span>        <span class="token comment">// 内存资源结束地址</span>
+        <span class="token punctuation">.</span>flags <span class="token operator">=</span> IORESOURCE_MEM<span class="token punctuation">,</span>    <span class="token comment">// 标记为内存资源</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+        <span class="token punctuation">.</span>start <span class="token operator">=</span> IRQ_NUMBER<span class="token punctuation">,</span>        <span class="token comment">// 中断资源号</span>
+        <span class="token punctuation">.</span>end <span class="token operator">=</span> IRQ_NUMBER<span class="token punctuation">,</span>          <span class="token comment">// 中断资源号</span>
+        <span class="token punctuation">.</span>flags <span class="token operator">=</span> IORESOURCE_IRQ<span class="token punctuation">,</span>    <span class="token comment">// 标记为中断资源</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">my_platform_device_release</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">device</span> <span class="token operator">*</span>dev<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 释放资源的回调函数</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">static</span> <span class="token keyword">struct</span> <span class="token class-name">platform_device</span> my_platform_device <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"my_platform_device"</span><span class="token punctuation">,</span>                  <span class="token comment">// 设备名称</span>
+    <span class="token punctuation">.</span>id <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>                                      <span class="token comment">// 设备ID</span>
+    <span class="token punctuation">.</span>num_resources <span class="token operator">=</span> <span class="token function">ARRAY_SIZE</span><span class="token punctuation">(</span>my_resources<span class="token punctuation">)</span><span class="token punctuation">,</span>     <span class="token comment">// 资源数量</span>
+    <span class="token punctuation">.</span>resource <span class="token operator">=</span> my_resources<span class="token punctuation">,</span>                      <span class="token comment">// 资源数组</span>
+    <span class="token punctuation">.</span>dev<span class="token punctuation">.</span>release <span class="token operator">=</span> my_platform_device_release<span class="token punctuation">,</span>     <span class="token comment">// 释放资源的回调函数</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">static</span> <span class="token keyword">int</span> __init <span class="token function">my_platform_device_init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> ret<span class="token punctuation">;</span>
+
+    ret <span class="token operator">=</span> <span class="token function">platform_device_register</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>my_platform_device<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 注册平台设备</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ret<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">printk</span><span class="token punctuation">(</span>KERN_ERR <span class="token string">"Failed to register platform device\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> ret<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">printk</span><span class="token punctuation">(</span>KERN_INFO <span class="token string">"Platform device registered\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">static</span> <span class="token keyword">void</span> __exit <span class="token function">my_platform_device_exit</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">platform_device_unregister</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>my_platform_device<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 注销平台设备</span>
+    <span class="token function">printk</span><span class="token punctuation">(</span>KERN_INFO <span class="token string">"Platform device unregistered\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">module_init</span><span class="token punctuation">(</span>my_platform_device_init<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">module_exit</span><span class="token punctuation">(</span>my_platform_device_exit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">MODULE_LICENSE</span><span class="token punctuation">(</span><span class="token string">"GPL"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">MODULE_AUTHOR</span><span class="token punctuation">(</span><span class="token string">"topeet"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="51-3-运行测试"><a href="#51-3-运行测试" class="headerlink" title="51.3 运行测试"></a>51.3 运行测试</h3><h4 id="51-3-1-编译驱动程序"><a href="#51-3-1-编译驱动程序" class="headerlink" title="51.3.1 编译驱动程序"></a>51.3.1 编译驱动程序</h4><p>在上一小节中的platform_device.c 代码同一目录下创建Makefile 文件，Makefile 文件内容：然后使用命令“make”进行驱动的编译，编译完生成platform_device.ko 目标文件，至此驱动模块就编译成功了。</p>
+<h4 id="51-3-2-运行测试"><a href="#51-3-2-运行测试" class="headerlink" title="51.3.2 运行测试"></a>51.3.2 运行测试</h4><p>开发板启动之后，使用以下命令进行驱动模块的加载，如下图（图51-4）所示：</p>
+<pre class="line-numbers language-bahs" data-language="bahs"><code class="language-bahs">insmod platform_device.ko<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211411405.png" alt="image-20240821141110282"></p>
+<p>然后来到/sys/bus/platform/devices 目录下，可以看到我们创建的my_platform_device 设备文件夹就成功生成了。</p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211411084.png" alt="image-20240821141132962"></p>
+<p>然后使用以下命令进行驱动模块的卸载，如下图（图51-6）所示：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">rmmod platform_device.ko<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211411456.png" alt="image-20240821141151341"></p>
+<p>至此，注册platform 设备实验就完成了。</p>
+<h2 id="第52-章注册platform-驱动实验"><a href="#第52-章注册platform-驱动实验" class="headerlink" title="第52 章注册platform 驱动实验"></a>第52 章注册platform 驱动实验</h2><p>在上个章节我们学习了如何注册platform 设备，而本章节就要学习如何注册platform 驱动了。</p>
+<h3 id="52-1-注册platform-驱动"><a href="#52-1-注册platform-驱动" class="headerlink" title="52.1 注册platform 驱动"></a>52.1 注册platform 驱动</h3><h4 id="52-1-1-platform-driver-register-函数"><a href="#52-1-1-platform-driver-register-函数" class="headerlink" title="52.1.1 platform_driver_register 函数"></a>52.1.1 <code>platform_driver_register</code> 函数</h4><p><code>platform_driver_register</code> 函数用于在Linux 内核中注册一个平台驱动程序。下面是对该函数的详细介绍：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">函数原型：
+    <span class="token keyword">int</span> <span class="token function">platform_driver_register</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_driver</span> <span class="token operator">*</span>driver<span class="token punctuation">)</span><span class="token punctuation">;</span>
+头文件：
+    <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/platform_device.h&gt;</span></span>
+函数作用：
+    platform_driver_register 函数用于将一个平台驱动程序注册到内核中。通过注册平台驱动程序，内核可以识别并与特定的平台设备进行匹配，并在需要时调用相应的回调函数。
+    
+参数含义：
+    driver：指向<span class="token keyword">struct</span> <span class="token class-name">platform_driver</span> 结构体的指针，描述了要注册的平台驱动程序的属性和回调函数（会在下面的小节对该结构体进行详细的讲解）。
+    
+返回值：
+    返回一个整数值，表示函数的执行状态。如果注册成功，返回<span class="token number">0</span>；如果注册失败，返回一个负数错误码。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>该函数在内核源码目录下的“<code>/include/linux/platform_device.h</code>”文件中，具体内容如下所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">platform_driver_register</span><span class="token expression"><span class="token punctuation">(</span>drv<span class="token punctuation">)</span> </span><span class="token punctuation">\</span>
+<span class="token expression"><span class="token function">__platform_driver_register</span><span class="token punctuation">(</span>drv<span class="token punctuation">,</span> THIS_MODULE<span class="token punctuation">)</span></span></span>
+<span class="token keyword">extern</span> <span class="token keyword">int</span> <span class="token function">__platform_driver_register</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_driver</span> <span class="token operator">*</span><span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">module</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>这个宏用于简化平台驱动程序的注册过程。它将实际的注册函数<code>__platform_driver_register</code> 与当前模块（驱动程序）关联起来。宏的参数drv 是一个指向<code>struct platform_driver</code> 结构体的指针，描述了要注册的平台驱动程序的属性和回调函数。<code>THIS_MODULE</code> 是一个宏，用于获取当前模块的指针。</p>
+<p>而<code>__platform_driver_register</code> 实际定义在“<code>/drivers/base/platform.c</code>”文件中，相关定义如下所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">__platform_driver_register</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_driver</span> <span class="token operator">*</span>drv<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">module</span> <span class="token operator">*</span>owner<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    drv<span class="token operator">-&gt;</span>driver<span class="token punctuation">.</span>owner <span class="token operator">=</span> owner<span class="token punctuation">;</span> <span class="token comment">// 将平台驱动程序的所有权设置为当前模块</span>
+    drv<span class="token operator">-&gt;</span>driver<span class="token punctuation">.</span>bus <span class="token operator">=</span> <span class="token operator">&amp;</span>platform_bus_type<span class="token punctuation">;</span> <span class="token comment">// 将平台驱动程序的总线类型设置为平台总线</span>
+    drv<span class="token operator">-&gt;</span>driver<span class="token punctuation">.</span>probe <span class="token operator">=</span> platform_drv_probe<span class="token punctuation">;</span> <span class="token comment">// 设置平台驱动程序的探测函数</span>
+    drv<span class="token operator">-&gt;</span>driver<span class="token punctuation">.</span>remove <span class="token operator">=</span> platform_drv_remove<span class="token punctuation">;</span> <span class="token comment">// 设置平台驱动程序的移除函数</span>
+    drv<span class="token operator">-&gt;</span>driver<span class="token punctuation">.</span>shutdown <span class="token operator">=</span> platform_drv_shutdown<span class="token punctuation">;</span><span class="token comment">// 设置平台驱动程序的关机函数</span>
+    
+    <span class="token keyword">return</span> <span class="token function">driver_register</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>drv<span class="token operator">-&gt;</span>driver<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 将平台驱动程序注册到内核</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>第3 行：将指向当前模块的指针owner 赋值给平台驱动程序的owner 成员。这样做是为了将当前模块与平台驱动程序关联起来，以确保模块的生命周期和驱动程序的注册和注销相关联。</li>
+<li>第4 行：将指向平台总线类型的指针&amp;platform_bus_type 赋值给平台驱动程序的bus 成员。这样做是为了指定该驱动程序所属的总线类型为平台总线，以便内核能够将平台设备与正确的驱动程序进行匹配。</li>
+<li>第5 行：将指向平台驱动程序探测函数platform_drv_probe 的指针赋值给平台驱动程序的probe 成员。这样做是为了指定当内核发现与驱动程序匹配的平台设备时，要调用的驱动程序探测函数。</li>
+<li>第6 行：将指向平台驱动程序移除函数platform_drv_remove 的指针赋值给平台驱动程序的remove 成员。这样做是为了指定当内核需要从系统中移除与驱动程序匹配的平台设备时，要调用的驱动程序移除函数。</li>
+<li>第7 行：platform_drv_shutdown;：将指向平台驱动程序关机函数platform_drv_shutdown 的指针赋值给平台驱动程序的shutdown 成员。这样做是为了指定当系统关机时，要调用的驱动程序关机函数。</li>
+<li>第9 行：调用driver_register 函数，将平台驱动程序的driver 成员注册到内核中。该函数负责将驱动程序注册到相应的总线上，并在注册成功时返回0，注册失败时返回一个负数错误码。</li>
+</ul>
+<p>通过这些操作，<code>__platform_driver_register</code> 函数将平台驱动程序与内核关联起来，并确保内核能够正确识别和调用驱动程序的各种回调函数，以实现与平台设备的交互和管理。函数的返回值表示注册过程的执行状态，以便在需要时进行错误处理。</p>
+<h4 id="52-1-2-platform-driver-unregister-函数"><a href="#52-1-2-platform-driver-unregister-函数" class="headerlink" title="52.1.2 platform_driver_unregister 函数"></a>52.1.2 <code>platform_driver_unregister</code> 函数</h4><p><code>platform_driver_unregister</code> 函数用于取消注册已经注册的平台驱动，即从内核中移除驱动。在驱动不再需要时，调用该函数可以进行设备的清理和释放操作。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">函数原型：
+    <span class="token keyword">void</span> <span class="token function">platform_driver_unregister</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_driver</span> <span class="token operator">*</span>pdev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+头文件：
+    <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/platform_device.h&gt;</span></span>
+函数作用：
+	platform_driver_unregister 函数用于从内核中注销平台驱动。通过调用该函数，可以将指定的平台设备从系统中移除。
+    
+参数含义：
+	pdev：指向要注销的平台设备的指针。
+返回值：
+	无返回值。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>该函数在内核源码目录下的“/include/linux/platform_device.h”文件中，具体内容如下所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">extern</span> <span class="token keyword">void</span> <span class="token function">platform_driver_unregister</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_driver</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>函数声明中的extern 关键字表示该函数在其他地方定义，而不是在当前文件中实现。这样的声明通常出现在头文件中，用于告诉编译器该函数的定义存在于其他源文件中，以便在编译时能够正确引用该函数。<br>而<code>platform_driver_unregister</code> 实际定义在“<code>/drivers/base/platform.c</code>”文件中，相关定义如下所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">platform_driver_unregister</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_driver</span> <span class="token operator">*</span>drv<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">driver_unregister</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>drv<span class="token operator">-&gt;</span>driver<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>该函数又调用了driver_unregister 函数进行嵌套， 追踪之后找到定义在“<code>/drivers/base/driver.c</code>”目录下的<code>driver_unregister</code> 函数，具体内容如下所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">driver_unregister</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">device_driver</span> <span class="token operator">*</span>drv<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 检查传入的设备驱动程序指针和p 成员是否有效</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>drv <span class="token operator">||</span> <span class="token operator">!</span>drv<span class="token operator">-&gt;</span>p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">WARN</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"Unexpected driver unregister!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">driver_remove_groups</span><span class="token punctuation">(</span>drv<span class="token punctuation">,</span> drv<span class="token operator">-&gt;</span>groups<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 移除与设备驱动程序关联的属性组</span>
+    <span class="token function">bus_remove_driver</span><span class="token punctuation">(</span>drv<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 从总线中移除设备驱动程序</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>函数内部有三个主要的操作：</p>
+<ul>
+<li>第4-7 行：检查传入的设备驱动程序指针drv 是否为空，或者驱动程序的p 成员是否为空。如果其中任何一个条件为真，表示传入的参数无效，会发出警告并返回。</li>
+<li>第9 行：调用driver_remove_groups 函数，用于从内核中移除与设备驱动程序关联的属性组。drv-&gt;groups 是指向属性组的指针，指定了要移除的属性组列表。</li>
+<li>第10 行：调用bus_remove_driver 函数，用于从总线中移除设备驱动程序。该函数会执行以下操作：<ul>
+<li>（1）从总线驱动程序列表中移除指定的设备驱动程序。</li>
+<li>（2）调用与设备驱动程序关联的remove 回调函数（如果有定义）。</li>
+<li>（3）释放设备驱动程序所占用的资源和内存。</li>
+<li>（4）最终销毁设备驱动程序的数据结构。</li>
+</ul>
+</li>
+</ul>
+<p>通过调用driver_unregister 函数，可以正确地注销设备驱动程序，并在注销过程中进行必要的清理工作。这样可以避免资源泄漏和其他问题。在调用该函数后，应避免继续使用已注销的设备驱动程序指针，因为该驱动程序已不再存在于内核中。</p>
+<h4 id="52-1-3-platform-driver-结构体"><a href="#52-1-3-platform-driver-结构体" class="headerlink" title="52.1.3 platform_driver 结构体"></a>52.1.3 <code>platform_driver</code> 结构体</h4><p>platform_driver 结构体是Linux 内核中用于编写平台设备驱动程序的重要数据结构。它提供了与平台设备驱动相关的函数和数据成员，以便与平台设备进行交互和管理。该结构体定义在内核的“/include/linux/platform_device.h”文件中，具体内容如下所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">struct</span> <span class="token class-name">platform_driver</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span>probe<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* 平台设备的探测函数指针*/</span>
+    <span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span>remove<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* 平台设备的移除函数指针*/</span>
+    <span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>shutdown<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">/* 平台设备的关闭函数指针*/</span>
+    <span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span>suspend<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span><span class="token punctuation">,</span> <span class="token class-name">pm_message_t</span> state<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">/* 平台设备的挂起函数指针*/</span>
+    <span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span>resume<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">/* 平台设备的恢复函数指针*/</span>
+    <span class="token keyword">struct</span> <span class="token class-name">device_driver</span> driver<span class="token punctuation">;</span><span class="token comment">/* 设备驱动程序的通用数据*/</span>
+    <span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">platform_device_id</span> <span class="token operator">*</span>id_table<span class="token punctuation">;</span><span class="token comment">/* 平台设备与驱动程序的关联关系表*/</span>
+    bool prevent_deferred_probe<span class="token punctuation">;</span> <span class="token comment">/* 是否阻止延迟探测*/</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>probe：平台设备的探测函数指针。当系统检测到一个平台设备与该驱动程序匹配时，该函数将被调用以初始化和配置设备。</li>
+<li>remove：平台设备的移除函数指针。当平台设备从系统中移除时，该函数将被调用以执行清理和释放资源的操作。</li>
+<li>shutdown：平台设备的关闭函数指针。当系统关闭时，该函数将被调用以执行与平台设备相关的关闭操作。</li>
+<li>suspend：平台设备的挂起函数指针。当系统进入挂起状态时，该函数将被调用以执行与平台设备相关的挂起操作。</li>
+<li>resume：平台设备的恢复函数指针。当系统从挂起状态恢复时，该函数将被调用以执行与平台设备相关的恢复操作。</li>
+<li>driver：包含了与设备驱动程序相关的通用数据，它是struct device_driver 类型的实例。其中包括驱动程序的名称、总线类型、模块拥有者、属性组数组指针等信息，<strong>该结构体的name参数需要与上个章节的platform_device 的.name 参数相同才能匹配成功，从而进入probe 函数</strong>。</li>
+<li>id_table：指向struct platform_device_id 结构体数组的指针，用于匹配平台设备和驱动程序之间的关联关系。通过该关联关系，可以确定哪个平台设备与该驱动程序匹配，和.driver.name起到相同的作用，但是优先级高于.driver.name。</li>
+<li>prevent_deferred_probe：一个布尔值，用于确定是否阻止延迟探测。如果设置为true，则延迟探测将被禁用。</li>
+</ul>
+<p>使用struct platform_driver 结构体，开发人员可以定义平台设备驱动程序，并将其注册到内核中。当系统检测到与该驱动程序匹配的平台设备时，内核将调用相应的函数来执行设备的初始化、配置、操作和管理。驱动程序可以利用提供的函数指针和通用数据与平台设备进行交互，并提供必要的功能和服务。</p>
+<p>需要注意的是，<code>struct platform_driver</code> 结构体继承了<code>struct device_driver</code> 结构体，因此可以直接访问<code>struct device_driver</code> 中定义的成员。这使得平台驱动程序可以利用通用的驱动程序机制，并与其他类型的设备驱动程序共享代码和功能。</p>
+<h3 id="52-2-实验程序的编写"><a href="#52-2-实验程序的编写" class="headerlink" title="52.2 实验程序的编写"></a>52.2 实验程序的编写</h3><p>本实验对应的网盘路径为：iTOP-RK3568 开发板【底板V1.7 版本】\03_【iTOP-RK3568开发板】指南教程\02_Linux 驱动配套资料\04_Linux 驱动例程\41。<br>本小节的实验只是编写一个platform 驱动的一个大体框架，在下一个章节中再讲解platform 设备和platform 驱动的匹配</p>
+<p>编写完成的platform_driver.c 代码如下所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/module.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/platform_device.h&gt;</span></span>
+
+<span class="token comment">// 平台设备的探测函数</span>
+<span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">my_platform_probe</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span>pdev<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printk</span><span class="token punctuation">(</span>KERN_INFO <span class="token string">"my_platform_probe: Probing platform device\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 添加设备特定的操作</span>
+    <span class="token comment">// ...</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 平台设备的移除函数</span>
+<span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">my_platform_remove</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span>pdev<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printk</span><span class="token punctuation">(</span>KERN_INFO <span class="token string">"my_platform_remove: Removing platform device\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 清理设备特定的操作</span>
+    <span class="token comment">// ...</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 定义平台驱动结构体</span>
+<span class="token keyword">static</span> <span class="token keyword">struct</span> <span class="token class-name">platform_driver</span> my_platform_driver <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span>probe <span class="token operator">=</span> my_platform_probe<span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>remove <span class="token operator">=</span> my_platform_remove<span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>driver <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"my_platform_device"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">.</span>owner <span class="token operator">=</span> THIS_MODULE<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 模块初始化函数</span>
+<span class="token keyword">static</span> <span class="token keyword">int</span> __init <span class="token function">my_platform_driver_init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> ret<span class="token punctuation">;</span>
+
+    <span class="token comment">// 注册平台驱动</span>
+    ret <span class="token operator">=</span> <span class="token function">platform_driver_register</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>my_platform_driver<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ret<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">printk</span><span class="token punctuation">(</span>KERN_ERR <span class="token string">"Failed to register platform driver\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> ret<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">printk</span><span class="token punctuation">(</span>KERN_INFO <span class="token string">"my_platform_driver: Platform driver initialized\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 模块退出函数</span>
+<span class="token keyword">static</span> <span class="token keyword">void</span> __exit <span class="token function">my_platform_driver_exit</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 注销平台驱动</span>
+    <span class="token function">platform_driver_unregister</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>my_platform_driver<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printk</span><span class="token punctuation">(</span>KERN_INFO <span class="token string">"my_platform_driver: Platform driver exited\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">module_init</span><span class="token punctuation">(</span>my_platform_driver_init<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">module_exit</span><span class="token punctuation">(</span>my_platform_driver_exit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">MODULE_LICENSE</span><span class="token punctuation">(</span><span class="token string">"GPL"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">MODULE_AUTHOR</span><span class="token punctuation">(</span><span class="token string">"topeet"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="52-3-运行测试"><a href="#52-3-运行测试" class="headerlink" title="52.3 运行测试"></a>52.3 运行测试</h3><h4 id="52-3-1-编译驱动程序"><a href="#52-3-1-编译驱动程序" class="headerlink" title="52.3.1 编译驱动程序"></a>52.3.1 编译驱动程序</h4><p>在上一小节中的platform_driver.c 代码同一目录下创建Makefile 文件，Makefile 文件内容：然后使用命令“make”进行驱动的编译，编译完生成platform_driver.ko 目标文件，至此驱动模块就编译成功了。</p>
+<h4 id="52-3-2-运行测试"><a href="#52-3-2-运行测试" class="headerlink" title="52.3.2 运行测试"></a>52.3.2 运行测试</h4><p>本小节的测试需要用到两个驱动ko 文件，即上一章节的注册platform 设备ko 文件和本章节的注册platform 驱动ko 文件。<br>开发板启动之后，使用以下命令进行驱动模块的加载，如下图（图21-7）所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">insmod platform_driver<span class="token punctuation">.</span>ko<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211435022.png" alt="image-20240821143528898"></p>
+<p>然后来到/sys/bus/platform/drivers 目录下，可以看到我们创建的my_platform_driver 驱动文件夹就成功生成了。</p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211435494.png" alt="image-20240821143541363"></p>
+<p>然后使用以下命令加载注册platform 设备ko 文件，加载成功之后如下图所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">insmod platform_device.ko<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211435916.png" alt="image-20240821143559792"></p>
+<p>可以看到匹配成功之后就会进入probe 函数，显示出了相应的打印（<strong>加载上述两个ko 文件不分先后顺序</strong>）。然后使用以下命令进行驱动模块的卸载，如下图（图21-7）所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">rmmod platform_driver.ko
+rmmod platform_device.ko<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211436826.png" alt="image-20240821143629702"></p>
+<p>至此，注册platform 驱动实验就完成了。</p>
+<h2 id="第53-章probe-函数编写实验"><a href="#第53-章probe-函数编写实验" class="headerlink" title="第53 章probe 函数编写实验"></a>第53 章probe 函数编写实验</h2><p>在上面的两个章节中分别注册了platform 设备和platform 驱动，匹配成功之后会进入在注册platform 驱动程序中编写的probe 函数，在上个章节只是为了验证是否匹配成功，所以只是在probe 中加入了一句相关打印，而驱动是要控制硬件的，但是平台总线模型对硬件的描述写在了platform_device.c 中,platform 设备和platform 驱动匹配成功之后，那我们如何在驱动platform_driver.c 的probe 函数中，得到platform_device.c 中编写的硬件资源呢。下面开始本节课程的学习吧。</p>
+<h3 id="53-1-获取device-资源"><a href="#53-1-获取device-资源" class="headerlink" title="53.1 获取device 资源"></a>53.1 获取device 资源</h3><p><strong>方法1：直接访问platform_device 结构体的资源数组</strong></p>
+<p>在上一章节的讲解中提到：<code>struct platform_driver</code> 结构体继承了<code>struct device_driver</code> 结构体，因此可以直接访问<code>struct device_driver</code> 中定义的成员。实例代码如下所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">if</span> <span class="token punctuation">(</span>pdev<span class="token operator">-&gt;</span>num_resources <span class="token operator">&gt;=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> <span class="token class-name">resource</span> <span class="token operator">*</span>res_mem <span class="token operator">=</span> <span class="token operator">&amp;</span>pdev<span class="token operator">-&gt;</span>resource<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">resource</span> <span class="token operator">*</span>res_irq <span class="token operator">=</span> <span class="token operator">&amp;</span>pdev<span class="token operator">-&gt;</span>resource<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 使用获取到的硬件资源进行处理</span>
+    <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"Method 1: Memory Resource: start = 0x%lld, end = 0x%lld\n"</span><span class="token punctuation">,</span> 
+           res_mem<span class="token operator">-&gt;</span>start<span class="token punctuation">,</span> res_mem<span class="token operator">-&gt;</span>end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"Method 1: IRQ Resource: number = %lld\n"</span><span class="token punctuation">,</span> res_irq<span class="token operator">-&gt;</span>start<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在这种方法中， 直接访问<code>platform_device</code> 结构体的资源数组来获取硬件资源。<code>pdev-&gt;resource</code> 是一个资源数组，其中存储了设备的硬件资源信息。通过访问数组的不同索引，可以获取到特定的资源。</p>
+<p>在这个示例中，假设资源数组的第一个元素是内存资源，第二个元素是中断资源。所以我们将第一个元素的指针赋值给res_mem，第二个元素的指针赋值给res_irq。</p>
+<p><strong>方法2：使用<code>platform_get_resource()</code> 获取硬件资源</strong></p>
+<p><code>platform_get_resource()</code>函数用于获取设备的资源信息。它的声明位于<code>&lt;linux/platform_device.h&gt;</code>头文件中，与平台设备（<code>platform_device</code>）相关。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">函数原型：
+<span class="token keyword">struct</span> <span class="token class-name">resource</span> <span class="token operator">*</span><span class="token function">platform_get_resource</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span>pdev<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> type<span class="token punctuation">,</span> 
+                                       <span class="token keyword">unsigned</span> <span class="token keyword">int</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+参数说明：
+    pdev：指向要获取资源的平台设备（platform_device）结构体的指针。
+    type：指定资源的类型，可以是以下值之一：
+        IORESOURCE_MEM：表示内存资源。
+        IORESOURCE_IO：表示I<span class="token operator">/</span>O 资源。
+        IORESOURCE_IRQ：表示中断资源。
+        其他资源类型的宏定义可在<span class="token operator">&lt;</span>linux<span class="token operator">/</span>ioport<span class="token punctuation">.</span>h<span class="token operator">&gt;</span>和<span class="token operator">&lt;</span>linux<span class="token operator">/</span>irq<span class="token punctuation">.</span>h<span class="token operator">&gt;</span>头文件中找到。
+    num：指定要获取的资源的索引。在一个设备中可能存在多个相同类型的资源，通过索引可以选择获取特定的资源。
+返回值：
+    如果成功获取资源，则返回指向资源（<span class="token keyword">struct</span> <span class="token class-name">resource</span>）的指针。
+    如果获取资源失败，或者指定的资源不存在，则返回<span class="token constant">NULL</span>。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>platform_get_resource()</code>函数用于从平台设备的资源数组中获取指定类型和索引的资源。在平台设备的资源数组中，每个元素都是一个struct resource 结构体，描述了一个资源的信息，如起始地址、结束地址、中断号等。</p>
+<p>示例用法：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span>pdev<span class="token punctuation">;</span>
+<span class="token keyword">struct</span> <span class="token class-name">resource</span> <span class="token operator">*</span>res<span class="token punctuation">;</span>
+res <span class="token operator">=</span> <span class="token function">platform_get_resource</span><span class="token punctuation">(</span>pdev<span class="token punctuation">,</span> IORESOURCE_MEM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>res<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 处理获取内存资源失败的情况</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 使用获取到的内存资源进行处理</span>
+<span class="token keyword">unsigned</span> <span class="token keyword">long</span> start <span class="token operator">=</span> res<span class="token operator">-&gt;</span>start<span class="token punctuation">;</span>
+<span class="token keyword">unsigned</span> <span class="token keyword">long</span> end <span class="token operator">=</span> res<span class="token operator">-&gt;</span>end<span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在上述示例中，首先通过platform_get_resource()函数获取平台设备的第一个内存资源（索引为0）。如果获取资源失败（返回NULL），则可以根据实际情况进行错误处理。如果获取资源成功，则可以使用返回的资源指针来访问资源的信息，如起始地址和结束地址。</p>
+<p>通过platform_get_resource()函数，可以方便地在驱动程序中获取平台设备的资源信息，并根据这些信息进行后续的操作和配置。</p>
+<h3 id="53-2-实验程序的编写"><a href="#53-2-实验程序的编写" class="headerlink" title="53.2 实验程序的编写"></a>53.2 实验程序的编写</h3><p>本实验对应的网盘路径为：iTOP-RK3568 开发板【底板V1.7 版本】\03_【iTOP-RK3568开发板】指南教程\02_Linux 驱动配套资料\04_Linux 驱动例程\42_probe。</p>
+<p>在上一章程序的基础上，添加第一小节两种获取设备资源的方式并打印出来。编写完成的probe.c 代码如下所示。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/module.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/platform_device.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/ioport.h&gt;</span></span>
+
+<span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">my_platform_driver_probe</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span>pdev<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> <span class="token class-name">resource</span> <span class="token operator">*</span>res_mem<span class="token punctuation">,</span> <span class="token operator">*</span>res_irq<span class="token punctuation">;</span>
+
+    <span class="token comment">// 方法1：直接访问 platform_device 结构体的资源数组</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>pdev<span class="token operator">-&gt;</span>num_resources <span class="token operator">&gt;=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">struct</span> <span class="token class-name">resource</span> <span class="token operator">*</span>res_mem <span class="token operator">=</span> <span class="token operator">&amp;</span>pdev<span class="token operator">-&gt;</span>resource<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">struct</span> <span class="token class-name">resource</span> <span class="token operator">*</span>res_irq <span class="token operator">=</span> <span class="token operator">&amp;</span>pdev<span class="token operator">-&gt;</span>resource<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 使用获取到的硬件资源进行处理</span>
+        <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"Method 1: Memory Resource: start = 0x%llx, end = 0x%llx\n"</span><span class="token punctuation">,</span>
+                res_mem<span class="token operator">-&gt;</span>start<span class="token punctuation">,</span> res_mem<span class="token operator">-&gt;</span>end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"Method 1: IRQ Resource: number = %lld\n"</span><span class="token punctuation">,</span> res_irq<span class="token operator">-&gt;</span>start<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 方法2：使用 platform_get_resource() 获取硬件资源</span>
+    res_mem <span class="token operator">=</span> <span class="token function">platform_get_resource</span><span class="token punctuation">(</span>pdev<span class="token punctuation">,</span> IORESOURCE_MEM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>res_mem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">dev_err</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>pdev<span class="token operator">-&gt;</span>dev<span class="token punctuation">,</span> <span class="token string">"Failed to get memory resource\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span>ENODEV<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    res_irq <span class="token operator">=</span> <span class="token function">platform_get_resource</span><span class="token punctuation">(</span>pdev<span class="token punctuation">,</span> IORESOURCE_IRQ<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>res_irq<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">dev_err</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>pdev<span class="token operator">-&gt;</span>dev<span class="token punctuation">,</span> <span class="token string">"Failed to get IRQ resource\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span>ENODEV<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 使用获取到的硬件资源进行处理</span>
+    <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"Method 2: Memory Resource: start = 0x%llx, end = 0x%llx\n"</span><span class="token punctuation">,</span>
+            res_mem<span class="token operator">-&gt;</span>start<span class="token punctuation">,</span> res_mem<span class="token operator">-&gt;</span>end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"Method 2: IRQ Resource: number = %lld\n"</span><span class="token punctuation">,</span> res_irq<span class="token operator">-&gt;</span>start<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">my_platform_driver_remove</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span>pdev<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 设备移除操作</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">static</span> <span class="token keyword">struct</span> <span class="token class-name">platform_driver</span> my_platform_driver <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span>driver <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"my_platform_device"</span><span class="token punctuation">,</span> <span class="token comment">// 与 platform_device.c 中的设备名称匹配</span>
+        <span class="token punctuation">.</span>owner <span class="token operator">=</span> THIS_MODULE<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>probe <span class="token operator">=</span> my_platform_driver_probe<span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>remove <span class="token operator">=</span> my_platform_driver_remove<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">static</span> <span class="token keyword">int</span> __init <span class="token function">my_platform_driver_init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> ret<span class="token punctuation">;</span>
+
+    ret <span class="token operator">=</span> <span class="token function">platform_driver_register</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>my_platform_driver<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 注册平台驱动</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ret<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"Failed to register platform driver\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> ret<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"Platform driver registered\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">static</span> <span class="token keyword">void</span> __exit <span class="token function">my_platform_driver_exit</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">platform_driver_unregister</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>my_platform_driver<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 注销平台驱动</span>
+    <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"Platform driver unregistered\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">module_init</span><span class="token punctuation">(</span>my_platform_driver_init<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">module_exit</span><span class="token punctuation">(</span>my_platform_driver_exit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">MODULE_LICENSE</span><span class="token punctuation">(</span><span class="token string">"GPL"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">MODULE_AUTHOR</span><span class="token punctuation">(</span><span class="token string">"topeet"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="53-3-运行测试"><a href="#53-3-运行测试" class="headerlink" title="53.3 运行测试"></a>53.3 运行测试</h3><h4 id="53-3-1-编译驱动程序"><a href="#53-3-1-编译驱动程序" class="headerlink" title="53.3.1 编译驱动程序"></a>53.3.1 编译驱动程序</h4><p>在上一小节中的probe.c 代码同一目录下创建Makefile 文件，Makefile 文件内容：然后使用命令“make”进行驱动的编译，编译完生成probe.ko 目标文件，至此驱动模块就编译成功了。</p>
+<h4 id="53-3-2-运行测试"><a href="#53-3-2-运行测试" class="headerlink" title="53.3.2 运行测试"></a>53.3.2 运行测试</h4><p>本小节的测试要使用两个ko 文件，第一个ko 文件为第53 章编译出来的platform_device.ko驱动，第二个ko 文件为在上一小节编译出的probe.ko 驱动文件。<br>开发板启动之后，首先使用以下命令进行platform 设备的注册，如下图（图53-4）所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">insmod platform_device.ko<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211443910.png" alt="image-20240821144321781"></p>
+<p>然后继续使用以下命令加载probe.ko 驱动，打印如下图（53-5）所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">insmod probe.ko<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211443760.png" alt="image-20240821144331619"></p>
+<p>在上图中，打印了两种方式下获取得到的内存信息和中断信息，最后可以使用以下命令进行驱动的卸载，如下图（图53-6）所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">rmmod probe<span class="token punctuation">.</span>ko
+rmmod platform_device<span class="token punctuation">.</span>ko<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211443932.png" alt="image-20240821144349804"></p>
+<h2 id="第54-章点亮LED-灯实验（平台总线）"><a href="#第54-章点亮LED-灯实验（平台总线）" class="headerlink" title="第54 章点亮LED 灯实验（平台总线）"></a>第54 章点亮LED 灯实验（平台总线）</h2><p>在上个章节中，我们成功在platform 驱动程序中读取到了设备资源信息，在本章节将进行具体的项目实践，要求在上节platform 驱动程序的基础上，加入控制LED 灯相关的代码（这部分代码可以参考“第18 章点亮LED 灯实验”）。</p>
+<h3 id="54-1-实验程序的编写"><a href="#54-1-实验程序的编写" class="headerlink" title="54.1 实验程序的编写"></a>54.1 实验程序的编写</h3><h4 id="54-1-1-驱动程序编写"><a href="#54-1-1-驱动程序编写" class="headerlink" title="54.1.1 驱动程序编写"></a>54.1.1 驱动程序编写</h4><p>本实验对应的网盘路径为：<code>iTOP-RK3568 开发板【底板V1.7 版本】\03_【iTOP-RK3568开发板】指南教程\02_Linux 驱动配套资料\04_Linux 驱动例程\43_platform_led\module</code>。<br>编写完成的platform_led.c 代码如下所示，添加的代码已加粗表示。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/module.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/platform_device.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/ioport.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/kdev_t.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/fs.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/cdev.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/uaccess.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/io.h&gt;</span></span>
+
+<span class="token keyword">struct</span> <span class="token class-name">device_test</span><span class="token punctuation">{</span>
+
+    <span class="token class-name">dev_t</span> dev_num<span class="token punctuation">;</span>  <span class="token comment">//设备号</span>
+     <span class="token keyword">int</span> major <span class="token punctuation">;</span>  <span class="token comment">//主设备号</span>
+    <span class="token keyword">int</span> minor <span class="token punctuation">;</span>  <span class="token comment">//次设备号</span>
+    <span class="token keyword">struct</span> <span class="token class-name">cdev</span> cdev_test<span class="token punctuation">;</span> <span class="token comment">// cdev</span>
+    <span class="token keyword">struct</span> <span class="token class-name">class</span> <span class="token operator">*</span>class<span class="token punctuation">;</span>   <span class="token comment">//类</span>
+    <span class="token keyword">struct</span> <span class="token class-name">device</span> <span class="token operator">*</span>device<span class="token punctuation">;</span> <span class="token comment">//设备</span>
+    <span class="token keyword">char</span> kbuf<span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> <span class="token operator">*</span>vir_gpio_dr<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span>  <span class="token class-name">device_test</span> dev1<span class="token punctuation">;</span>
+
+
+<span class="token comment">/*打开设备函数*/</span>
+<span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">cdev_test_open</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">inode</span> <span class="token operator">*</span>inode<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">file</span> <span class="token operator">*</span>file<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    file<span class="token operator">-&gt;</span>private_data<span class="token operator">=</span><span class="token operator">&amp;</span>dev1<span class="token punctuation">;</span><span class="token comment">//设置私有数据</span>
+    <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"This is cdev_test_open\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*向设备写入数据函数*/</span>
+<span class="token keyword">static</span> <span class="token class-name">ssize_t</span> <span class="token function">cdev_test_write</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">file</span> <span class="token operator">*</span>file<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> __user <span class="token operator">*</span>buf<span class="token punctuation">,</span> <span class="token class-name">size_t</span> size<span class="token punctuation">,</span> <span class="token class-name">loff_t</span> <span class="token operator">*</span>off<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+     <span class="token keyword">struct</span> <span class="token class-name">device_test</span> <span class="token operator">*</span>test_dev<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">device_test</span> <span class="token operator">*</span><span class="token punctuation">)</span>file<span class="token operator">-&gt;</span>private_data<span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">copy_from_user</span><span class="token punctuation">(</span>test_dev<span class="token operator">-&gt;</span>kbuf<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> size<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment">// copy_from_user:用户空间向内核空间传数据</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"copy_from_user error\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>test_dev<span class="token operator">-&gt;</span>kbuf<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>   <span class="token comment">//如果应用层传入的数据是1，则打开灯</span>
+            <span class="token operator">*</span><span class="token punctuation">(</span>test_dev<span class="token operator">-&gt;</span>vir_gpio_dr<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0x8000c040</span><span class="token punctuation">;</span>   <span class="token comment">//设置数据寄存器的地址</span>
+              <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"test_dev-&gt;kbuf [0]  is %d\n"</span><span class="token punctuation">,</span>test_dev<span class="token operator">-&gt;</span>kbuf<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//打印传入的数据</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>test_dev<span class="token operator">-&gt;</span>kbuf<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span>  <span class="token comment">//如果应用层传入的数据是0，则关闭灯</span>
+    <span class="token punctuation">{</span>
+            <span class="token operator">*</span><span class="token punctuation">(</span>test_dev<span class="token operator">-&gt;</span>vir_gpio_dr<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0x80004040</span><span class="token punctuation">;</span> <span class="token comment">//设置数据寄存器的地址</span>
+            <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"test_dev-&gt;kbuf [0]  is %d\n"</span><span class="token punctuation">,</span>test_dev<span class="token operator">-&gt;</span>kbuf<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//打印传入的数据</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**从设备读取数据*/</span>
+<span class="token keyword">static</span> <span class="token class-name">ssize_t</span> <span class="token function">cdev_test_read</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">file</span> <span class="token operator">*</span>file<span class="token punctuation">,</span> <span class="token keyword">char</span> __user <span class="token operator">*</span>buf<span class="token punctuation">,</span> <span class="token class-name">size_t</span> size<span class="token punctuation">,</span> <span class="token class-name">loff_t</span> <span class="token operator">*</span>off<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+
+    <span class="token keyword">struct</span> <span class="token class-name">device_test</span> <span class="token operator">*</span>test_dev<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">device_test</span> <span class="token operator">*</span><span class="token punctuation">)</span>file<span class="token operator">-&gt;</span>private_data<span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">copy_to_user</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> test_dev<span class="token operator">-&gt;</span>kbuf<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span> test_dev<span class="token operator">-&gt;</span>kbuf<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment">// copy_to_user:内核空间向用户空间传数据</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"copy_to_user error\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"This is cdev_test_read\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">cdev_test_release</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">inode</span> <span class="token operator">*</span>inode<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">file</span> <span class="token operator">*</span>file<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"This is cdev_test_release\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*设备操作函数*/</span>
+<span class="token keyword">struct</span> <span class="token class-name">file_operations</span> cdev_test_fops <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span>owner <span class="token operator">=</span> THIS_MODULE<span class="token punctuation">,</span> <span class="token comment">//将owner字段指向本模块，可以避免在模块的操作正在被使用时卸载该模块</span>
+    <span class="token punctuation">.</span>open <span class="token operator">=</span> cdev_test_open<span class="token punctuation">,</span> <span class="token comment">//将open字段指向chrdev_open(...)函数</span>
+    <span class="token punctuation">.</span>read <span class="token operator">=</span> cdev_test_read<span class="token punctuation">,</span> <span class="token comment">//将open字段指向chrdev_read(...)函数</span>
+    <span class="token punctuation">.</span>write <span class="token operator">=</span> cdev_test_write<span class="token punctuation">,</span> <span class="token comment">//将open字段指向chrdev_write(...)函数</span>
+    <span class="token punctuation">.</span>release <span class="token operator">=</span> cdev_test_release<span class="token punctuation">,</span> <span class="token comment">//将open字段指向chrdev_release(...)函数</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">my_platform_driver_probe</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span>pdev<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> <span class="token class-name">resource</span> <span class="token operator">*</span>res_mem<span class="token punctuation">;</span>
+	<span class="token keyword">int</span> ret<span class="token punctuation">;</span>
+	res_mem <span class="token operator">=</span> <span class="token function">platform_get_resource</span><span class="token punctuation">(</span>pdev<span class="token punctuation">,</span> IORESOURCE_MEM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>res_mem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">dev_err</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>pdev<span class="token operator">-&gt;</span>dev<span class="token punctuation">,</span> <span class="token string">"Failed to get memory resource\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span>ENODEV<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+	<span class="token comment">/*注册字符设备驱动*/</span>
+    <span class="token comment">/*1 创建设备号*/</span>
+    ret <span class="token operator">=</span> <span class="token function">alloc_chrdev_region</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>dev1<span class="token punctuation">.</span>dev_num<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"alloc_name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//动态分配设备号</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ret <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+       <span class="token keyword">goto</span> err_chrdev<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"alloc_chrdev_region is ok\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    dev1<span class="token punctuation">.</span>major <span class="token operator">=</span> <span class="token function">MAJOR</span><span class="token punctuation">(</span>dev1<span class="token punctuation">.</span>dev_num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//获取主设备号</span>
+   dev1<span class="token punctuation">.</span>minor <span class="token operator">=</span> <span class="token function">MINOR</span><span class="token punctuation">(</span>dev1<span class="token punctuation">.</span>dev_num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//获取次设备号</span>
+
+    <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"major is %d \r\n"</span><span class="token punctuation">,</span> dev1<span class="token punctuation">.</span>major<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//打印主设备号</span>
+    <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"minor is %d \r\n"</span><span class="token punctuation">,</span> dev1<span class="token punctuation">.</span>minor<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//打印次设备号</span>
+     <span class="token comment">/*2 初始化cdev*/</span>
+    dev1<span class="token punctuation">.</span>cdev_test<span class="token punctuation">.</span>owner <span class="token operator">=</span> THIS_MODULE<span class="token punctuation">;</span>
+    <span class="token function">cdev_init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>dev1<span class="token punctuation">.</span>cdev_test<span class="token punctuation">,</span> <span class="token operator">&amp;</span>cdev_test_fops<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/*3 添加一个cdev,完成字符设备注册到内核*/</span>
+   ret <span class="token operator">=</span>  <span class="token function">cdev_add</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>dev1<span class="token punctuation">.</span>cdev_test<span class="token punctuation">,</span> dev1<span class="token punctuation">.</span>dev_num<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>ret<span class="token operator">&lt;</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">goto</span>  err_chr_add<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">/*4 创建类*/</span>
+  dev1<span class="token punctuation">.</span> class <span class="token operator">=</span> <span class="token function">class_create</span><span class="token punctuation">(</span>THIS_MODULE<span class="token punctuation">,</span> <span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">IS_ERR</span><span class="token punctuation">(</span>dev1<span class="token punctuation">.</span>class<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        ret<span class="token operator">=</span><span class="token function">PTR_ERR</span><span class="token punctuation">(</span>dev1<span class="token punctuation">.</span>class<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> err_class_create<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">/*5  创建设备*/</span>
+  dev1<span class="token punctuation">.</span>device <span class="token operator">=</span> <span class="token function">device_create</span><span class="token punctuation">(</span>dev1<span class="token punctuation">.</span>class<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> dev1<span class="token punctuation">.</span>dev_num<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">IS_ERR</span><span class="token punctuation">(</span>dev1<span class="token punctuation">.</span>device<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        ret<span class="token operator">=</span><span class="token function">PTR_ERR</span><span class="token punctuation">(</span>dev1<span class="token punctuation">.</span>device<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> err_device_create<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    dev1<span class="token punctuation">.</span>vir_gpio_dr<span class="token operator">=</span><span class="token function">ioremap</span><span class="token punctuation">(</span>res_mem<span class="token operator">-&gt;</span>start<span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//将物理地址转化为虚拟地址</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">IS_ERR</span><span class="token punctuation">(</span>dev1<span class="token punctuation">.</span>vir_gpio_dr<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        ret<span class="token operator">=</span><span class="token function">PTR_ERR</span><span class="token punctuation">(</span>dev1<span class="token punctuation">.</span>vir_gpio_dr<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//PTR_ERR()来返回错误代码</span>
+        <span class="token keyword">goto</span> err_ioremap<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+err_ioremap<span class="token operator">:</span>
+        <span class="token function">iounmap</span><span class="token punctuation">(</span>dev1<span class="token punctuation">.</span>vir_gpio_dr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ err_device_create<span class="token operator">:</span>
+        <span class="token function">class_destroy</span><span class="token punctuation">(</span>dev1<span class="token punctuation">.</span>class<span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">//删除类</span>
+
+err_class_create<span class="token operator">:</span>
+       <span class="token function">cdev_del</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>dev1<span class="token punctuation">.</span>cdev_test<span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">//删除cdev</span>
+
+err_chr_add<span class="token operator">:</span>
+        <span class="token function">unregister_chrdev_region</span><span class="token punctuation">(</span>dev1<span class="token punctuation">.</span>dev_num<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//注销设备号</span>
+
+err_chrdev<span class="token operator">:</span>
+        <span class="token keyword">return</span> ret<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">my_platform_driver_remove</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">platform_device</span> <span class="token operator">*</span>pdev<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 设备移除操作</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">static</span> <span class="token keyword">struct</span> <span class="token class-name">platform_driver</span> my_platform_driver <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span>driver <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"my_platform_device"</span><span class="token punctuation">,</span> <span class="token comment">// 与 platform_device.c 中的设备名称匹配</span>
+        <span class="token punctuation">.</span>owner <span class="token operator">=</span> THIS_MODULE<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>probe <span class="token operator">=</span> my_platform_driver_probe<span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>remove <span class="token operator">=</span> my_platform_driver_remove<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">static</span> <span class="token keyword">int</span> __init <span class="token function">my_platform_driver_init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> ret<span class="token punctuation">;</span>
+
+    ret <span class="token operator">=</span> <span class="token function">platform_driver_register</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>my_platform_driver<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 注册平台驱动</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ret<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"Failed to register platform driver\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> ret<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"Platform driver registered\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">static</span> <span class="token keyword">void</span> __exit <span class="token function">my_platform_driver_exit</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+        <span class="token comment">/*注销字符设备*/</span>
+    <span class="token function">unregister_chrdev_region</span><span class="token punctuation">(</span>dev1<span class="token punctuation">.</span>dev_num<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//注销设备号</span>
+    <span class="token function">cdev_del</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>dev1<span class="token punctuation">.</span>cdev_test<span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">//删除cdev</span>
+    <span class="token function">device_destroy</span><span class="token punctuation">(</span>dev1<span class="token punctuation">.</span>class<span class="token punctuation">,</span> dev1<span class="token punctuation">.</span>dev_num<span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">//删除设备</span>
+    <span class="token function">class_destroy</span><span class="token punctuation">(</span>dev1<span class="token punctuation">.</span>class<span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">//删除类</span>
+	<span class="token function">platform_driver_unregister</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>my_platform_driver<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 注销平台驱动</span>
+    <span class="token function">printk</span><span class="token punctuation">(</span><span class="token string">"Platform driver unregistered\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">module_init</span><span class="token punctuation">(</span>my_platform_driver_init<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">module_exit</span><span class="token punctuation">(</span>my_platform_driver_exit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">MODULE_LICENSE</span><span class="token punctuation">(</span><span class="token string">"GPL"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">MODULE_AUTHOR</span><span class="token punctuation">(</span><span class="token string">"topeet"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="54-1-2-编写测试APP"><a href="#54-1-2-编写测试APP" class="headerlink" title="54.1.2 编写测试APP"></a>54.1.2 编写测试APP</h4><p>本应用程序对应的网盘路径为：<code>iTOP-RK3568 开发板【底板V1.7 版本】\03_【iTOP-RK3568开发板】指南教程\02_Linux 驱动配套资料\04_Linux 驱动例程\43_platform_led\app</code>。<br>编写测试app,led 驱动加载成功之后会生成/dev/test 节点，应用程序APP 通过操作/dev/test文件来完成对LED 设备的控制。向/dev/test 文件写入0 表示关闭LED 灯，写入1 表示打开LED灯。编写完成的应用程序app.c 代码如下所示：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/stat.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> fd<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>   
+    fd <span class="token operator">=</span> <span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"/dev/test"</span><span class="token punctuation">,</span> O_RDWR<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//打开led驱动</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>fd <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"open error \n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> fd<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    buf<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span><span class="token function">atoi</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// atoi()将字符串转为整型，这里将第一个参数转化为整型后，存放在 buf[0]中</span>
+    <span class="token function">write</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span>buf<span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//向/dev/test文件写入数据</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">//关闭文件</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="54-2-运行测试"><a href="#54-2-运行测试" class="headerlink" title="54.2 运行测试"></a>54.2 运行测试</h3><h4 id="54-2-1-编译驱动程序"><a href="#54-2-1-编译驱动程序" class="headerlink" title="54.2.1 编译驱动程序"></a>54.2.1 编译驱动程序</h4><p>在上一小节中的platform_led.c 代码同一目录下创建Makefile 文件，Makefile 文件内容：然后使用命令“make”进行驱动的编译，编译完生成platform_led.ko 目标文件，至此驱动模块就编译成功了。</p>
+<h4 id="54-2-2-编译应用程序"><a href="#54-2-2-编译应用程序" class="headerlink" title="54.2.2 编译应用程序"></a>54.2.2 编译应用程序</h4><p>下面进行应用程序编译， 因为测试APP 是要在开发板上运行的， 所以需要<code>aarch64-linux-gnu-gcc</code> 来编译，输入以下命令，编译完成以后会生成一个app 的可执行程序，如下图（图54-4）所示：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">aarch64-linux-gnu-gcc app.c <span class="token parameter variable">-o</span> app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="54-2-3-运行测试"><a href="#54-2-3-运行测试" class="headerlink" title="54.2.3 运行测试"></a>54.2.3 运行测试</h4><p>本小节的测试要使用两个ko 文件和一个测试应用程序，第一个ko 文件为第53 章编译出来的<code>platform_device.ko</code> 驱动，第二个ko 文件为在上一小节编译出的<code>probe.ko</code> 驱动文件，应用程序为上一小节编译出来的app。<br>开发板启动之后，首先使用以下命令进行platform 设备的注册，如下图（图54-5）所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">insmod platform_device.ko<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211449488.png" alt="image-20240821144932358" style="zoom:67%;">
+
+<p>然后继续使用以下命令加载<code>platform_led.ko</code> 驱动，打印如下图（54-6）所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">insmod platform_led.ko<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211450141.png" alt="image-20240821145002003"></p>
+<p>可以看到led 字符设备成功注册了，主设备号为236，次设备号为0，相应的test 节点也成功创建了，如下图（54-7）所示：</p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211450558.png" alt="image-20240821145016429"></p>
+<p>默认情况下led 灯的状态为常亮，然后输入“./app 0”命令LED 灯熄灭，如下图（图54-8）所示：</p>
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211450447.png" alt="image-20240821145049309"></p>
+<img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211450368.png" alt="image-20240821145055194" style="zoom:50%;">
+
+<p>然后输入“./app 0”，LED 灯点亮，如下图（图54-10）所示：</p>
+<p><img src="./images/loading.gif" data-original="C:\Users\geyan\AppData\Roaming\Typora\typora-user-images\image-20240821145113586.png" alt="image-20240821145113586"></p>
+<img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211451318.png" alt="image-20240821145124112" style="zoom:50%;">
+
+<p>最后可以使用以下命令进行驱动的卸载，如下图（图54-12）所示：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">rmmod platform_led.ko
+rmmod platform_device.ko<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><img src="./images/loading.gif" data-original="https://geyangwen-images.oss-cn-hangzhou.aliyuncs.com/2024/Android/202408211451802.png" alt="image-20240821145154668"></p>
+<p>至此，使用平台总线的点亮LCD 灯实验就完成了。</p>
 
                 
             </div>
@@ -9879,18 +10561,17 @@ IORESOURCE_BUSY：表示驱动程序将此资源标记为繁忙。<span aria-hid
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2024/080957409.html">
+                <a href="/2024/082158785.html">
                     <div class="card-image">
                         
                         
-                        <img src="./images/loading.gif" data-original="https://blog-accelerated.oss-cn-hangzhou.aliyuncs.com/source/medias/featureimages/11.jpg" class="responsive-img" alt="Android驱动的系统笔记1">
+                        <img src="./images/loading.gif" data-original="https://blog-accelerated.oss-cn-hangzhou.aliyuncs.com/source/medias/featureimages/12.jpg" class="responsive-img" alt="Android驱动的系统笔记2">
                         
-                        <span class="card-title">Android驱动的系统笔记1</span>
+                        <span class="card-title">Android驱动的系统笔记2</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -9900,9 +10581,9 @@ IORESOURCE_BUSY：表示驱动程序将此资源标记为繁忙。<span aria-hid
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-09
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-08-21
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -9915,7 +10596,6 @@ IORESOURCE_BUSY：表示驱动程序将此资源标记为繁忙。<span aria-hid
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -10118,7 +10798,7 @@ IORESOURCE_BUSY：表示驱动程序将此资源标记为繁忙。<span aria-hid
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">496.5k</span>&nbsp;字
+                class="white-color">597.6k</span>&nbsp;字
             
             
             
@@ -10424,7 +11104,7 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script>
         <style>
             [bg-lazy] {
                 background-image: none !important;
@@ -10437,6 +11117,6 @@ $(function () {
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script></body>
 
 </html>
