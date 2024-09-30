@@ -6,7 +6,7 @@
   <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/"/>
-  <updated>2024-09-09T07:37:54.890Z</updated>
+  <updated>2024-09-27T09:26:53.946Z</updated>
   <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Android驱动的系统笔记3</title>
+    <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2024/09249568.html"/>
+    <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2024/09249568.html</id>
+    <published>2024-09-24T08:20:54.000Z</published>
+    <updated>2024-09-27T09:26:53.946Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;注意：本网站所有内容为自己学习期间记录的笔记，基本都是原作者那边摘抄过来的，不作商业用途也不插播广告。（如有侵权，请联系我删除，15909440083）&lt;/p&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Android" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/categories/Android/"/>
+    
+    
+    <category term="Android驱动" scheme="https://gitee.com/ge-yangwen/geyangwen.gitee.io/tags/Android%E9%A9%B1%E5%8A%A8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Android驱动的系统笔记2</title>
     <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2024/082158785.html"/>
     <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2024/082158785.html</id>
     <published>2024-08-21T08:20:54.000Z</published>
-    <updated>2024-09-09T07:37:54.890Z</updated>
+    <updated>2024-09-25T01:36:09.297Z</updated>
     
     
       
@@ -338,7 +365,7 @@
     <link href="https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/012716952.html"/>
     <id>https://gitee.com/ge-yangwen/geyangwen.gitee.io/2023/012716952.html</id>
     <published>2023-01-27T03:07:54.000Z</published>
-    <updated>2024-08-07T08:45:49.440Z</updated>
+    <updated>2024-09-26T07:29:24.386Z</updated>
     
     
       
